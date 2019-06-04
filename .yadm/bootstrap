@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Because Git submodule commands cannot operate without a work tree, they must
+# be run from within $HOME (assuming this is the root of your dotfiles)
+cd "$HOME"
+
+echo "Init submodules"
+yadm submodule update --recursive --init
+
+echo "Creating link"
+# Gnome shell extensions' links
+ln -s ~/.local/share/gnome-shell/extensions/relative-repos/taskwhisperer-extension@infinicode.de/taskwhisperer-extension@infinicode.de ~/.local/share/gnome-shell/extensions/taskwhisperer-extension@infinicode.de
+ln -s ~/.local/share/gnome-shell/extensions/relative-repos/randomwallpaper@iflow.space/randomwallpaper@iflow.space ~/.local/share/gnome-shell/extensions/randomwallpaper@iflow.space

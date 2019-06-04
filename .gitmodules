@@ -1,3 +1,51 @@
 [submodule ".vim"]
 	path = .vim
 	url = https://github.com/richiware/vim-conf.git
+[submodule ".tmux/plugins/tmux-continuum"]
+	path = .tmux/plugins/tmux-continuum
+	url = https://github.com/tmux-plugins/tmux-continuum.git
+[submodule ".tmux/plugins/tmux-open"]
+	path = .tmux/plugins/tmux-open
+	url = https://github.com/tmux-plugins/tmux-open.git
+[submodule ".tmux/plugins/tmux-resurrect"]
+	path = .tmux/plugins/tmux-resurrect
+	url = https://github.com/tmux-plugins/tmux-resurrect.git
+[submodule ".tmux/plugins/tmux-scroll-copy-mode"]
+	path = .tmux/plugins/tmux-scroll-copy-mode
+	url = https://github.com/nhdaly/tmux-scroll-copy-mode.git
+[submodule ".tmux/plugins/tmux-sensible"]
+	path = .tmux/plugins/tmux-sensible
+	url = https://github.com/tmux-plugins/tmux-sensible.git
+[submodule ".tmux/plugins/tmux-url-select"]
+	path = .tmux/plugins/tmux-url-select
+	url = https://github.com/dequis/tmux-url-select.git
+[submodule ".tmux/plugins/tmux-urlview"]
+	path = .tmux/plugins/tmux-urlview
+	url = https://github.com/tmux-plugins/tmux-urlview.git
+[submodule ".tmux/plugins/tpm"]
+	path = .tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm.git
+[submodule ".local/share/gnome-shell/extensions/gistnotes@mohan43u.gmail.com"]
+	path = .local/share/gnome-shell/extensions/gistnotes@mohan43u.gmail.com
+	url = https://github.com/mohan43u/gistnotes.git
+[submodule ".local/share/gnome-shell/extensions/jenkins-indicator@philipphoffmann.de"]
+	path = .local/share/gnome-shell/extensions/jenkins-indicator@philipphoffmann.de
+	url = https://github.com/philipphoffmann/gnome3-jenkins-indicator.git
+[submodule ".local/share/gnome-shell/extensions/vim-key-mapping@richiware.github.com"]
+	path = .local/share/gnome-shell/extensions/vim-key-mapping@richiware.github.com
+	url = https://github.com/richiware/gnome-shell-extension-vim-key-mapping.git
+[submodule ".local/share/gnome-shell/extensions/tracker-search-provider@sinnix.de"]
+	path = .local/share/gnome-shell/extensions/tracker-search-provider@sinnix.de
+	url = https://github.com/hamiller/tracker-search-provider.git
+[submodule ".local/share/gnome-shell/extensions/timewarrior-indicator@natsakis.com"]
+	path = .local/share/gnome-shell/extensions/timewarrior-indicator@natsakis.com
+	url = https://github.com/tassos/timewarrior-indicator.git
+[submodule ".local/share/gnome-shell/extensions/text_translator@awamper.gmail.com"]
+	path = .local/share/gnome-shell/extensions/text_translator@awamper.gmail.com
+	url = https://github.com/gufoe/text-translator.git
+[submodule ".local/share/gnome-shell/extensions/relative-repos/taskwhisperer-extension@infinicode.de"]
+	path = .local/share/gnome-shell/extensions/relative-repos/taskwhisperer-extension@infinicode.de
+	url = https://github.com/cinatic/taskwhisperer.git
+[submodule ".local/share/gnome-shell/extensions/relative-repos/randomwallpaper@iflow.space"]
+	path = .local/share/gnome-shell/extensions/relative-repos/randomwallpaper@iflow.space
+	url = https://github.com/ifl0w/RandomwallpaperGnome3.git
