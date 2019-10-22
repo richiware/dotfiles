@@ -12,7 +12,11 @@ if [ -e /etc/gentoo-release ]; then
     sudo emerge -va lbdb translate-shell
 fi
 
-echo "Creating link"
+echo "Creating links"
 # Gnome shell extensions' links
 ln -s ~/.local/share/gnome-shell/extensions/relative-repos/taskwhisperer-extension@infinicode.de/taskwhisperer-extension@infinicode.de ~/.local/share/gnome-shell/extensions/taskwhisperer-extension@infinicode.de
 ln -s ~/.local/share/gnome-shell/extensions/relative-repos/randomwallpaper@iflow.space/randomwallpaper@iflow.space ~/.local/share/gnome-shell/extensions/randomwallpaper@iflow.space
+
+# Neovim/Vim
+## Coc settings
+ln -s ~/.vim/coc-settings.json ~/.config/nvim/coc-settings.json
