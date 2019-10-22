@@ -7,6 +7,11 @@ cd "$HOME"
 echo "Init submodules"
 yadm submodule update --recursive --init
 
+echo "Installing packages"
+if [ -e /etc/gentoo-release ]; then
+    sudo emerge -va lbdb translate-shell
+fi
+
 echo "Creating link"
 # Gnome shell extensions' links
 ln -s ~/.local/share/gnome-shell/extensions/relative-repos/taskwhisperer-extension@infinicode.de/taskwhisperer-extension@infinicode.de ~/.local/share/gnome-shell/extensions/taskwhisperer-extension@infinicode.de
