@@ -9,7 +9,7 @@ yadm submodule update --recursive --init
 
 echo "Installing packages"
 if [ -e /etc/gentoo-release ]; then
-    sudo emerge -va lbdb translate-shell
+    sudo emerge -va app-text/tree lbdb translate-shell
 fi
 
 echo "Creating links"
