@@ -9,7 +9,14 @@ yadm submodule update --recursive --init
 
 echo "Installing packages"
 if [ -e /etc/gentoo-release ]; then
-    sudo emerge -va app-text/tree lbdb translate-shell
+    sudo emerge app-text/tree lbdb neovim translate-shell
+elif [ -e /etc/os-release ]; then
+    source /etc/os-release
+    case $NAME in
+        "Ubuntu")
+            apt -y install tree lbdb neovim translate-shell
+            ;;
+    esac
 fi
 
 echo "Creating links"
@@ -20,4 +27,5 @@ ln -s ~/.local/share/gnome-shell/extensions/relative-repos/gnome-shell-extension
 
 # Neovim/Vim
 ## Coc settings
+mkdir -p ~/.config/nvim
 ln -s ~/.vim/coc-settings.json ~/.config/nvim/coc-settings.json
