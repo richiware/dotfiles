@@ -9,23 +9,24 @@ yadm submodule update --recursive --init
 
 echo "Installing packages"
 if [ -e /etc/gentoo-release ]; then
-    sudo emerge app-text/tree lbdb neovim translate-shell
+    sudo emerge app-text/tree lbdb neovim tmux translate-shell
 elif [ -e /etc/os-release ]; then
     source /etc/os-release
     case $NAME in
         "Ubuntu")
-            apt -y install tree lbdb neovim translate-shell
+            apt -y install tree lbdb neovim tmux translate-shell
             ;;
     esac
 fi
+
+# Neovim/Vim
+## Coc settings
+mkdir -p ~/.config/nvim
+ln -s ~/.vim/init.vim ~/.config/nvim/init.vim
+ln -s ~/.vim/coc-settings.json ~/.config/nvim/coc-settings.json
 
 echo "Creating links"
 # Gnome shell extensions' links
 ln -s ~/.local/share/gnome-shell/extensions/relative-repos/taskwhisperer-extension@infinicode.de/taskwhisperer-extension@infinicode.de ~/.local/share/gnome-shell/extensions/taskwhisperer-extension@infinicode.de
 ln -s ~/.local/share/gnome-shell/extensions/relative-repos/randomwallpaper@iflow.space/randomwallpaper@iflow.space ~/.local/share/gnome-shell/extensions/randomwallpaper@iflow.space
 ln -s ~/.local/share/gnome-shell/extensions/relative-repos/gnome-shell-extension-mpris-indicator-button/mprisindicatorbutton@JasonLG1979.github.io ~/.local/share/gnome-shell/extensions/mprisindicatorbutton@JasonLG1979.github.io
-
-# Neovim/Vim
-## Coc settings
-mkdir -p ~/.config/nvim
-ln -s ~/.vim/coc-settings.json ~/.config/nvim/coc-settings.json
