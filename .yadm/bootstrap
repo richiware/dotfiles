@@ -9,12 +9,13 @@ yadm submodule update --recursive --init
 
 echo "Installing packages"
 if [ -e /etc/gentoo-release ]; then
-    sudo emerge app-text/tree lbdb neovim tmux translate-shell
+    sudo emerge app-shells/powerline app-text/tree lbdb neovim python-language-server tmux translate-shell ueberzug
 elif [ -e /etc/os-release ]; then
     source /etc/os-release
     case $NAME in
         "Ubuntu")
-            apt -y install tree lbdb neovim tmux translate-shell
+            apt -y install powerline tree lbdb neovim tmux translate-shell
+            pip install ueberzug
             ;;
     esac
 fi
