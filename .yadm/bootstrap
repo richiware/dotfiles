@@ -8,8 +8,21 @@ echo "Init submodules"
 yadm submodule update --recursive --init
 
 echo "Installing packages"
+
+# flake8, python-language-server -> needed by coc-python Vim plugin
+# yarn -> needed by iamcco/markdown-preview.nvim Vim plugin
 if [ -e /etc/gentoo-release ]; then
-    sudo emerge app-shells/powerline app-text/tree flake8 lbdb neovim python-language-server tmux translate-shell ueberzug
+    sudo emerge \
+        app-shells/powerline \
+        app-text/tree \
+        flake8 \
+        lbdb \
+        neovim \
+        python-language-server \
+        tmux \
+        translate-shell \
+        ueberzug \
+        yarn
 elif [ -e /etc/os-release ]; then
     source /etc/os-release
     case $NAME in
