@@ -23,34 +23,34 @@ if [ -e /etc/gentoo-release ]; then
     cd ~
     sudo cp ~/.yadm/system/richioverlay.conf /etc/portage/repos.conf/
     sudo emerge -va eselect-repository
-    sudo eselect repository enable richioverlay
+    # sudo eselect repository enable richioverlay
 fi
 
 echo "Installing packages..."
 if [ -e /etc/gentoo-release ]; then
-    sudo emerge \
-        # C/C++/ObjC language server supporting cross references, hierarchies, ... Used by CoC Vim plugin. \
+    sudo emerge -va \
+        `: # C/C++/ObjC language server supporting cross references, hierarchies, ... Used by CoC Vim plugin.` \
         ccls \
-        # Wrapper around PyFlakes, pep8 and mccabe. Needed by coc-python Vim plugin. \
+        `: # Wrapper around PyFlakes, pep8 and mccabe. Needed by coc-python Vim plugin.` \
         flake8 \
-        # Little Brother database. Used by coc-lbdbq Vim plugin. \
+        `: # Little Brother database. Used by coc-lbdbq Vim plugin.` \
         lbdb \
         neovim \
-        # Statusline/prompt utility \
+        `: # Statusline/prompt utility` \
         app-shells/powerline \
-        # Impl of the Language Server Protocol for Python. Needed by coc-python Vim plugin. \
+        `: # Impl of the Language Server Protocol for Python. Needed by coc-python Vim plugin.` \
         python-language-server \
-        # A vim-inspired file manager for the console. \
+        `: # A vim-inspired file manager for the console.` \
         ranger \
-        # Terminal multiplexer \
+        `: # Terminal multiplexer.` \
         tmux \
-        # Online command-line translator. Used by VicentCordobes/vim-translate Vim plugin. \
+        `: # Online command-line translator. Used by VicentCordobes/vim-translate Vim plugin.` \
         translate-shell \
-        # Lists directories recusively, and produces an indented listing of files. \
+        `: # Lists directories recusively, and produces an indented listing of files.` \
         app-text/tree \
-        # Draw images on terminals by using child windows. Usec by ranger. \
+        `: # Draw images on terminals by using child windows. Usec by ranger.` \
         ueberzug \
-        # NodeJS dependency management. Used to install iamcco/markdown-preview.nvim Vim plugin. \
+        `: # NodeJS dependency management. Used to install iamcco/markdown-preview.nvim Vim plugin.` \
         yarn
 elif [ -e /etc/os-release ]; then
     source /etc/os-release
@@ -89,4 +89,5 @@ echo "Configuring CCache..."
 sudo cp ~/.yadm/system/tmpfs-ccache /etc/
 sudo cp ~/.yadm/system/tmpfs-ccache.service /etc/systemd/system/
 sudo cp ~/.yadm/system/tmpfs-ccache-service.sh /usr/local/bin/
+sudo systemctl daemon-reload
 sudo systemctl enable tmpfs-ccache-service
