@@ -89,3 +89,4 @@ echo "Configuring CCache..."
 sudo cp ~/.yadm/system/tmpfs-ccache /etc/
 sudo cp ~/.yadm/system/tmpfs-ccache.service /etc/systemd/system/
 sudo cp ~/.yadm/system/tmpfs-ccache-service.sh /usr/local/bin/
+sudo systemctl enable tmpfs-ccache-service
