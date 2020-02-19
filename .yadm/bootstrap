@@ -22,8 +22,6 @@ if [ -e /etc/gentoo-release ]; then
     git clone https://github.com/richiware/richioverlay.git portage
     cd ~
     sudo cp ~/.yadm/system/richioverlay.conf /etc/portage/repos.conf/
-    sudo emerge -va eselect-repository
-    # sudo eselect repository enable richioverlay
 fi
 
 echo "Installing packages..."
@@ -33,6 +31,8 @@ if [ -e /etc/gentoo-release ]; then
         ccls \
         `: # Wrapper around PyFlakes, pep8 and mccabe. Needed by coc-python Vim plugin.` \
         flake8 \
+        `: # eselect plugin for adding repositories into your portage.` \
+        eselect-repository \
         `: # Little Brother database. Used by coc-lbdbq Vim plugin.` \
         lbdb \
         neovim \
@@ -90,4 +90,4 @@ sudo cp ~/.yadm/system/tmpfs-ccache /etc/
 sudo cp ~/.yadm/system/tmpfs-ccache.service /etc/systemd/system/
 sudo cp ~/.yadm/system/tmpfs-ccache-service.sh /usr/local/bin/
 sudo systemctl daemon-reload
-sudo systemctl enable tmpfs-ccache-service
+sudo systemctl enable tmpfs-ccache
