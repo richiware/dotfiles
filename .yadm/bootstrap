@@ -1,37 +1,78 @@
 #!/bin/bash
 
+########################################################################################################################
+# BEFORE BOOTSTRAP
+#
+# * Install 'yadm'
+# * Install 'sudo' and configure for the user.
+########################################################################################################################
+
 # Because Git submodule commands cannot operate without a work tree, they must
 # be run from within $HOME (assuming this is the root of your dotfiles)
 cd "$HOME"
 
-echo "Init submodules"
+echo "Init submodules..."
 yadm submodule update --recursive --init
 
-echo "Installing packages"
+if [ -e /etc/gentoo-release ]; then
+    echo "Cloning my portage repository..."
+    cd /usr/local
+    sudo mkdir portage
+    sudo chown $USER:$USER portage
+    git clone https://github.com/richiware/richioverlay.git portage
+    cd ~
+    sudo cp ~/.yadm/system/richioverlay.conf /etc/portage/repos.conf/
+    sudo emerge -va eselect-repository
+    sudo eselect repository enable richioverlay
+fi
 
-# flake8, python-language-server -> needed by coc-python Vim plugin
-# yarn -> needed by iamcco/markdown-preview.nvim Vim plugin
+echo "Installing packages..."
 if [ -e /etc/gentoo-release ]; then
     sudo emerge \
-        app-shells/powerline \
-        app-text/tree \
+        # C/C++/ObjC language server supporting cross references, hierarchies, ... Used by CoC Vim plugin. \
+        ccls \
+        # Wrapper around PyFlakes, pep8 and mccabe. Needed by coc-python Vim plugin. \
         flake8 \
+        # Little Brother database. Used by coc-lbdbq Vim plugin. \
         lbdb \
         neovim \
+        # Statusline/prompt utility \
+        app-shells/powerline \
+        # Impl of the Language Server Protocol for Python. Needed by coc-python Vim plugin. \
         python-language-server \
+        # A vim-inspired file manager for the console. \
+        ranger \
+        # Terminal multiplexer \
         tmux \
+        # Online command-line translator. Used by VicentCordobes/vim-translate Vim plugin. \
         translate-shell \
+        # Lists directories recusively, and produces an indented listing of files. \
+        app-text/tree \
+        # Draw images on terminals by using child windows. Usec by ranger. \
         ueberzug \
+        # NodeJS dependency management. Used to install iamcco/markdown-preview.nvim Vim plugin. \
         yarn
 elif [ -e /etc/os-release ]; then
     source /etc/os-release
     case $NAME in
         "Ubuntu")
-            apt -y install powerline tree lbdb neovim tmux translate-shell
-            pip install ueberzug
+            apt -y install \
+                ccls \
+                flake8 \
+                lbdb \
+                neovim \
+                powerline \
+                ranger \
+                tmux \
+                translate-shell \
+                tree \
+                yarnpkg \
+            pip3 install python-language-server ueberzug
             ;;
     esac
 fi
+
+echo "Creating links..."
 
 # Neovim/Vim
 ## Coc settings
@@ -39,8 +80,12 @@ mkdir -p ~/.config/nvim
 ln -s ~/.vim/init.vim ~/.config/nvim/init.vim
 ln -s ~/.vim/coc-settings.json ~/.config/nvim/coc-settings.json
 
-echo "Creating links"
 # Gnome shell extensions' links
 ln -s ~/.local/share/gnome-shell/extensions/relative-repos/taskwhisperer-extension@infinicode.de/taskwhisperer-extension@infinicode.de ~/.local/share/gnome-shell/extensions/taskwhisperer-extension@infinicode.de
 ln -s ~/.local/share/gnome-shell/extensions/relative-repos/randomwallpaper@iflow.space/randomwallpaper@iflow.space ~/.local/share/gnome-shell/extensions/randomwallpaper@iflow.space
 ln -s ~/.local/share/gnome-shell/extensions/relative-repos/gnome-shell-extension-mpris-indicator-button/mprisindicatorbutton@JasonLG1979.github.io ~/.local/share/gnome-shell/extensions/mprisindicatorbutton@JasonLG1979.github.io
+
+echo "Configuring CCache..."
+sudo cp ~/.yadm/system/tmpfs-ccache /etc/
+sudo cp ~/.yadm/system/tmpfs-ccache.service /etc/systemd/system/
+sudo cp ~/.yadm/system/tmpfs-ccache-service.sh /usr/local/bin/
