@@ -27,6 +27,8 @@ fi
 echo "Installing packages..."
 if [ -e /etc/gentoo-release ]; then
     sudo emerge -vau \
+        `: # fast compiler cache.` \
+        ccache \
         `: # C/C++/ObjC language server supporting cross references, hierarchies, ... Used by CoC Vim plugin.` \
         ccls \
         `: # Exuberant Ctags creates tags files for code browsing in editors.` \
@@ -77,6 +79,10 @@ if [ -e /etc/gentoo-release ]; then
         `: # A highly customizable and functional document viewer` \
         zathura \
         zsh
+
+    sudo emerge -vau --oneshot \
+        `: # Used by openweather gnome shell extension.` \
+        zip
 elif [ -e /etc/os-release ]; then
     source /etc/os-release
     case $NAME in
@@ -123,9 +129,9 @@ ln -s ~/.vim/init.vim ~/.config/nvim/init.vim
 ln -s ~/.vim/coc-settings.json ~/.config/nvim/coc-settings.json
 
 # Gnome shell extensions' links
-ln -s ~/.local/share/gnome-shell/extensions/relative-repos/taskwhisperer-extension@infinicode.de/taskwhisperer-extension@infinicode.de ~/.local/share/gnome-shell/extensions/taskwhisperer-extension@infinicode.de
-ln -s ~/.local/share/gnome-shell/extensions/relative-repos/randomwallpaper@iflow.space/randomwallpaper@iflow.space ~/.local/share/gnome-shell/extensions/randomwallpaper@iflow.space
-ln -s ~/.local/share/gnome-shell/extensions/relative-repos/gnome-shell-extension-mpris-indicator-button/mprisindicatorbutton@JasonLG1979.github.io ~/.local/share/gnome-shell/extensions/mprisindicatorbutton@JasonLG1979.github.io
+ln -s ~/.local/share/gnome-shell/extensions/relative-repos/taskwhisperer-extension@infinicode.de/taskwhisperer-extension@infinicode.de ~/.local/share/gnome-shell/extensions/
+ln -s ~/.local/share/gnome-shell/extensions/relative-repos/randomwallpaper@iflow.space/randomwallpaper@iflow.space ~/.local/share/gnome-shell/extensions/
+ln -s ~/.local/share/gnome-shell/extensions/relative-repos/gnome-shell-extension-mpris-indicator-button/mprisindicatorbutton@JasonLG1979.github.io ~/.local/share/gnome-shell/extensions/
 cd ~/.local/share/gnome-shell/extensions/relative-repos/gnome-shell-extension-openweather && ./autogen.sh && make local-install; cd ~
 
 echo "Configuring CCache..."
@@ -147,6 +153,7 @@ dconf write "/org/gnome/desktop/interface/font-name" "'DejaVu Sans Semi-Condense
 dconf write "/org/gnome/desktop/interface/gtk-theme" "'Adwaita-dark'"
 dconf write "/org/gnome/desktop/interface/monospace-font-name" "'Inconsolata 10'"
 dconf write "/org/gnome/shell/overrides/workspaces-only-on-primary" "true"
+dconf write "org.gnome.shell disable-extension-version-validation" "true"
 gnome-shell-extension-tool -e 'openweather-extension@jenslody.de'
 gnome-shell-extension-tool -e 'github.notifications@alexandre.dufournet.gmail.com'
 gnome-shell-extension-tool -e 'suspend-button@laserb'
