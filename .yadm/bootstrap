@@ -40,10 +40,14 @@ if [ -e /etc/gentoo-release ]; then
         neovim \
         `: # Statusline/prompt utility` \
         app-shells/powerline \
+        `: # Python client for Neovim` \
+        pynvim \
         `: # Impl of the Language Server Protocol for Python. Needed by coc-python Vim plugin.` \
         python-language-server \
         `: # A vim-inspired file manager for the console.` \
         ranger \
+        `: # A code-searching tool similar to ack, but faster.` \
+        the_silver_searcher \
         `: # Terminal multiplexer.` \
         tmux \
         `: # Online command-line translator. Used by VicentCordobes/vim-translate Vim plugin.` \
@@ -54,6 +58,8 @@ if [ -e /etc/gentoo-release ]; then
         ueberzug \
         `: # NodeJS dependency management. Used to install iamcco/markdown-preview.nvim Vim plugin.` \
         yarn \
+        `: # A highly customizable and functional document viewer` \
+        zathura \
         zsh
 elif [ -e /etc/os-release ]; then
     source /etc/os-release
@@ -65,11 +71,15 @@ elif [ -e /etc/os-release ]; then
                 lbdb \
                 neovim \
                 powerline \
+                python3-neovim \
                 ranger \
+                silversearcher-ag \
                 tmux \
                 translate-shell \
                 tree \
                 yarnpkg \
+                zathura \
+                zsh
             pip3 install python-language-server ueberzug
             ;;
     esac
@@ -100,3 +110,6 @@ sudo cp ~/.yadm/system/tmpfs-ccache.service /etc/systemd/system/
 sudo cp ~/.yadm/system/tmpfs-ccache-service.sh /usr/local/bin/
 sudo systemctl daemon-reload
 sudo systemctl enable tmpfs-ccache
+
+echo "Configuring NeoVim..."
+nvim -c 'call dein#install()'
