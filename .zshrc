@@ -54,7 +54,7 @@ ZSH_CUSTOM=~/.config/zsh/custom
 plugins=(git gitignore taskwarrior thefuck vi-mode vim-interaction notify fzf tmux zsh-syntax-highlighting)
 
 # Export directory where vim's plugin dein install fzf.
-export FZF_BASE="/var/cache/users/ricardo/.cache/dein/repos/github.com/junegunn/fzf"
+export FZF_BASE="${XDG_CACHE_HOME:=~/.cache}/dein/repos/github.com/junegunn/fzf"
 
 source $ZSH/oh-my-zsh.sh
 

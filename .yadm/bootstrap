@@ -40,14 +40,20 @@ if [ -e /etc/gentoo-release ]; then
         neovim \
         `: # Statusline/prompt utility` \
         app-shells/powerline \
+        `: # OpenType Unicode font with symbols for Powerline/Airline.` \
+        powerline-symbols \
         `: # Python client for Neovim` \
         pynvim \
         `: # Impl of the Language Server Protocol for Python. Needed by coc-python Vim plugin.` \
         python-language-server \
         `: # A vim-inspired file manager for the console.` \
         ranger \
+        `: # Taskwarrior is a command-line todo list manager.` \
+        task \
         `: # A code-searching tool similar to ack, but faster.` \
         the_silver_searcher \
+        `: # Tracks your time from the command line, and generates reports.` \
+        timew \
         `: # Terminal multiplexer.` \
         tmux \
         `: # Online command-line translator. Used by VicentCordobes/vim-translate Vim plugin.` \
@@ -68,12 +74,15 @@ elif [ -e /etc/os-release ]; then
             apt -y install \
                 ccls \
                 flake8 \
+                fonts-powerline \
                 lbdb \
                 neovim \
                 powerline \
                 python3-neovim \
                 ranger \
                 silversearcher-ag \
+                taskwarrior \
+                timewarrior \
                 tmux \
                 translate-shell \
                 tree \
@@ -111,5 +120,11 @@ sudo cp ~/.yadm/system/tmpfs-ccache-service.sh /usr/local/bin/
 sudo systemctl daemon-reload
 sudo systemctl enable tmpfs-ccache
 
+echo "Installing powerline fonts..."
+sudo eselect fontconfig enable 10-powerline-symbols.conf
+
+echo "Installing Gnome terminal solarized theme"
+~/.config/gnome-terminal-colors-solarized/install.sh --scheme dark --profile default --install-dircolors
+
 echo "Configuring NeoVim..."
-nvim -c 'call dein#install()'
+nvim -c 'call dein#install()' -c 'CocInstall coc-python coc-emoji coc-highlight coc-lbdbq coc-tag'
