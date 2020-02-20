@@ -26,7 +26,7 @@ fi
 
 echo "Installing packages..."
 if [ -e /etc/gentoo-release ]; then
-    sudo emerge -va \
+    sudo emerge -vau \
         `: # C/C++/ObjC language server supporting cross references, hierarchies, ... Used by CoC Vim plugin.` \
         ccls \
         `: # eselect plugin for adding repositories into your portage.` \
