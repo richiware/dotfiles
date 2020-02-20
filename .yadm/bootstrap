@@ -29,10 +29,12 @@ if [ -e /etc/gentoo-release ]; then
     sudo emerge -va \
         `: # C/C++/ObjC language server supporting cross references, hierarchies, ... Used by CoC Vim plugin.` \
         ccls \
-        `: # Wrapper around PyFlakes, pep8 and mccabe. Needed by coc-python Vim plugin.` \
-        flake8 \
         `: # eselect plugin for adding repositories into your portage.` \
         eselect-repository \
+        `: # Wrapper around PyFlakes, pep8 and mccabe. Needed by coc-python Vim plugin.` \
+        flake8 \
+        `: # A lightweight and flexible command-line JSON processor.` \
+        jq \
         `: # Little Brother database. Used by coc-lbdbq Vim plugin.` \
         lbdb \
         neovim \
@@ -51,7 +53,8 @@ if [ -e /etc/gentoo-release ]; then
         `: # Draw images on terminals by using child windows. Usec by ranger.` \
         ueberzug \
         `: # NodeJS dependency management. Used to install iamcco/markdown-preview.nvim Vim plugin.` \
-        yarn
+        yarn \
+        zsh
 elif [ -e /etc/os-release ]; then
     source /etc/os-release
     case $NAME in
@@ -71,6 +74,12 @@ elif [ -e /etc/os-release ]; then
             ;;
     esac
 fi
+
+# Install git-foresta
+curl -L https://github.com/takaaki-kasai/git-foresta/raw/master/git-foresta -o ~/.local/bin/git-foresta && chmod +x ~/.local/bin/git-foresta
+
+# Installing zsh
+sudo usermod --shell /bin/zsh ricardo
 
 echo "Creating links..."
 
