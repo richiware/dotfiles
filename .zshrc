@@ -49,12 +49,12 @@ ZSH_TMUX_AUTOSTART=true
 # Location of my custom ZSH folder
 ZSH_CUSTOM=~/.config/zsh/custom
 
+# Export directory where vim's plugin dein install fzf.
+export FZF_BASE="${XDG_CACHE_HOME:=~/.cache}/dein/repos/github.com/junegunn/fzf"
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git gitignore taskwarrior thefuck vi-mode vim-interaction notify fzf tmux zsh-syntax-highlighting)
-
-# Export directory where vim's plugin dein install fzf.
-export FZF_BASE="${XDG_CACHE_HOME:=~/.cache}/dein/repos/github.com/junegunn/fzf"
 
 source $ZSH/oh-my-zsh.sh
 

@@ -29,6 +29,8 @@ if [ -e /etc/gentoo-release ]; then
     sudo emerge -vau \
         `: # C/C++/ObjC language server supporting cross references, hierarchies, ... Used by CoC Vim plugin.` \
         ccls \
+        `: # Exuberant Ctags creates tags files for code browsing in editors.` \
+        ctags \
         `: # eselect plugin for adding repositories into your portage.` \
         eselect-repository \
         `: # Wrapper around PyFlakes, pep8 and mccabe. Needed by coc-python Vim plugin.` \
@@ -52,6 +54,8 @@ if [ -e /etc/gentoo-release ]; then
         task \
         `: # A code-searching tool similar to ack, but faster.` \
         the_silver_searcher \
+        `: # Magnificent app which corrects your previous console command.` \
+        thefuck \
         `: # Tracks your time from the command line, and generates reports.` \
         timew \
         `: # Terminal multiplexer.` \
@@ -73,6 +77,7 @@ elif [ -e /etc/os-release ]; then
         "Ubuntu")
             apt -y install \
                 ccls \
+                exuberant-ctags \
                 flake8 \
                 fonts-powerline \
                 lbdb \
@@ -89,7 +94,7 @@ elif [ -e /etc/os-release ]; then
                 yarnpkg \
                 zathura \
                 zsh
-            pip3 install python-language-server ueberzug
+            pip3 install python-language-server thefuck ueberzug
             ;;
     esac
 fi
@@ -124,7 +129,7 @@ echo "Installing powerline fonts..."
 sudo eselect fontconfig enable 10-powerline-symbols.conf
 
 echo "Installing Gnome terminal solarized theme"
-~/.config/gnome-terminal-colors-solarized/install.sh --scheme dark --profile default --install-dircolors
+~/.config/gnome-terminal-colors-solarized/install.sh --scheme dark --install-dircolors
 
 echo "Configuring NeoVim..."
 nvim -c 'call dein#install()' -c 'CocInstall coc-python coc-emoji coc-highlight coc-lbdbq coc-tag'
