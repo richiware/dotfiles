@@ -64,3 +64,18 @@
 [submodule ".config/gnome-terminal-colors-solarized"]
 	path = .config/gnome-terminal-colors-solarized
 	url = https://github.com/Anthony25/gnome-terminal-colors-solarized.git
+[submodule ".local/share/gnome-shell/extensions/relative-repos/gnome-shell-extension-openweather"]
+	path = .local/share/gnome-shell/extensions/relative-repos/gnome-shell-extension-openweather
+	url = https://gitlab.com/jenslody/gnome-shell-extension-openweather.git
+[submodule ".local/share/gnome-shell/extensions/github.notification@alexandre.dufournet.gmail.com"]
+	path = .local/share/gnome-shell/extensions/github.notification@alexandre.dufournet.gmail.com
+	url = https://github.com/alexduf/gnome-github-notifications.git
+[submodule ".local/share/gnome-shell/extensions/suspend-button@laserb"]
+	path = .local/share/gnome-shell/extensions/suspend-button@laserb
+	url = https://github.com/laserb/gnome-shell-extension-suspend-button.git
+[submodule ".local/share/gnome-shell/extensions/remove-dropdown-arrows@mpdeimos.com"]
+	path = .local/share/gnome-shell/extensions/remove-dropdown-arrows@mpdeimos.com
+	url = https://github.com/mpdeimos/gnome-shell-remove-dropdown-arrows.git
+[submodule ".local/share/gnome-shell/extensions/gnome-stats-pro@thrallingpenguin.com"]
+	path = .local/share/gnome-shell/extensions/gnome-stats-pro@thrallingpenguin.com
+	url = https://github.com/tpenguin/gnome-stats-pro.git
