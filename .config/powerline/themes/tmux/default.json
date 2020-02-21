@@ -2,6 +2,10 @@
     "segments": {
         "right": [
             {
+                "function": "powerline_taskwarrior.context",
+                "priority": 70
+            }
+            {
                 "function": "powerline.segments.common.sys.system_load",
                 "priority": 50
             },

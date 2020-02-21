@@ -49,7 +49,7 @@ if [ -e /etc/gentoo-release ]; then
         liberation-fonts \
         neovim \
         `: # Statusline/prompt utility` \
-        app-shells/powerline \
+        powerline-taskwarrior \
         `: # OpenType Unicode font with symbols for Powerline/Airline.` \
         powerline-symbols \
         `: # Python client for Neovim` \
@@ -99,6 +99,7 @@ elif [ -e /etc/os-release ]; then
                 neovim \
                 powerline \
                 python3-neovim \
+                python3-powerline-taskwarrior \
                 ranger \
                 silversearcher-ag \
                 taskwarrior \
