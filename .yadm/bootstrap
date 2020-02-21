@@ -20,6 +20,8 @@ if [ -e /etc/gentoo-release ]; then
     sudo mkdir portage
     sudo chown $USER:$USER portage
     git clone https://github.com/richiware/richioverlay.git portage
+    cd portage
+    git pull --ff-only
     cd ~
     sudo cp ~/.yadm/system/richioverlay.conf /etc/portage/repos.conf/
 fi
