@@ -2,7 +2,7 @@
   "segments": {
     "right": [
       {
-        "function": "powerline_taskwarrior.context",
+        "function": "powerline_taskwarrior.active_task",
         "priority": 70
       },
       {
