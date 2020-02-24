@@ -22,6 +22,8 @@ alias gpull='git pull --ff-only origin $(git_current_branch)'
 emulate -R bash -c 'source ~/.local/bin/tmpfs-ccache-user.sh'
 
 # FZF
+# Export directory where vim's plugin dein install fzf.
+export FZF_BASE="${XDG_CACHE_HOME:=$HOME/.cache}/dein/repos/github.com/junegunn/fzf"
 export FZF_DEFAULT_COMMAND='ag -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
