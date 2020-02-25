@@ -37,10 +37,14 @@ if [ -e /etc/gentoo-release ]; then
         ctags \
         `: # DejaVu fonts, bitstream vera with ISO-8859-2 characters. For interface fonts.` \
         dejavu \
+        `: # GUI for GPaste clipboard manager for Gnome Shell.` \
+        draobpilc \
         `: # eselect plugin for adding repositories into your portage.` \
         eselect-repository \
         `: # Wrapper around PyFlakes, pep8 and mccabe. Needed by coc-python Vim plugin.` \
         flake8 \
+        `: # Clipboard management system.` \
+        gpaste \
         `: #A sans-serif monotype font for code listings. For monospace.` \
         inconsolata \
         `: # A lightweight and flexible command-line JSON processor.` \

@@ -79,3 +79,6 @@
 [submodule ".local/share/gnome-shell/extensions/github.notifications@alexandre.dufournet.gmail.com"]
 	path = .local/share/gnome-shell/extensions/github.notifications@alexandre.dufournet.gmail.com
 	url = https://github.com/alexduf/gnome-github-notifications.git
+[submodule ".config/zsh/custom/plugins/yadm"]
+	path = .config/zsh/custom/plugins/yadm
+	url = https://github.com/ZDTaylor/yadm-zsh.git
