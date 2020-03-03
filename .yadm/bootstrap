@@ -78,6 +78,8 @@ if [ -e /etc/gentoo-release ]; then
         translate-shell \
         `: # Lists directories recusively, and produces an indented listing of files.` \
         app-text/tree \
+        `: # C/C++/C#/D/Java/Pawn code indenter and beautifier.` \
+        uncrustify \
         `: # Draw images on terminals by using child windows. Usec by ranger.` \
         ueberzug \
         `: # NodeJS dependency management. Used to install iamcco/markdown-preview.nvim Vim plugin.` \
@@ -101,6 +103,7 @@ elif [ -e /etc/os-release ]; then
                 fonts-inconsolata \
                 fonts-liberation2 \
                 fonts-powerline \
+                gpaste \
                 lbdb \
                 neovim \
                 powerline \
@@ -113,10 +116,15 @@ elif [ -e /etc/os-release ]; then
                 tmux \
                 translate-shell \
                 tree \
+                uncrustify \
                 yarnpkg \
                 zathura \
                 zsh
-            pip3 install python-language-server thefuck ueberzug
+            pip3 install \
+                draobpilc \
+                python-language-server \
+                thefuck \
+                ueberzug
             ;;
     esac
 fi
