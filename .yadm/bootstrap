@@ -41,6 +41,8 @@ if [ -e /etc/gentoo-release ]; then
         draobpilc \
         `: # eselect plugin for adding repositories into your portage.` \
         eselect-repository \
+        `: # A simple, fast and user-friendly alternative to find.` \
+        fd \
         `: # Wrapper around PyFlakes, pep8 and mccabe. Needed by coc-python Vim plugin.` \
         flake8 \
         `: # Clipboard management system.` \
@@ -98,6 +100,7 @@ elif [ -e /etc/os-release ]; then
             apt -y install \
                 ccls \
                 exuberant-ctags \
+                fd-find \
                 flake8 \
                 fonts-dejavu \
                 fonts-inconsolata \
