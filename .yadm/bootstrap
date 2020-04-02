@@ -29,6 +29,8 @@ fi
 echo "Installing packages..."
 if [ -e /etc/gentoo-release ]; then
     sudo emerge -vau \
+        `: # A cat clone with syntax highlighting, Git integration, so on.` \
+        bat \
         `: # fast compiler cache.` \
         ccache \
         `: # C/C++/ObjC language server supporting cross references, hierarchies, ... Used by CoC Vim plugin.` \
@@ -98,6 +100,7 @@ elif [ -e /etc/os-release ]; then
     case $NAME in
         "Ubuntu")
             apt -y install \
+                bat \
                 ccls \
                 exuberant-ctags \
                 fd-find \
