@@ -130,30 +130,30 @@ zle -N accept-line _reset-prompt-and-accept-line
 # Special function to search text and show results usin FZF
 function sg()
 {
-    search_prg=("ag" "--vimgrep")
+    search_prg=("rg" "--vimgrep" "--color=always")
     inside_git_repo="$(git rev-parse --is-inside-work-tree 2>/dev/null)"
     directory="."
 
     if [ "$inside_git_repo" ]; then
-        search_prg=("git" "grep" "-n" "-i" "--column")
+        search_prg=("git" "grep" "-n" "-i" "--column" "--color=always")
     fi
     if [ "$2" ]; then
         directory=$2
     fi
-    grep_rv=`$search_prg "$1" "$directory" | $(__fzfcmd_complete)`
+    grep_rv=`$search_prg "$1" "$directory" | $(__fzfcmd_complete) --ansi`
     if [ "$grep_rv" ]; then
         echo $(awk '{split($0,a,":"); print "nvim",a[1],"-c","\"call cursor(\""a[2]","a[3]"\")\""}' <<< ${grep_rv}) | bash
     fi
 }
 
-function sga()
+function rsg()
 {
     directory="."
 
     if [ "$2" ]; then
         directory=$2
     fi
-    grep_rv=`ag --vimgrep "$1" "$directory" | $(__fzfcmd_complete)`
+    grep_rv=`rg --vimgrep --color=always "$1" "$directory" | $(__fzfcmd_complete)` --ansi
     if [ "$grep_rv" ]; then
         echo $(awk '{split($0,a,":"); print "nvim",a[1],"-c","\"call cursor(\""a[2]","a[3]"\")\""}' <<< ${grep_rv}) | bash
     fi

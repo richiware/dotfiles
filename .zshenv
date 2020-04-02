@@ -30,6 +30,9 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # GCC_COLORS
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
+# RIPGREP configuration file
+export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep/config
+
 # Make
 NUMCPUS=`grep -c '^processor' /proc/cpuinfo`
 NUMCPUS_JOBS=$(( $NUMCPUS - 1))

@@ -68,6 +68,8 @@ if [ -e /etc/gentoo-release ]; then
         python-language-server \
         `: # A vim-inspired file manager for the console.` \
         ranger \
+        `: # Recursively searches directories for a regex pattern.` \
+        ripgrep \
         `: # Taskwarrior is a command-line todo list manager.` \
         task \
         `: # A code-searching tool similar to ack, but faster.` \
@@ -116,6 +118,7 @@ elif [ -e /etc/os-release ]; then
                 python3-neovim \
                 python3-powerline-taskwarrior \
                 ranger \
+                ripgrep \
                 silversearcher-ag \
                 taskwarrior \
                 timewarrior \
