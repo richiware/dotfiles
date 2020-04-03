@@ -47,6 +47,8 @@ if [ -e /etc/gentoo-release ]; then
         fd \
         `: # Wrapper around PyFlakes, pep8 and mccabe. Needed by coc-python Vim plugin.` \
         flake8 \
+        `: # Adds KStatusNotifierItem support to the Shell.` \
+        gnome-shell-extension-appindicator \
         `: # Clipboard management system.` \
         gpaste \
         `: #A sans-serif monotype font for code listings. For monospace.` \
