@@ -51,7 +51,20 @@ ZSH_CUSTOM=~/.config/zsh/custom
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git gitignore taskwarrior thefuck vi-mode vim-interaction notify fzf tmux yadm zsh-syntax-highlighting)
+plugins=(
+    git
+    gitignore
+    taskwarrior
+    thefuck
+    vi-mode
+    vim-interaction
+    notify
+    fzf
+    tmux
+    yadm
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+)
 
 source $ZSH/oh-my-zsh.sh
 

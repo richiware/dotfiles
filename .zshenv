@@ -40,3 +40,8 @@ NUMCPUS_LOAD=$(( $NUMCPUS - 2)).8
 export MAKEFLAGS="-j${NUMCPUS_JOBS} -l${NUMCPUS_LOAD}"
   # Variable used in CMake to pass through other project the MAKEFLAGS
 export CMAKE_MAKEFLAGS=$MAKEFLAGS
+
+# zsh-autosuggestions plugin
+export ZSH_AUTOSUGGEST_USE_ASYNC=true
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=60"
+export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
