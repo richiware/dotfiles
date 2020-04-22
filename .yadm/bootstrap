@@ -55,6 +55,8 @@ if [ -e /etc/gentoo-release ]; then
         inconsolata \
         `: # A lightweight and flexible command-line JSON processor.` \
         jq \
+        `: # A modern, hackable, featureful, OpenGL-based terminal emulator.` \
+        kitty \
         `: # Little Brother database. Used by coc-lbdbq Vim plugin.` \
         lbdb \
         `: # A Helvetica/Times/Courier replacement TrueType font set, courtesy of Red Hat. For documents` \
@@ -114,6 +116,7 @@ elif [ -e /etc/os-release ]; then
                 fonts-liberation2 \
                 fonts-powerline \
                 gpaste \
+                kitty \
                 lbdb \
                 neovim \
                 powerline \
