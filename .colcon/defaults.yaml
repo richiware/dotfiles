@@ -1,0 +1,37 @@
+{
+    "log-base": "/dev/null",
+    "build":
+    {
+        "symlink-install": true,
+        "event-handlers": ["console_direct+"],
+        # Options when I was testing Ninja.
+        #"cmake-args": [
+        #    "-G", "Ninja",
+        #    "-DCMAKE_CXX_FLAGS_RELWITHDEBINFO=-O2 -g",
+        #    "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+        #    "-DCMAKE_C_COMPILER_LAUNCHER=ccache",
+        #    "-DCMAKE_CXX_COMPILER_LAUNCHER=ccache",
+        #    "-DCMAKE_VERBOSE_MAKEFILE=ON"
+        #    ]
+        # Options before use docker containers.
+        #"cmake-args": [
+        #    "-DCMAKE_CXX_FLAGS_RELWITHDEBINFO=-O2 -g",
+        #    "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+        #    "-DCMAKE_C_COMPILER_LAUNCHER=ccache",
+        #    "-DCMAKE_CXX_COMPILER_LAUNCHER=ccache",
+        #    "-DCMAKE_CXX_FLAGS=-fdebug-prefix-map=${CMAKE_SOURCE_DIR}=. -fdebug-prefix-map=${CMAKE_BINARY_DIR}=."
+        #    ]
+        # Options before colcon starts not working and then I have to use my own mixin repository.
+        #"cmake-args": [
+        #    "-DCMAKE_CXX_FLAGS_RELWITHDEBINFO=-O2 -g",
+        #    "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+        #    "-DCMAKE_C_COMPILER_LAUNCHER=ccache",
+        #    "-DCMAKE_CXX_COMPILER_LAUNCHER=ccache"
+        #    ]
+        "mixin":["richi-rel-with-deb-info"]
+    },
+    "test":
+    {
+        "event-handlers": ["console_direct+"]
+    }
+}
