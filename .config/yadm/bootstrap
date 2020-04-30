@@ -23,7 +23,7 @@ if [ -e /etc/gentoo-release ]; then
     cd portage
     git pull --ff-only
     cd ~
-    sudo cp ~/.yadm/system/richioverlay.conf /etc/portage/repos.conf/
+    sudo cp ~/.config/yadm/system/richioverlay.conf /etc/portage/repos.conf/
 fi
 
 echo "Installing packages..."
@@ -164,9 +164,9 @@ ln -s ~/.local/share/gnome-shell/extensions/relative-repos/gnome-shell-extension
 cd ~/.local/share/gnome-shell/extensions/relative-repos/gnome-shell-extension-openweather && ./autogen.sh && make local-install; cd ~
 
 echo "Configuring CCache..."
-sudo cp ~/.yadm/system/tmpfs-ccache /etc/
-sudo cp ~/.yadm/system/tmpfs-ccache.service /etc/systemd/system/
-sudo cp ~/.yadm/system/tmpfs-ccache-service.sh /usr/local/bin/
+sudo cp ~/.config/yadm/system/tmpfs-ccache /etc/
+sudo cp ~/.config/yadm/system/tmpfs-ccache.service /etc/systemd/system/
+sudo cp ~/.config/yadm/system/tmpfs-ccache-service.sh /usr/local/bin/
 sudo systemctl daemon-reload
 sudo systemctl enable tmpfs-ccache
 
