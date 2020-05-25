@@ -1,0 +1,177 @@
+#!/bin/bash
+
+declare -r -x PREVIEW_ID="preview"
+
+function STORE_FZF_HEIGHT_IN {
+    # Usage: STORE_FZF_HEIGHT_IN
+    #           fzf_height_lines_variable
+    #           terminal_lines fzf_height fzf_min_height
+    [[ $# -ne 4 || ! -v "$1" ]] && return 1
+    local -n _fzf_height_lines="$1"
+    local terminal_lines="$2"
+    local fzf_height_text="$3"
+    local fzf_min_height="$4"
+
+    _fzf_height_lines="${fzf_height_text}"
+
+    if [[ "${fzf_height_text}" == *"%" ]]; then
+        ((_fzf_height_lines=(terminal_lines * ${fzf_height_text%\%}) / 100))
+    else
+        ((_fzf_height_lines=_fzf_height_lines > terminal_lines ? terminal_lines :_fzf_height_lines))
+    fi
+
+    ((_fzf_height_lines=fzf_min_height > _fzf_height_lines
+                        ? fzf_min_height : _fzf_height_lines))
+}
+
+
+function STORE_FZF_OFFSET_IN {
+    # Usage: STORE_FZF_OFFSET_IN
+    #           fzf_offset_y_variable
+    #           terminal_lines fzf_height fzf_start_offset_y
+    [[ $# -ne 4 || ! -v "$1" ]] && return 1
+    local -n _fzf_offset_y="$1"
+    local terminal_lines="$2"
+    local fzf_height="$3"
+    local fzf_start_offset_y="$4"
+
+    # Two cases:
+    # 1. There isn't enough space, so fzf will print blank lines.
+    #    -> OFFSET_Y = terminal height - required lines
+    # 2. There is enough space -> OFFSET_Y = START_OFFSET_Y
+    ((_fzf_offset_y=terminal_lines - fzf_height))
+    ((_fzf_offset_y=_fzf_offset_y < fzf_start_offset_y
+                    ? _fzf_offset_y : fzf_start_offset_y))
+}
+
+
+function STORE_PREVIEW_POSITION_IN {
+    # Usage: STORE_PREVIEW_POSITION_IN
+    #           preview_y_variable preview_x_variable
+    #           preview_position fzf_offset_y fzf_height
+    #           terminal_width preview_height preview_width
+    [[ $# -ne 8 || ! -v "$1" || ! -v "$2" ]] && return 1
+    local -n _preview_y="$1"
+    local -n _preview_x="$2"
+    local preview_position="$3"
+    local fzf_offset_y="$4"
+    local fzf_height="$5"
+    local terminal_width="$6"
+    local preview_height="$7"
+    local preview_width="$8"
+
+    case "${preview_position}" in
+        left|up|top)
+            _preview_x=2
+            _preview_y=$((1 + fzf_offset_y))
+            ;;
+        right)
+            _preview_x=$((terminal_width - preview_width - 2))
+            _preview_y=$((1 + fzf_offset_y))
+            ;;
+        down|bottom)
+            _preview_x=2
+            _preview_y=$((fzf_offset_y + fzf_height - preview_height - 1))
+            ;;
+    esac
+}
+
+function IDENTITY_RECT {
+    # Usage: IDENTITY_RECT
+    #           placement_rect_variable
+    [[ $# -ne 1 ]] && return 1
+}
+
+function ADD_PLACEMENT {
+    # Usage: ADD_PLACEMENT
+    #           add_command_variable [adjust_rect_function]
+    # references can't be checked.. -v doesn't seem to support associative arrays..
+    local terminal_lines="$(tmux display-message -p '#{window_height}')"
+    local terminal_columns="$(tmux display-message -p '#{window_width}')"
+    local fzf_height= fzf_offset_y=
+    local preview_y= preview_x=
+    local preview_height="$(($(tmux display-message -p '#{pane_height}') - 2))"
+    local preview_width="$(( ($(tmux display-message -p '#{pane_width}') >> 1) - 4 ))"
+    STORE_FZF_HEIGHT_IN \
+        fzf_height \
+        "$terminal_lines" "${FZF_HEIGHT}" "${FZF_MIN_HEIGHT}"
+    STORE_FZF_OFFSET_IN \
+        fzf_offset_y \
+        "$terminal_lines" "${fzf_height}" "${FZF_START_OFFSET_Y}"
+    STORE_PREVIEW_POSITION_IN \
+        preview_y preview_x \
+        "${PREVIEW_POSITION}" \
+        "${fzf_offset_y}" "${fzf_height}" "${terminal_columns}" \
+        "${preview_height}" "${preview_width}"
+
+    local _add_command_nameref="$1"
+    local -n _add_command="${_add_command_nameref}"
+    local adjust_rect_callback="${2:-IDENTITY_RECT}"
+    local -A adjusted_placement_rect=( \
+        [y]="${preview_y}" [x]="${preview_x}" \
+        [height]="${preview_height}" [width]="${preview_width}")
+    "${adjust_rect_callback}" adjusted_placement_rect
+    _add_command[action]=add
+    _add_command[x]="${adjusted_placement_rect[x]}"
+    _add_command[y]="${adjusted_placement_rect[y]}"
+    _add_command[width]="${adjusted_placement_rect[width]}"
+    _add_command[height]="${adjusted_placement_rect[height]}"
+
+    >"${UEBERZUG_FIFO}" \
+        declare -p "${_add_command_nameref}"
+}
+
+function DRAW_PREVIEW {
+    # Usage: DRAW_PREVIEW path
+    local -A add_preview_command=( \
+        [identifier]="${PREVIEW_ID}" \
+        [scaler]=cover [scaling_position_x]=0.5 [scaling_position_y]=0.5 \
+        [path]="${@}")
+    ADD_PLACEMENT add_preview_command
+}
+
+function REMOVE_PLACEMENT {
+    # Usage: REMOVE_PLACEMENT placement-id
+    [[ $# -ne 1 ]] && return 1
+    >"${UEBERZUG_FIFO}" \
+        declare -A -p _remove_command=( \
+        [action]=remove [identifier]="${1}")
+}
+
+function CLEAR_PREVIEW {
+    # Usage: CLEAR_PREVIEW
+    REMOVE_PLACEMENT "${PREVIEW_ID}"
+}
+
+function store_cursor_position_in {
+    # Usage: store_cursor_pos_in
+    #           y_variable x_variable
+    # based on https://github.com/dylanaraps/pure-bash-bible#get-the-current-cursor-position
+    [[ ! -v "$1" || ! -v "$2" ]] && return 1
+    </dev/tty &>/dev/tty \
+        IFS='[;' \
+        read -p $'\e[6n' -d R -rs _ "${1}" "${2}" _
+}
+
+declare -r -x UEBERZUG_FIFO="$1"
+shift
+declare -r -x PREVIEW_POSITION="$1"
+shift
+declare -r -x FZF_MIN_HEIGHT="$1"
+shift
+
+declare -r -x FZF_START_OFFSET_Y="$(tmux display-message -p '#{pane_top}')"
+
+file_info=$(file -b "${@}")
+
+CLEAR_PREVIEW
+if [[ "$file_info"  =~ "directory" ]]; then
+    tree -L 1 "${@}"
+elif [[ "$file_info"  =~ "image" ]]; then
+    DRAW_PREVIEW "${@}"
+elif [[ "$file_info"  =~ "PDF" ]]; then
+    #less "${@}" | head -100
+    pdftotext "${@}" - | head -100 | sed -e 's//\n\n------\n\n# /' -e 's/^\(\s\+\)I\(\s\+\)/\1\- /' | bat --style=numbers --color=always -l markdown
+else
+    bat --style=numbers --color=always "${@}" | head -100
+fi

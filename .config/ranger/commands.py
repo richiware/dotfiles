@@ -2004,12 +2004,15 @@ class fzf_select(Command):
         import subprocess
         if self.quantifier:
             # match only directories
-            command = "fd -L . -t d 2> /dev/null | fzf +m"
+            command = "fd --color always -L . -t d 2> /dev/null | \
+                    AVOID_REPLACE=true AVOID_TMUX=true fzf-preview +m --ansi"
         else:
             # match files and directories
-            command = "fd -L . 2> /dev/null | fzf +m"
+            command = "fd --color always -L . 2> /dev/null | \
+                    AVOID_REPLACE=true AVOID_TMUX=true fzf-preview +m --ansi"
         fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
+
         if fzf.returncode == 0:
             fzf_file = os.path.abspath(stdout.decode('utf-8').rstrip('\n'))
             if os.path.isdir(fzf_file):
@@ -2031,11 +2034,13 @@ class fzf_tracker(Command):
         if self.quantifier:
             command = "tracker search -f -s -l 3000000 --disable-fts --disable-snippets \
                     --disable-color | cut -c10- | python -c 'import sys, urllib.parse as ul; \
-                    list(map(lambda line: sys.stdout.write(ul.unquote_plus(line)), sys.stdin))' | fzf"
+                    list(map(lambda line: sys.stdout.write(ul.unquote_plus(line)), sys.stdin))' | \
+                    AVOID_REPLACE=true AVOID_TMUX=true fzf-preview"
         else:
             command = "tracker search -f -s -l 3000000 --disable-fts --disable-snippets \
                     --disable-color | cut -c10- | python -c 'import sys, urllib.parse as ul; \
-                    list(map(lambda line: sys.stdout.write(ul.unquote_plus(line)), sys.stdin))' | fzf"
+                    list(map(lambda line: sys.stdout.write(ul.unquote_plus(line)), sys.stdin))' | \
+                    AVOID_REPLACE=true AVOID_TMUX=true fzf-preview"
         fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
         if fzf.returncode == 0:

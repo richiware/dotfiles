@@ -24,7 +24,8 @@ emulate -R bash -c 'source ~/.local/bin/tmpfs-ccache-user.sh'
 # FZF
 # Export directory where vim's plugin dein install fzf.
 export FZF_BASE="${XDG_CACHE_HOME:=$HOME/.cache}/dein/repos/github.com/junegunn/fzf"
-export FZF_DEFAULT_COMMAND='ag -g ""'
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs'
+export FZF_CTRL_T_OPTS='--preview "bat --style=numbers --color=always {} | head -100"'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # GCC_COLORS
