@@ -234,9 +234,11 @@ zstyle ':notify:*' blacklist-regex 'colcon'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 __fzf_preview()
 {
-    LBUFFER="${LBUFFER}$(fd --color always . | fzf-preview --reverse --ansi)"
+    LBUFFER="${LBUFFER}$(eval "${FZF_CTRL_T_COMMAND}" | \
+        FZF_DEFAULT_OPTS="--reverse $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" fzf-preview --reverse --ansi)"
+    local ret=$?
     zle reset-prompt
-    return 0
+    return $ret
 }
 zle -N __fzf_preview
 bindkey "^t" __fzf_preview
