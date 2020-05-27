@@ -122,6 +122,7 @@ function ADD_PLACEMENT {
 }
 
 function DRAW_PREVIEW {
+    echo "Drawing ${@}"
     # Usage: DRAW_PREVIEW path
     local -A add_preview_command=( \
         [identifier]="${PREVIEW_ID}" \
@@ -162,16 +163,18 @@ shift
 
 declare -r -x FZF_START_OFFSET_Y="$(tmux display-message -p '#{pane_top}')"
 
-file_info=$(file -b "${@}")
+file=$(izer deiconize "${@}")
+
+file_info=$(file -b "${file}")
 
 CLEAR_PREVIEW
 if [[ "$file_info"  =~ "directory" ]]; then
-    tree -L 1 "${@}"
+    tree -L 1 "${file}"
 elif [[ "$file_info"  =~ "image" ]]; then
-    DRAW_PREVIEW "${@}"
+    DRAW_PREVIEW "${file}"
 elif [[ "$file_info"  =~ "PDF" ]]; then
-    #less "${@}" | head -100
-    pdftotext "${@}" - | head -100 | sed -e 's//\n\n------\n\n# /' -e 's/^\(\s\+\)I\(\s\+\)/\1\- /' | bat --style=numbers --color=always -l markdown
+    #less "${file}" | head -100
+    pdftotext "${file}" - | head -100 | sed -e 's//\n\n------\n\n# /' -e 's/^\(\s\+\)I\(\s\+\)/\1\- /' | bat --style=numbers --color=always -l markdown
 else
-    bat --style=numbers --color=always "${@}" | head -100
+    bat --style=numbers --color=always "${file}" | head -100
 fi

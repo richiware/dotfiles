@@ -2005,11 +2005,15 @@ class fzf_select(Command):
         if self.quantifier:
             # match only directories
             command = "fd --color always -L . -t d 2> /dev/null | \
-                    AVOID_REPLACE=true AVOID_TMUX=true fzf-preview +m --ansi"
+                    izer iconize -f=nerd -c | \
+                    AVOID_REPLACE=true AVOID_TMUX=true fzf-preview +m --ansi | \
+                    izer deiconize"
         else:
             # match files and directories
             command = "fd --color always -L . 2> /dev/null | \
-                    AVOID_REPLACE=true AVOID_TMUX=true fzf-preview +m --ansi"
+                    izer iconize -f=nerd -c | \
+                    AVOID_REPLACE=true AVOID_TMUX=true fzf-preview +m --ansi | \
+                    izer deiconize"
         fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
 
@@ -2035,12 +2039,16 @@ class fzf_tracker(Command):
             command = "tracker search -f -s -l 3000000 --disable-fts --disable-snippets \
                     --disable-color | cut -c10- | python -c 'import sys, urllib.parse as ul; \
                     list(map(lambda line: sys.stdout.write(ul.unquote_plus(line)), sys.stdin))' | \
-                    AVOID_REPLACE=true AVOID_TMUX=true fzf-preview"
+                    izer iconize -f=nerd -c | \
+                    AVOID_REPLACE=true AVOID_TMUX=true fzf-preview | \
+                    izer deiconize"
         else:
             command = "tracker search -f -s -l 3000000 --disable-fts --disable-snippets \
                     --disable-color | cut -c10- | python -c 'import sys, urllib.parse as ul; \
                     list(map(lambda line: sys.stdout.write(ul.unquote_plus(line)), sys.stdin))' | \
-                    AVOID_REPLACE=true AVOID_TMUX=true fzf-preview"
+                    izer iconize -f=nerd -c | \
+                    AVOID_REPLACE=true AVOID_TMUX=true fzf-preview | \
+                    izer deiconize"
         fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
         if fzf.returncode == 0:

@@ -82,3 +82,6 @@
 [submodule ".config/zsh/custom/plugins/yadm"]
 	path = .config/zsh/custom/plugins/yadm
 	url = https://github.com/ZDTaylor/yadm-zsh.git
+[submodule "/home/ricardo/.config/ranger/plugins/ranger_devicons"]
+	path = /home/ricardo/.config/ranger/plugins/ranger_devicons
+	url = https://github.com/alexanderjeurissen/ranger_devicons

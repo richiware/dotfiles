@@ -45,14 +45,18 @@ if [ -e /etc/gentoo-release ]; then
         eselect-repository \
         `: # A simple, fast and user-friendly alternative to find.` \
         fd \
+        `: # Fuzzy-finder.` \
+        fzf \
         `: # Wrapper around PyFlakes, pep8 and mccabe. Needed by coc-python Vim plugin.` \
         flake8 \
         `: # Adds KStatusNotifierItem support to the Shell.` \
         gnome-shell-extension-appindicator \
         `: # Clipboard management system.` \
         gpaste \
-        `: #A sans-serif monotype font for code listings. For monospace.` \
+        `: # A sans-serif monotype font for code listings. For monospace.` \
         inconsolata \
+        `: # Command-line tool for adding icons to filenames.` \
+        izer \
         `: # A lightweight and flexible command-line JSON processor.` \
         jq \
         `: # A modern, hackable, featureful, OpenGL-based terminal emulator.` \
@@ -115,6 +119,7 @@ elif [ -e /etc/os-release ]; then
                 fonts-inconsolata \
                 fonts-liberation2 \
                 fonts-powerline \
+                fzf \
                 gpaste \
                 kitty \
                 lbdb \
@@ -139,6 +144,7 @@ elif [ -e /etc/os-release ]; then
                 python-language-server \
                 thefuck \
                 ueberzug
+            go get -u github.com/NightWolf007/izer
             ;;
     esac
 fi
@@ -170,8 +176,15 @@ sudo cp ~/.config/yadm/system/tmpfs-ccache-service.sh /usr/local/bin/
 sudo systemctl daemon-reload
 sudo systemctl enable tmpfs-ccache
 
-echo "Installing powerline fonts..."
+echo "Installing fonts..."
+# Powerline symbols
 sudo eselect fontconfig enable 10-powerline-symbols.conf
+# DevIcons
+mkdir -p ~/.local/share/fonts/Inconsolata\ Nerd\ Font
+cd ~/.local/share/fonts/Inconsolata\ Nerd\ Font
+wget https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Inconsolata/complete/Inconsolata%20Regular%20Nerd%20Font%20Complete.ttf
+fc-cache -f -v
+cd -
 
 echo "Installing Gnome settings..."
 ~/.config/gnome-terminal-colors-solarized/install.sh --scheme dark --profile Solarized --install-dircolors
@@ -180,7 +193,7 @@ dconf write "/org/gnome/desktop/wm/preferences/button-layout" "'appmenu:minimize
 dconf write "/org/gnome/desktop/interface/document-font-name" "'Liberation Sans 9'"
 dconf write "/org/gnome/desktop/interface/font-name" "'DejaVu Sans Semi-Condensed 9'"
 dconf write "/org/gnome/desktop/interface/gtk-theme" "'Adwaita-dark'"
-dconf write "/org/gnome/desktop/interface/monospace-font-name" "'Inconsolata 10'"
+dconf write "/org/gnome/desktop/interface/monospace-font-name" "'Inconsolata Nerd Font 10'"
 dconf write "/org/gnome/shell/overrides/workspaces-only-on-primary" "true"
 dconf write "org.gnome.shell disable-extension-version-validation" "true"
 gnome-shell-extension-tool -e 'openweather-extension@jenslody.de'

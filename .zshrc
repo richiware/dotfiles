@@ -231,11 +231,15 @@ zstyle ':notify:*' success-title "Command success"
 zstyle ':notify:*' blacklist-regex 'colcon'
 
 # FZF
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
+
 __fzf_preview()
 {
     LBUFFER="${LBUFFER}$(eval "${FZF_CTRL_T_COMMAND}" | \
-        FZF_DEFAULT_OPTS="--reverse $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" fzf-preview --reverse --ansi)"
+        izer iconize -f=nerd -c | \
+        FZF_DEFAULT_OPTS="--reverse $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" fzf-preview --reverse --ansi | \
+        izer deiconize
+        )"
     local ret=$?
     zle reset-prompt
     return $ret
