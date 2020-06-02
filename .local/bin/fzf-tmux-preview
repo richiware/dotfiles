@@ -122,7 +122,6 @@ function ADD_PLACEMENT {
 }
 
 function DRAW_PREVIEW {
-    echo "Drawing ${@}"
     # Usage: DRAW_PREVIEW path
     local -A add_preview_command=( \
         [identifier]="${PREVIEW_ID}" \
