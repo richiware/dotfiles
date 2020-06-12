@@ -156,7 +156,7 @@ function sg()
     grep_rv=`$search_prg "$1" "$directory" | $(__fzfcmd) \
         --reverse \
         --ansi \
-        --preview 'file=$(echo {} | cut -f 1 -d :) line=$(echo {} | cut -f 2 -d :); bat --style=numbers --color=always "$file" -H $line | tail -n +$( (($line > 10)) && echo $((line-10)) || echo 0) | head -100'
+        --preview 'file=$(echo {} | cut -f 1 -d :) line=$(echo {} | cut -f 2 -d :); bat --color=always "$file" -H $line | tail -n +$( (($line > 10)) && echo $((line-10)) || echo 0) | head -100'
     `
     if [ "$grep_rv" ]; then
         echo $(awk '{split($0,a,":"); print "nvim",a[1],"-c","\"call cursor(\""a[2]","a[3]"\")\""}' <<< ${grep_rv}) | bash
@@ -173,7 +173,7 @@ function rsg()
     grep_rv=`rg --vimgrep --color=always "$1" "$directory" | $(__fzfcmd) \
         --reverse \
         --ansi \
-        --preview 'file=$(echo {} | cut -f 1 -d :) line=$(echo {} | cut -f 2 -d :); bat --style=numbers --color=always "$file" -H $line | tail -n +$( (($line > 10)) && echo $((line-10)) || echo 0) | head -100'
+        --preview 'file=$(echo {} | cut -f 1 -d :) line=$(echo {} | cut -f 2 -d :); bat --color=always "$file" -H $line | tail -n +$( (($line > 10)) && echo $((line-10)) || echo 0) | head -100'
     `
     if [ "$grep_rv" ]; then
         echo $(awk '{split($0,a,":"); print "nvim",a[1],"-c","\"call cursor(\""a[2]","a[3]"\")\""}' <<< ${grep_rv}) | bash

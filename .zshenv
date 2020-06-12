@@ -26,7 +26,7 @@ emulate -R bash -c 'source ~/.local/bin/tmpfs-ccache-user.sh'
 export FZF_BASE="${XDG_CACHE_HOME:=$HOME/.cache}/dein/repos/github.com/junegunn/fzf"
 export FZF_DEFAULT_COMMAND='fd --type f --color=always'
 export FZF_DEFAULT_OPTS='--ansi'
-export FZF_CTRL_T_OPTS='--preview "file=$(izer deiconize {}) && bat --style=numbers --color=always $file | head -100"'
+export FZF_CTRL_T_OPTS='--preview "file=$(izer deiconize {}) && bat --color=always $file | head -100"'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # GCC_COLORS

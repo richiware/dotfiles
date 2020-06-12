@@ -175,5 +175,5 @@ elif [[ "$file_info"  =~ "PDF" ]]; then
     #less "${file}" | head -100
     pdftotext "${file}" - | head -100 | sed -e 's//\n\n------\n\n# /' -e 's/^\(\s\+\)I\(\s\+\)/\1\- /' | bat --style=numbers --color=always -l markdown
 else
-    bat --style=numbers --color=always "${file}" | head -100
+    bat --color=always "${file}" | head -100
 fi
