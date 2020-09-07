@@ -77,11 +77,11 @@
     path = .local/share/gnome-shell/extensions/gnome-stats-pro@thrallingpenguin.com
     url = https://github.com/tpenguin/gnome-stats-pro.git
 [submodule ".local/share/gnome-shell/extensions/github.notifications@alexandre.dufournet.gmail.com"]
-	path = .local/share/gnome-shell/extensions/github.notifications@alexandre.dufournet.gmail.com
-	url = https://github.com/alexduf/gnome-github-notifications.git
+    path = .local/share/gnome-shell/extensions/github.notifications@alexandre.dufournet.gmail.com
+    url = https://github.com/alexduf/gnome-github-notifications.git
 [submodule ".config/zsh/custom/plugins/yadm"]
-	path = .config/zsh/custom/plugins/yadm
-	url = https://github.com/ZDTaylor/yadm-zsh.git
-[submodule "/home/ricardo/.config/ranger/plugins/ranger_devicons"]
-	path = /home/ricardo/.config/ranger/plugins/ranger_devicons
-	url = https://github.com/alexanderjeurissen/ranger_devicons
+    path = .config/zsh/custom/plugins/yadm
+    url = https://github.com/ZDTaylor/yadm-zsh.git
+[submodule ".config/ranger/plugins/ranger_devicons"]
+    path = .config/ranger/plugins/ranger_devicons
+    url = https://github.com/alexanderjeurissen/ranger_devicons
