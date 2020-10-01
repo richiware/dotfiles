@@ -99,7 +99,7 @@ if [ -e /etc/gentoo-release ]; then
         `: # NodeJS dependency management. Used to install iamcco/markdown-preview.nvim Vim plugin.` \
         yarn \
         `: # A highly customizable and functional document viewer` \
-        zathura \
+        zathura-meta zathura-pdf-mupdf \
         zsh
 
     sudo emerge -vau --oneshot \
