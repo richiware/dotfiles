@@ -15,8 +15,22 @@ alias ninja='ninja_exec() { ninja $*; if [ -f compile_commands.json ]; then cp c
 #    jq -s add $(find . -iname compile_commands.json -print0 | grep -z . | xargs -0; test $pipestatus[2] -eq 0) > compile_commands.json.tmp && \
 #    cp compile_commands.json.tmp ../../compile_commands.json }; colcon_exec'
 
+# Exit terminas like Vim.
 alias :q='exit'
-alias gpull='git pull --ff-only origin $(git_current_branch)'
+
+# Alias to work with gopass:
+# * Without arguments, alias calls 'gopass list'
+# * With one argument, alias calls 'gopass show -c' and start a process to remove password from gpaste after 45s.
+alias pass='pass() { \
+    if [ "$#" -eq 0 ]; then \
+        gopass list;
+    elif [ "$#" -eq 1 ]; then \
+        gopass show -c $1 && \
+        gpaste-client set-password 0 $1 && \
+        sh -c "sleep 45; gpaste-client delete-password $1" & \
+        disown
+    fi; \
+}; pass'
 
 # CCache
 emulate -R bash -c 'source ~/.local/bin/tmpfs-ccache-user.sh'

@@ -51,6 +51,8 @@ if [ -e /etc/gentoo-release ]; then
         flake8 \
         `: # Adds KStatusNotifierItem support to the Shell.` \
         gnome-shell-extension-appindicator \
+        `: # A password manager for the command line written in Go.` \
+        gopass \
         `: # Clipboard management system.` \
         gpaste \
         `: # A sans-serif monotype font for code listings. For monospace.` \
@@ -120,6 +122,7 @@ elif [ -e /etc/os-release ]; then
                 fonts-liberation2 \
                 fonts-powerline \
                 fzf \
+                gopass \
                 gpaste \
                 kitty \
                 lbdb \
