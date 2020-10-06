@@ -1,6 +1,29 @@
 [user]
-    email = correoricky@gmail.com
     name = Ricardo González Moreno
+    email = correoricky@gmail.com
     signingkey = 20A0D403FFB481BA
+[core]
+    editor = nvim
+    autocrlf = input
+[diff]
+    tool = nvimdiff
+[merge]
+    tool = nvimdiff
+[diff "odf"]
+    textconv = odt2txt
+[difftool "nvimdiff"]
+    cmd = "nvim -d $REMOTE $LOCAL"
+[mergetool "nvimdiff"]
+    cmd = "nvim -d $BASE $LOCAL $REMOTE $MERGED"
+[alias]
+    hista = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short --all
+    hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+    lol = log --graph --decorate --pretty=oneline --abbrev-commit
+    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+[commit]
+    gpgsign = true
+    verbose = true
 [pull]
     ff = only
+[http "https://gitlab.intranet.eprosima.com"]
+    sslVerify = false

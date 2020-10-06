@@ -93,8 +93,6 @@ export EDITOR='nvim'
 
 # Sustitute oh-my-zsh's sudo alias for mine.
 alias _='sudo -E'
-# Sustitute oh-my-zsh's gl (git pull) for mine. New one forces '--ff-only' in 'git pull' command.
-alias gl='git pull --ff-only origin $(git_current_branch)'
 
 # 256 color term
 if [[ "$TERM" == xterm* ]]; then
