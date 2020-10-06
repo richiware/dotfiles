@@ -1,0 +1,6 @@
+[user]
+    email = correoricky@gmail.com
+    name = Ricardo González Moreno
+    signingkey = 20A0D403FFB481BA
+[pull]
+    ff = only
