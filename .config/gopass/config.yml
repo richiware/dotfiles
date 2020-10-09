@@ -1,0 +1,14 @@
+autoclip: true
+autoimport: true
+cliptimeout: 45
+exportkeys: false
+mime: true
+nocolor: false
+nopager: false
+notifications: true
+path: /home/ricardo/.password-store
+safecontent: true
+mounts:
+  eprosima: /home/ricardo/.password-store-eprosima
+  personal: /home/ricardo/.password-store-personal
+  sara: /home/ricardo/.password-store-sara

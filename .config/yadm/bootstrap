@@ -31,6 +31,8 @@ if [ -e /etc/gentoo-release ]; then
     sudo emerge -vau \
         `: # A cat clone with syntax highlighting, Git integration, so on.` \
         bat \
+        `: # A host application for browserpass browser extension providing it access to your password store.` \
+        browserpass \
         `: # fast compiler cache.` \
         ccache \
         `: # C/C++/ObjC language server supporting cross references, hierarchies, ... Used by CoC Vim plugin.` \
