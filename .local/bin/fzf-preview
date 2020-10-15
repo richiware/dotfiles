@@ -80,13 +80,6 @@ function process_options {
     store_options_map_in mapped_options default_options
     store_options_map_in mapped_options script_options 
 
-    local cursor_y= cursor_x=
-    store_cursor_position_in cursor_y cursor_x
-    # If fzf is used as completion tool we will get the position of the prompt.
-    # If it's normally used we get the position the output will be displayed at.
-    # If it's normally used we need to subtract one to get the position of the prompt.
-    ((cursor_y=cursor_x != 1 ? cursor_y : cursor_y - 1))
-    declare -g -r -x FZF_START_OFFSET_Y="${cursor_y}"
     declare -g -r -x PREVIEW_POSITION="${mapped_options[--preview-window]%%:[^:]*}"
     declare -g -r -x FZF_HEIGHT="${mapped_options[--height]:-100%}"
     declare -g -r -x FZF_MIN_HEIGHT="${mapped_options[--min-height]:-10}"
@@ -152,6 +145,15 @@ function finalise {
 function is_inside_tmux() {
     if [ -z "$AVOID_TMUX" ] && [ -n "$TMUX_PANE" ] && [ "${FZF_TMUX:-0}" != 0 ] && [ ${LINES:-40} -gt ${FZF_MIN_HEIGHT} ]; then
         USE_FZF_TMUX=1
+        declare -g -r -x FZF_START_OFFSET_Y="$(tmux display-message -p '#{pane_top}')"
+    else
+        local cursor_y= cursor_x=
+        store_cursor_position_in cursor_y cursor_x
+        # If fzf is used as completion tool we will get the position of the prompt.
+        # If it's normally used we get the position the output will be displayed at.
+        # If it's normally used we need to subtract one to get the position of the prompt.
+        ((cursor_y=cursor_x != 1 ? cursor_y : cursor_y - 1))
+        declare -g -r -x FZF_START_OFFSET_Y="${cursor_y}"
     fi
 }
 
@@ -172,6 +174,7 @@ if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
                     ${UEBERZUG_FIFO} \
                     ${PREVIEW_POSITION:-${DEFAULT_PREVIEW_POSITION}} \
                     ${FZF_MIN_HEIGHT} \
+                    ${FZF_START_OFFSET_Y} \
                     {}" \
                 --preview-window "${DEFAULT_PREVIEW_POSITION}" \
                 "${@}"
@@ -184,6 +187,7 @@ if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
                     ${UEBERZUG_FIFO} \
                     ${PREVIEW_POSITION:-${DEFAULT_PREVIEW_POSITION}} \
                     ${FZF_MIN_HEIGHT} \
+                    ${FZF_START_OFFSET_Y} \
                     {}" \
                 --preview-window "${DEFAULT_PREVIEW_POSITION}" \
                 "${@}"

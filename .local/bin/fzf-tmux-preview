@@ -28,12 +28,13 @@ function STORE_FZF_HEIGHT_IN {
 function STORE_FZF_OFFSET_IN {
     # Usage: STORE_FZF_OFFSET_IN
     #           fzf_offset_y_variable
-    #           terminal_lines fzf_height fzf_start_offset_y
-    [[ $# -ne 4 || ! -v "$1" ]] && return 1
+    #           terminal_lines fzf_height
+    #           fzf_start_original_pane_y fzf_start_offset_y
+    [[ $# -ne 5 || ! -v "$1" ]] && return 1
     local -n _fzf_offset_y="$1"
     local terminal_lines="$2"
     local fzf_height="$3"
-    local fzf_start_offset_y="$4"
+    local fzf_start_offset_y="(($5 - $4))"
 
     # Two cases:
     # 1. There isn't enough space, so fzf will print blank lines.
@@ -86,18 +87,18 @@ function ADD_PLACEMENT {
     # Usage: ADD_PLACEMENT
     #           add_command_variable [adjust_rect_function]
     # references can't be checked.. -v doesn't seem to support associative arrays..
+    local terminal_columns="$(tmux display-message -p '#{pane_width}')"
     local terminal_lines="$(tmux display-message -p '#{window_height}')"
-    local terminal_columns="$(tmux display-message -p '#{window_width}')"
     local fzf_height= fzf_offset_y=
     local preview_y= preview_x=
     local preview_height="$(($(tmux display-message -p '#{pane_height}') - 2))"
-    local preview_width="$(( ($(tmux display-message -p '#{pane_width}') >> 1) - 4 ))"
+    local preview_width="$((($(tmux display-message -p '#{pane_width}') >> 1) - 4 ))"
     STORE_FZF_HEIGHT_IN \
         fzf_height \
         "$terminal_lines" "${FZF_HEIGHT}" "${FZF_MIN_HEIGHT}"
     STORE_FZF_OFFSET_IN \
         fzf_offset_y \
-        "$terminal_lines" "${fzf_height}" "${FZF_START_OFFSET_Y}"
+        "$terminal_lines" "${fzf_height}" "${FZF_START_ORIGINAL_PANE_OFFSET_Y}" "${FZF_START_OFFSET_Y}"
     STORE_PREVIEW_POSITION_IN \
         preview_y preview_x \
         "${PREVIEW_POSITION}" \
@@ -158,6 +159,8 @@ shift
 declare -r -x PREVIEW_POSITION="$1"
 shift
 declare -r -x FZF_MIN_HEIGHT="$1"
+shift
+declare -r -x FZF_START_ORIGINAL_PANE_OFFSET_Y="$1"
 shift
 
 declare -r -x FZF_START_OFFSET_Y="$(tmux display-message -p '#{pane_top}')"
