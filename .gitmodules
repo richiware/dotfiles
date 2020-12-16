@@ -34,9 +34,6 @@
 [submodule ".local/share/gnome-shell/extensions/vim-key-mapping@richiware.github.com"]
     path = .local/share/gnome-shell/extensions/vim-key-mapping@richiware.github.com
     url = https://github.com/richiware/gnome-shell-extension-vim-key-mapping.git
-[submodule ".local/share/gnome-shell/extensions/tracker-search-provider@sinnix.de"]
-    path = .local/share/gnome-shell/extensions/tracker-search-provider@sinnix.de
-    url = https://github.com/hamiller/tracker-search-provider.git
 [submodule ".local/share/gnome-shell/extensions/timewarrior-indicator@natsakis.com"]
     path = .local/share/gnome-shell/extensions/timewarrior-indicator@natsakis.com
     url = https://github.com/tassos/timewarrior-indicator.git
@@ -67,9 +64,6 @@
 [submodule ".local/share/gnome-shell/extensions/relative-repos/gnome-shell-extension-openweather"]
     path = .local/share/gnome-shell/extensions/relative-repos/gnome-shell-extension-openweather
     url = https://gitlab.com/jenslody/gnome-shell-extension-openweather.git
-[submodule ".local/share/gnome-shell/extensions/suspend-button@laserb"]
-    path = .local/share/gnome-shell/extensions/suspend-button@laserb
-    url = https://github.com/laserb/gnome-shell-extension-suspend-button.git
 [submodule ".local/share/gnome-shell/extensions/remove-dropdown-arrows@mpdeimos.com"]
     path = .local/share/gnome-shell/extensions/remove-dropdown-arrows@mpdeimos.com
     url = https://github.com/mpdeimos/gnome-shell-remove-dropdown-arrows.git
