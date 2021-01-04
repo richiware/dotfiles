@@ -82,6 +82,8 @@ if [ -e /etc/gentoo-release ]; then
         ripgrep \
         `: # Taskwarrior is a command-line todo list manager.` \
         task \
+        `: # Taskwarrior <-> Google Calendar sync.` \
+        taskw_gcal_sync \
         `: # A code-searching tool similar to ack, but faster.` \
         the_silver_searcher \
         `: # Magnificent app which corrects your previous console command.` \
@@ -215,3 +217,6 @@ gnome-shell-extension-tool -e 'gnome-stats-pro@thrallingpenguin.com'
 
 echo "Configuring NeoVim..."
 nvim -c 'call dein#install()' -c 'CocInstall coc-python coc-emoji coc-highlight coc-lbdbq coc-tag'
+
+
+# TODO: add my user to groups
