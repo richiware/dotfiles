@@ -68,6 +68,8 @@ if [ -e /etc/gentoo-release ]; then
         `: # A Helvetica/Times/Courier replacement TrueType font set, courtesy of Red Hat. For documents` \
         liberation-fonts \
         neovim \
+        `: # NetworkManager OpenVPN plugin` \
+        networkmanager-openvpn \
         `: # Statusline/prompt utility` \
         powerline-taskwarrior \
         `: # OpenType Unicode font with symbols for Powerline/Airline.` \
@@ -202,7 +204,6 @@ dconf write "/org/gnome/shell/overrides/workspaces-only-on-primary" "true"
 dconf write "org.gnome.shell disable-extension-version-validation" "true"
 gnome-shell-extension-tool -e 'openweather-extension@jenslody.de'
 gnome-shell-extension-tool -e 'github.notifications@alexandre.dufournet.gmail.com'
-gnome-shell-extension-tool -e 'suspend-button@laserb'
 gnome-shell-extension-tool -e 'tracker-search-provider@sinnix.de'
 gnome-shell-extension-tool -e 'gistnotes@mohan43u.gmail.com'
 gnome-shell-extension-tool -e 'windowsNavigator@gnome-shell-extensions.gcampax.github.com'
