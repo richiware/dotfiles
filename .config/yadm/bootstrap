@@ -92,8 +92,6 @@ if [ -e /etc/gentoo-release ]; then
         timew \
         `: # Terminal multiplexer.` \
         tmux \
-        `: # Anonymizing overlay network for TCP.` \
-        tor \
         `: # Online command-line translator. Used by VicentCordobes/vim-translate Vim plugin.` \
         translate-shell \
         `: # Lists directories recusively, and produces an indented listing of files.` \
@@ -220,13 +218,7 @@ gnome-shell-extension-tool -e 'gnome-stats-pro@thrallingpenguin.com'
 echo "Configuring NeoVim..."
 nvim -c 'call dein#install()' -c 'CocInstall coc-python coc-emoji coc-highlight coc-lbdbq coc-tag'
 
-echo "Enabling tor..."
-sudo systemctl start tor
-sudo systemctl enable tor
-
-
 echo "Last manual configuration..."
-echo "    - Configure firefox to use tor (https://wiki.gentoo.org/wiki/Tor#Firefox)."
 echo "    - Install firefox plugins."
 
 # TODO: add my user to groups
