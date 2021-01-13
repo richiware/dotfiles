@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Get directory of this script
+script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+# Load log
+source $script_dir/log4bash.sh
+
 ########################################################################################################################
 # BEFORE BOOTSTRAP
 #
@@ -11,23 +16,32 @@
 # be run from within $HOME (assuming this is the root of your dotfiles)
 cd "$HOME"
 
-echo "Init submodules..."
+log_info "Init submodules..."
 yadm submodule update --recursive --init
 
 if [ -e /etc/gentoo-release ]; then
-    echo "Cloning my portage repository..."
+    log_info "Cloning my portage repository..."
     cd /usr/local
-    sudo mkdir portage
-    sudo chown $USER:$USER portage
-    git clone https://github.com/richiware/richioverlay.git portage
-    cd portage
-    git pull --ff-only
-    cd ~
-    sudo cp ~/.config/yadm/system/richioverlay.conf /etc/portage/repos.conf/
+    if [ ! -d portage ]; then
+        sudo mkdir portage
+        sudo chown $USER:$USER portage
+        git clone https://github.com/richiware/richioverlay.git portage
+        cd portage
+        git pull --ff-only
+        cd ~
+        sudo cp ~/.config/yadm/system/richioverlay.conf /etc/portage/repos.conf/
+    else
+        log_warning "Portage repository is already installed"
+    fi
 fi
 
-echo "Installing packages..."
+log_info "Installing packages..."
 if [ -e /etc/gentoo-release ]; then
+    sudo emerge -vau --oneshot \
+        `: # Used by openweather gnome shell extension.` \
+        zip \
+        && log_info "Packages intallated successful" || (log_error "Failed packages installation" ; exit -1)
+
     sudo emerge -vau \
         `: # A cat clone with syntax highlighting, Git integration, so on.` \
         bat \
@@ -106,11 +120,8 @@ if [ -e /etc/gentoo-release ]; then
         yarn \
         `: # A highly customizable and functional document viewer` \
         zathura-meta zathura-pdf-mupdf \
-        zsh
-
-    sudo emerge -vau --oneshot \
-        `: # Used by openweather gnome shell extension.` \
-        zip
+        zsh \
+        && log_info "Packages intallated successful" || (log_error "Failed packages installation" ; exit -1)
 elif [ -e /etc/os-release ]; then
     source /etc/os-release
     case $NAME in
@@ -144,45 +155,50 @@ elif [ -e /etc/os-release ]; then
                 uncrustify \
                 yarnpkg \
                 zathura \
-                zsh
+                zsh \
+                && log_info "Packages intallated successful" || (log_error "Failed packages installation" ; exit -1)
             pip3 install \
                 draobpilc \
                 python-language-server \
                 thefuck \
-                ueberzug
+                ueberzug \
+                && log_info "Packages intallated successful" || (log_error "Failed packages installation" ; exit -1)
             go get -u github.com/NightWolf007/izer
             ;;
     esac
 fi
 
-# Install git-foresta
+log_info "Installing git-foresta..."
 curl -L https://github.com/takaaki-kasai/git-foresta/raw/master/git-foresta -o ~/.local/bin/git-foresta && chmod +x ~/.local/bin/git-foresta
 
-# Installing zsh
-sudo usermod --shell /bin/zsh ricardo
+log_info "Setting zsh as default shell..."
+sudo usermod --shell /bin/zsh $USER
 
-echo "Creating links..."
+log_info "Setting pinentry-gnome3..."
+sudo eselect pinentry set pinentry-gnome3
+
+log_info "Creating links..."
 
 # Neovim/Vim
 ## Coc settings
 mkdir -p ~/.config/nvim
-ln -s ~/.vim/init.vim ~/.config/nvim/init.vim
-ln -s ~/.vim/coc-settings.json ~/.config/nvim/coc-settings.json
+ln -sf ~/.vim/init.vim ~/.config/nvim/init.vim
+ln -sf ~/.vim/coc-settings.json ~/.config/nvim/coc-settings.json
 
 # Gnome shell extensions' links
-ln -s ~/.local/share/gnome-shell/extensions/relative-repos/taskwhisperer-extension@infinicode.de/taskwhisperer-extension@infinicode.de ~/.local/share/gnome-shell/extensions/
-ln -s ~/.local/share/gnome-shell/extensions/relative-repos/randomwallpaper@iflow.space/randomwallpaper@iflow.space ~/.local/share/gnome-shell/extensions/
-ln -s ~/.local/share/gnome-shell/extensions/relative-repos/gnome-shell-extension-mpris-indicator-button/mprisindicatorbutton@JasonLG1979.github.io ~/.local/share/gnome-shell/extensions/
+ln -sf ~/.local/share/gnome-shell/extensions/relative-repos/taskwhisperer-extension@infinicode.de/taskwhisperer-extension@infinicode.de ~/.local/share/gnome-shell/extensions/
+ln -sf ~/.local/share/gnome-shell/extensions/relative-repos/randomwallpaper@iflow.space/randomwallpaper@iflow.space ~/.local/share/gnome-shell/extensions/
+ln -sf ~/.local/share/gnome-shell/extensions/relative-repos/gnome-shell-extension-mpris-indicator-button/mprisindicatorbutton@JasonLG1979.github.io ~/.local/share/gnome-shell/extensions/
 cd ~/.local/share/gnome-shell/extensions/relative-repos/gnome-shell-extension-openweather && ./autogen.sh && make local-install; cd ~
 
-echo "Configuring CCache..."
+log_info "Configuring CCache..."
 sudo cp ~/.config/yadm/system/tmpfs-ccache /etc/
 sudo cp ~/.config/yadm/system/tmpfs-ccache.service /etc/systemd/system/
 sudo cp ~/.config/yadm/system/tmpfs-ccache-service.sh /usr/local/bin/
 sudo systemctl daemon-reload
 sudo systemctl enable tmpfs-ccache
 
-echo "Installing fonts..."
+log_info "Installing fonts..."
 # Powerline symbols
 sudo eselect fontconfig enable 10-powerline-symbols.conf
 # DevIcons
@@ -192,14 +208,13 @@ wget https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Inconsolat
 fc-cache -f -v
 cd -
 
-echo "Installing Gnome settings..."
-~/.config/gnome-terminal-colors-solarized/install.sh --scheme dark --profile Solarized --install-dircolors
+log_info "Installing Gnome settings..."
 dconf write "/org/gnome/desktop/wm/preferences/titlebar-font" "'DejaVu Sans Bold Semi-Condensed 9'"
 dconf write "/org/gnome/desktop/wm/preferences/button-layout" "'appmenu:minimize,close'"
 dconf write "/org/gnome/desktop/interface/document-font-name" "'Liberation Sans 9'"
 dconf write "/org/gnome/desktop/interface/font-name" "'DejaVu Sans Semi-Condensed 9'"
 dconf write "/org/gnome/desktop/interface/gtk-theme" "'Adwaita-dark'"
-dconf write "/org/gnome/desktop/interface/monospace-font-name" "'Inconsolata Nerd Font 10'"
+dconf write "/org/gnome/desktop/interface/monospace-font-name" "'DejaVu Sans Mono for Powerline Book'"
 dconf write "/org/gnome/shell/overrides/workspaces-only-on-primary" "true"
 dconf write "org.gnome.shell disable-extension-version-validation" "true"
 gnome-shell-extension-tool -e 'openweather-extension@jenslody.de'
@@ -216,10 +231,10 @@ gnome-shell-extension-tool -e 'timewarrior-indicator@natsakis.com'
 gnome-shell-extension-tool -e 'mprisindicatorbutton@JasonLG1979.github.io'
 gnome-shell-extension-tool -e 'gnome-stats-pro@thrallingpenguin.com'
 
-echo "Configuring NeoVim..."
+log_info "Configuring NeoVim..."
 nvim -c 'call dein#install()' -c 'CocInstall coc-python coc-emoji coc-highlight coc-lbdbq coc-tag'
 
-echo "Last manual configuration..."
-echo "    - Install firefox plugins."
+log_info "Last manual configuration..."
+log_info "    - Install firefox plugins."
 
 # TODO: add my user to groups
