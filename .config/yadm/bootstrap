@@ -118,6 +118,8 @@ if [ -e /etc/gentoo-release ]; then
         ueberzug \
         `: # NodeJS dependency management. Used to install iamcco/markdown-preview.nvim Vim plugin.` \
         yarn \
+        `: # Visual Interactive Taskwarrior full-screen terminal interface.` \
+        vit \
         `: # A highly customizable and functional document viewer` \
         zathura-meta zathura-pdf-mupdf \
         zsh \
@@ -153,6 +155,7 @@ elif [ -e /etc/os-release ]; then
                 translate-shell \
                 tree \
                 uncrustify \
+                vit \
                 yarnpkg \
                 zathura \
                 zsh \
