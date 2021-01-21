@@ -108,6 +108,8 @@ if [ -e /etc/gentoo-release ]; then
         timew \
         `: # Terminal multiplexer.` \
         tmux \
+        `: # A scrypt to configure transparent encryption of sensitive files stored in a Git repository.` \
+        transcrypt \
         `: # Online command-line translator. Used by VicentCordobes/vim-translate Vim plugin.` \
         translate-shell \
         `: # Lists directories recusively, and produces an indented listing of files.` \
