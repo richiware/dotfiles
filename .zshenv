@@ -26,7 +26,7 @@ alias pass='pass() { \
         gopass list;
     elif [ "$#" -eq 1 ]; then \
         gopass show -C $1 && \
-        gpaste-client set-password $(gpaste-client --oneline | head -n 1 | cut -f 1 -d :) $1 && \
+        gpaste-client set-password --use-index 0 $1 && \
         sh -c "sleep 45; gpaste-client delete-password $1" & \
         disown
     fi; \
