@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=0.3
+Name=Draobpilc
+Comment=GPaste GUI
+Exec=draobpilc
+Icon=/usr/lib/python3.8/site-packages/draobpilc/data/draobpilc.png
+Terminal=false
+StartupWMClass=Draobpilc
+Type=Application
+Categories=Tools;
