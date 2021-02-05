@@ -43,9 +43,6 @@
 [submodule ".local/share/gnome-shell/extensions/relative-repos/taskwhisperer-extension@infinicode.de"]
     path = .local/share/gnome-shell/extensions/relative-repos/taskwhisperer-extension@infinicode.de
     url = https://github.com/cinatic/taskwhisperer.git
-[submodule ".local/share/gnome-shell/extensions/relative-repos/randomwallpaper@iflow.space"]
-    path = .local/share/gnome-shell/extensions/relative-repos/randomwallpaper@iflow.space
-    url = https://github.com/ifl0w/RandomwallpaperGnome3.git
 [submodule ".local/share/gnome-shell/extensions/relative-repos/gnome-shell-extension-mpris-indicator-button"]
     path = .local/share/gnome-shell/extensions/relative-repos/gnome-shell-extension-mpris-indicator-button
     url = https://github.com/JasonLG1979/gnome-shell-extension-mpris-indicator-button.git
@@ -67,9 +64,6 @@
 [submodule ".local/share/gnome-shell/extensions/gnome-stats-pro@thrallingpenguin.com"]
     path = .local/share/gnome-shell/extensions/gnome-stats-pro@thrallingpenguin.com
     url = https://github.com/tpenguin/gnome-stats-pro.git
-[submodule ".local/share/gnome-shell/extensions/github.notifications@alexandre.dufournet.gmail.com"]
-    path = .local/share/gnome-shell/extensions/github.notifications@alexandre.dufournet.gmail.com
-    url = https://github.com/alexduf/gnome-github-notifications.git
 [submodule ".config/zsh/custom/plugins/yadm"]
     path = .config/zsh/custom/plugins/yadm
     url = https://github.com/ZDTaylor/yadm-zsh.git

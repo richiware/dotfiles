@@ -33,6 +33,12 @@ if [ -e /etc/gentoo-release ]; then
     else
         log_warning "Portage repository is already installed"
     fi
+
+    if [ ! -d /etc/portage/package.accept_keywords ]; then
+        log_info "Adding my package.accept_keywords..."
+        sudo mkdir /etc/portage/package.accept_keywords
+        sudo ln -s /home/ricardo/.config/yadm/system/portage/yadm.accept_keywords /etc/portage/package.accept_keywords/yadm.accept_keywords
+    fi
 fi
 
 log_info "Installing packages..."
@@ -67,6 +73,10 @@ if [ -e /etc/gentoo-release ]; then
         flake8 \
         `: # Adds KStatusNotifierItem support to the Shell.` \
         gnome-shell-extension-appindicator \
+        `: # Fetches a random wallpaper from an online source and sets it as desktop background.` \
+        gnome-shell-extension-randomwallpaper \
+        `: # Integrate github's notifications within the gnome desktop environment.` \
+        gnome-shell-extension-github-notifications \
         `: # A password manager for the command line written in Go.` \
         gopass \
         `: # Clipboard management system.` \
