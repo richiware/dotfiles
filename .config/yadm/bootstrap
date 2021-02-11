@@ -73,10 +73,12 @@ if [ -e /etc/gentoo-release ]; then
         flake8 \
         `: # Adds KStatusNotifierItem support to the Shell.` \
         gnome-shell-extension-appindicator \
-        `: # Fetches a random wallpaper from an online source and sets it as desktop background.` \
-        gnome-shell-extension-randomwallpaper \
         `: # Integrate github's notifications within the gnome desktop environment.` \
         gnome-shell-extension-github-notifications \
+        `: # Fetches a random wallpaper from an online source and sets it as desktop background.` \
+        gnome-shell-extension-randomwallpaper \
+        `: # Simple extension for displaying pending tasks created by TaskWarrior in GNOME Shell.` \
+        gnome-shell-extension-taskwhisperer \
         `: # A password manager for the command line written in Go.` \
         gopass \
         `: # Clipboard management system.` \

@@ -40,9 +40,6 @@
 [submodule ".local/share/gnome-shell/extensions/text_translator@awamper.gmail.com"]
     path = .local/share/gnome-shell/extensions/text_translator@awamper.gmail.com
     url = https://github.com/gufoe/text-translator.git
-[submodule ".local/share/gnome-shell/extensions/relative-repos/taskwhisperer-extension@infinicode.de"]
-    path = .local/share/gnome-shell/extensions/relative-repos/taskwhisperer-extension@infinicode.de
-    url = https://github.com/cinatic/taskwhisperer.git
 [submodule ".local/share/gnome-shell/extensions/relative-repos/gnome-shell-extension-mpris-indicator-button"]
     path = .local/share/gnome-shell/extensions/relative-repos/gnome-shell-extension-mpris-indicator-button
     url = https://github.com/JasonLG1979/gnome-shell-extension-mpris-indicator-button.git
