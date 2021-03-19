@@ -132,6 +132,8 @@ if [ -e /etc/gentoo-release ]; then
         ueberzug \
         `: # NodeJS dependency management. Used to install iamcco/markdown-preview.nvim Vim plugin.` \
         yarn \
+        `: # Synchronize calendars and contacts.` \
+        vdirsyncer \
         `: # Visual Interactive Taskwarrior full-screen terminal interface.` \
         vit \
         `: # A highly customizable and functional document viewer` \
@@ -250,6 +252,12 @@ gnome-extensions enable 'gnome-stats-pro@thrallingpenguin.com'
 
 log_info "Configuring NeoVim..."
 nvim -c 'call dein#install()' -c 'CocInstall coc-python coc-emoji coc-highlight coc-lbdbq coc-tag'
+
+log_info "Enable user systemd units"
+systemctl --user enable vdirsyncer.timer
+systemctl --user start vdirsyncer.timer
+systemctl --user enable taskwarrior.timer
+systemctl --user start taskwarrior.timer
 
 log_info "Last manual configuration..."
 log_info "    - Install firefox plugins."

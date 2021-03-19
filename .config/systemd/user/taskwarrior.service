@@ -1,0 +1,7 @@
+[Unit]
+Description=Synchronize all tasks
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/task sync
+ExecStart=/usr/bin/tw_gcal_sync -c "Personal Tasks" -t "personal"

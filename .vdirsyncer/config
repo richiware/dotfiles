@@ -1,0 +1,75 @@
+[general]
+# A folder where vdirsyncer can store some metadata about each pair.
+status_path = "~/.vdirsyncer/status/"
+
+# Personal contacts
+[pair personal_contacts]
+a = "personal_contacts_local"
+b = "personal_google_contacts_remote"
+collections = ["from a", "from b"]
+metadata = ["displayname"]
+
+[storage personal_contacts_local]
+type = "filesystem"
+path = "~/.contacts/personal/"
+fileext = ".vcf"
+
+[storage personal_google_contacts_remote]
+type = "google_contacts"
+client_id.fetch = ["command", "sh", "-c", "rg client_id ~/.vdirsyncer/personal_google_data | cut -d ':' --fields=2 | xargs"]
+client_secret.fetch = ["command", "sh", "-c", "rg client_secret ~/.vdirsyncer/personal_google_data | cut -d ':' --fields=2 | xargs"]
+token_file = "~/.vdirsyncer/personal_google_contacts_tokens"
+
+# eProsima contacts
+[pair eprosima_contacts]
+a = "eprosima_contacts_local"
+b = "eprosima_google_contacts_remote"
+collections = ["from a", "from b"]
+metadata = ["displayname"]
+
+[storage eprosima_contacts_local]
+type = "filesystem"
+path = "~/.contacts/eprosima/"
+fileext = ".vcf"
+
+[storage eprosima_google_contacts_remote]
+type = "google_contacts"
+client_id.fetch = ["command", "sh", "-c", "rg client_id ~/.vdirsyncer/eprosima_google_data | cut -d ':' --fields=2 | xargs"]
+client_secret.fetch = ["command", "sh", "-c", "rg client_secret ~/.vdirsyncer/eprosima_google_data | cut -d ':' --fields=2 | xargs"]
+token_file = "~/.vdirsyncer/eprosima_google_contacts_tokens"
+
+# Personal calendar
+[pair personal_calendar]
+a = "personal_calendar_local"
+b = "personal_google_calendar_remote"
+collections = ["from a", "from b"]
+metadata = ["color"]
+
+[storage personal_calendar_local]
+type = "filesystem"
+path = "~/.calendar/personal/"
+fileext = ".ics"
+
+[storage personal_google_calendar_remote]
+type = "google_calendar"
+client_id.fetch = ["command", "sh", "-c", "rg client_id ~/.vdirsyncer/personal_google_data | cut -d ':' --fields=2 | xargs"]
+client_secret.fetch = ["command", "sh", "-c", "rg client_secret ~/.vdirsyncer/personal_google_data | cut -d ':' --fields=2 | xargs"]
+token_file = "~/.vdirsyncer/personal_google_calendar_tokens"
+
+# eProsima calendar
+[pair eprosima_calendar]
+a = "eprosima_calendar_local"
+b = "eprosima_google_calendar_remote"
+collections = ["from a", "from b"]
+metadata = ["color"]
+
+[storage eprosima_calendar_local]
+type = "filesystem"
+path = "~/.calendar/eprosima/"
+fileext = ".ics"
+
+[storage eprosima_google_calendar_remote]
+type = "google_calendar"
+client_id.fetch = ["command", "sh", "-c", "rg client_id ~/.vdirsyncer/eprosima_google_data | cut -d ':' --fields=2 | xargs"]
+client_secret.fetch = ["command", "sh", "-c", "rg client_secret ~/.vdirsyncer/eprosima_google_data | cut -d ':' --fields=2 | xargs"]
+token_file = "~/.vdirsyncer/eprosima_google_calendar_tokens"

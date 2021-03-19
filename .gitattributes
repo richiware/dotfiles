@@ -1,2 +1,4 @@
 #pattern  filter=crypt diff=crypt merge=crypt
 .config/task/taskdrc filter=crypt diff=crypt merge=crypt
+.vdirsyncer/personal_google_data filter=crypt diff=crypt merge=crypt
+.vdirsyncer/eprosima_google_data filter=crypt diff=crypt merge=crypt
