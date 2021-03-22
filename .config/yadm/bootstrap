@@ -106,6 +106,8 @@ if [ -e /etc/gentoo-release ]; then
         python-language-server \
         `: # A vim-inspired file manager for the console.` \
         ranger \
+        `: # Provides first-class OAuth library support for Requests. Used by vdirsyncer.` \
+        requests-oauthlib \
         `: # Recursively searches directories for a regex pattern.` \
         ripgrep \
         `: # Taskwarrior is a command-line todo list manager.` \
@@ -162,6 +164,7 @@ elif [ -e /etc/os-release ]; then
                 powerline \
                 python3-neovim \
                 python3-powerline-taskwarrior \
+                python3-requests-oauthlib \
                 ranger \
                 ripgrep \
                 silversearcher-ag \
@@ -171,6 +174,7 @@ elif [ -e /etc/os-release ]; then
                 translate-shell \
                 tree \
                 uncrustify \
+                vdirsyncer \
                 vit \
                 yarnpkg \
                 zathura \
