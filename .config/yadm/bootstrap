@@ -89,6 +89,8 @@ if [ -e /etc/gentoo-release ]; then
         jq \
         `: # Standards based CLI and terminal calendar program.` \
         khal \
+        `: # Address book for the Unix console.` \
+        khard \
         `: # A modern, hackable, featureful, OpenGL-based terminal emulator.` \
         kitty \
         `: # Little Brother database. Used by coc-lbdbq Vim plugin.` \
@@ -161,6 +163,7 @@ elif [ -e /etc/os-release ]; then
                 gopass \
                 gpaste \
                 khal \
+                khard \
                 kitty \
                 lbdb \
                 neovim \
