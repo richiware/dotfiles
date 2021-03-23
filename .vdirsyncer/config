@@ -43,7 +43,7 @@ token_file = "~/.vdirsyncer/eprosima_google_contacts_tokens"
 a = "personal_calendar_local"
 b = "personal_google_calendar_remote"
 collections = ["from a", "from b"]
-metadata = ["color"]
+metadata = ["color", "displayname"]
 
 [storage personal_calendar_local]
 type = "filesystem"
@@ -61,7 +61,7 @@ token_file = "~/.vdirsyncer/personal_google_calendar_tokens"
 a = "eprosima_calendar_local"
 b = "eprosima_google_calendar_remote"
 collections = ["from a", "from b"]
-metadata = ["color"]
+metadata = ["color", "displayname"]
 
 [storage eprosima_calendar_local]
 type = "filesystem"

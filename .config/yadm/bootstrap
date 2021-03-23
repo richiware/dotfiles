@@ -258,6 +258,8 @@ log_info "Configuring NeoVim..."
 nvim -c 'call dein#install()' -c 'CocInstall coc-python coc-emoji coc-highlight coc-lbdbq coc-tag'
 
 log_info "Enable user systemd units"
+vdirsyncer sync
+vdirsyncer metasync
 systemctl --user enable vdirsyncer.timer
 systemctl --user start vdirsyncer.timer
 systemctl --user enable taskwarrior.timer
