@@ -87,6 +87,8 @@ if [ -e /etc/gentoo-release ]; then
         izer \
         `: # A lightweight and flexible command-line JSON processor.` \
         jq \
+        `: # Standards based CLI and terminal calendar program.` \
+        khal \
         `: # A modern, hackable, featureful, OpenGL-based terminal emulator.` \
         kitty \
         `: # Little Brother database. Used by coc-lbdbq Vim plugin.` \
@@ -158,6 +160,7 @@ elif [ -e /etc/os-release ]; then
                 fzf \
                 gopass \
                 gpaste \
+                khal \
                 kitty \
                 lbdb \
                 neovim \
