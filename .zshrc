@@ -49,6 +49,7 @@ ZSH_TMUX_AUTOSTART=true
 # Location of my custom ZSH folder
 ZSH_CUSTOM=~/.config/zsh/custom
 
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(
@@ -56,7 +57,6 @@ plugins=(
     gitignore
     taskwarrior
     thefuck
-    vi-mode
     vim-interaction
     notify
     fzf
@@ -64,6 +64,7 @@ plugins=(
     yadm
     zsh-autosuggestions
     zsh-syntax-highlighting
+    zsh-vi-mode
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -195,41 +196,6 @@ function gifa() { git-foresta --all --style=10 "$@" | less -RSX }
 compdef _git gifo=git-log
 compdef _git gifa=git-log
 
-# History search keys
-#bindkey -M viins '^r' fzf-history-widget
-bindkey -M vicmd '^r' fzf-history-widget
-bindkey '^H' vi-backward-char
-bindkey '^K' up-line-or-history
-bindkey '^J' down-line-or-history
-bindkey '^L' vi-forward-char
-bindkey '^P' up-history
-bindkey '^N' down-history
-bindkey "^?" backward-delete-char
-bindkey "^W" backward-kill-word
-bindkey "^U" kill-line
-bindkey "^q" push-line-or-edit
-# Ctrl+S to change share history policy
-bindkey "^Xs" change_share_history_policy
-# Up arrow
-bindkey "^[OA" up-line-or-local-history
-# Down arrow
-bindkey "^[OB" down-line-or-local-history
-# Alternative to ESC to switch to normal vi mode.
-bindkey -M viins 'jj' vi-cmd-mode
-
-# Esc + Esc for run fuck command
-bindkey "\e\e" fuck-command-line
-
-# , + c for showing a calendar using khal
-bindkey -M vicmd ',c' show-calendar
-
-# ZSH notify
-zstyle ':notify:*' error-icon "/home/ricardo/.signs/virus.png"
-zstyle ':notify:*' error-title "Command failed"
-zstyle ':notify:*' success-icon "/home/ricardo/.signs/checked.png"
-zstyle ':notify:*' success-title "Command success"
-zstyle ':notify:*' blacklist-regex 'colcon'
-
 # FZF
 [ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
 
@@ -245,5 +211,45 @@ __fzf_preview()
     return $ret
 }
 zle -N __fzf_preview
-bindkey "^t" __fzf_preview
-bindkey '\et' fzf-file-widget
+
+### Key Binding
+# Alternative to ESC to switch to normal vi mode.
+ZVM_VI_INSERT_ESCAPE_BINDKEY=jj # zsh-vi-mode
+function my_key_bindings()
+{
+    # History search keys
+    zvm_bindkey viins '^R' fzf-history-widget # zsh-vi-mode
+    zvm_bindkey vicmd '^R' fzf-history-widget # zsh-vi-mode
+    zvm_bindkey vicmd '/' fzf-history-widget # zsh-vi-mode
+    bindkey '^H' vi-backward-char
+    bindkey '^K' up-line-or-history
+    bindkey '^J' down-line-or-history
+    bindkey '^L' vi-forward-char
+    bindkey '^P' up-history
+    bindkey '^N' down-history
+    bindkey "^?" backward-delete-char
+    bindkey "^q" push-line-or-edit
+    # Ctrl+S to change share history policy
+    bindkey "^Xs" change_share_history_policy
+    # Up arrow
+    bindkey "^[OA" up-line-or-local-history
+    # Down arrow
+    bindkey "^[OB" down-line-or-local-history
+
+    # Esc + Esc for run fuck command
+    bindkey "\e\e" fuck-command-line
+
+    # , + c for showing a calendar using khal
+    zvm_bindkey vicmd ',c' show-calendar # zsh-vi-mode
+
+    zvm_bindkey viins "^t" __fzf_preview
+    zvm_bindkey viins '\et' fzf-file-widget
+}
+precmd_functions+=(my_key_bindings)
+
+# ZSH notify
+zstyle ':notify:*' error-icon "/home/ricardo/.signs/virus.png"
+zstyle ':notify:*' error-title "Command failed"
+zstyle ':notify:*' success-icon "/home/ricardo/.signs/checked.png"
+zstyle ':notify:*' success-title "Command success"
+zstyle ':notify:*' blacklist-regex 'colcon'

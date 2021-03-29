@@ -53,11 +53,12 @@ MODE_VI_INDICATOR="%{%B%F{red}%}╰─➤"
 MODE_NO_INDICATOR="╰─➤"
 
 function vi_mode_prompt_str() {
-  if [[ "$KEYMAP" == "" ]]; then
-    echo "$MODE_NO_INDICATOR"
-  else
-    echo "${${KEYMAP/vicmd/$MODE_VI_INDICATOR}/(main|viins)/$MODE_NO_INDICATOR}"
-  fi
+    local mode="${VIM_MODE_KEYMAP-$KEYMAP}"
+    if [[ "$mode" == "" ]]; then
+        echo "$MODE_NO_INDICATOR"
+    else
+        echo "${${mode/vicmd/$MODE_VI_INDICATOR}/(main|viins)/$MODE_NO_INDICATOR}"
+    fi
 }
 
 PROMPT='%{%f%k%b%}
