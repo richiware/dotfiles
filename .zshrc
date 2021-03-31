@@ -253,3 +253,13 @@ zstyle ':notify:*' error-title "Command failed"
 zstyle ':notify:*' success-icon "/home/ricardo/.signs/checked.png"
 zstyle ':notify:*' success-title "Command success"
 zstyle ':notify:*' blacklist-regex 'colcon'
+
+
+### Used with tmux to initialize my personal environment
+function run_my_apps()
+{
+    if [[ -n ${__tmux_my_env__} ]]; then
+        zsh -c ${__tmux_my_env__}
+    fi
+}
+precmd_functions+=(run_my_apps)
