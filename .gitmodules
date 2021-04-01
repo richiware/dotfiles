@@ -34,9 +34,6 @@
 [submodule ".local/share/gnome-shell/extensions/vim-key-mapping@richiware.github.com"]
     path = .local/share/gnome-shell/extensions/vim-key-mapping@richiware.github.com
     url = https://github.com/richiware/gnome-shell-extension-vim-key-mapping.git
-[submodule ".local/share/gnome-shell/extensions/timewarrior-indicator@natsakis.com"]
-    path = .local/share/gnome-shell/extensions/timewarrior-indicator@natsakis.com
-    url = https://github.com/tassos/timewarrior-indicator.git
 [submodule ".local/share/gnome-shell/extensions/text_translator@awamper.gmail.com"]
     path = .local/share/gnome-shell/extensions/text_translator@awamper.gmail.com
     url = https://github.com/gufoe/text-translator.git

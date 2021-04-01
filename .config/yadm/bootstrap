@@ -83,6 +83,8 @@ if [ -e /etc/gentoo-release ]; then
         gnome-shell-extension-randomwallpaper \
         `: # Simple extension for displaying pending tasks created by TaskWarrior in GNOME Shell.` \
         gnome-shell-extension-taskwhisperer \
+        `: # A very simple indicator for the gnome-shell that displays the current activity tracked from timewarrior.` \
+        gnome-shell-extension-timewarrior-indicator \
         `: # A password manager for the command line written in Go.` \
         gopass \
         `: # Clipboard management system.` \
