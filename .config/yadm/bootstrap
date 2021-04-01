@@ -75,6 +75,10 @@ if [ -e /etc/gentoo-release ]; then
         gnome-shell-extension-appindicator \
         `: # Integrate github's notifications within the gnome desktop environment.` \
         gnome-shell-extension-github-notifications \
+        `: # Brings easy visualization of system resources.` \
+        gnome-shell-extension-gnome-stats-pro \
+        `: # Time management utility for GNOME based on the pomodoro technique.` \
+        gnome-pomodoro \
         `: # Fetches a random wallpaper from an online source and sets it as desktop background.` \
         gnome-shell-extension-randomwallpaper \
         `: # Simple extension for displaying pending tasks created by TaskWarrior in GNOME Shell.` \
@@ -215,8 +219,6 @@ ln -sf ~/.vim/init.vim ~/.config/nvim/init.vim
 ln -sf ~/.vim/coc-settings.json ~/.config/nvim/coc-settings.json
 
 # Gnome shell extensions' links
-ln -sf ~/.local/share/gnome-shell/extensions/relative-repos/taskwhisperer-extension@infinicode.de/taskwhisperer-extension@infinicode.de ~/.local/share/gnome-shell/extensions/
-ln -sf ~/.local/share/gnome-shell/extensions/relative-repos/randomwallpaper@iflow.space/randomwallpaper@iflow.space ~/.local/share/gnome-shell/extensions/
 ln -sf ~/.local/share/gnome-shell/extensions/relative-repos/gnome-shell-extension-mpris-indicator-button/mprisindicatorbutton@JasonLG1979.github.io ~/.local/share/gnome-shell/extensions/
 cd ~/.local/share/gnome-shell/extensions/relative-repos/gnome-shell-extension-openweather && ./autogen.sh && make local-install; cd ~
 
@@ -246,19 +248,20 @@ dconf write "/org/gnome/desktop/interface/gtk-theme" "'Adwaita-dark'"
 dconf write "/org/gnome/desktop/interface/monospace-font-name" "'DejaVu Sans Mono 9'"
 dconf write "/org/gnome/shell/overrides/workspaces-only-on-primary" "true"
 dconf write "/org/gnome/shell/disable-extension-version-validation" "true"
-gnome-extensions enable 'openweather-extension@jenslody.de'
-gnome-extensions enable 'github.notifications@alexandre.dufournet.gmail.com'
-gnome-extensions enable 'tracker-search-provider@sinnix.de'
 gnome-extensions enable 'gistnotes@mohan43u.gmail.com'
-gnome-extensions enable 'windowsNavigator@gnome-shell-extensions.gcampax.github.com'
-gnome-extensions enable 'vim-key-mapping@richiware.github.com'
+gnome-extensions enable 'github.notifications@alexandre.dufournet.gmail.com'
+gnome-extensions enable 'gnome-stats-pro@thrallingpenguin.com'
+gnome-extensions enable 'mprisindicatorbutton@JasonLG1979.github.io'
+gnome-extensions enable 'openweather-extension@jenslody.de'
+gnome-extensions enable 'pomodoro@arun.codito.in'
 gnome-extensions enable 'randomwallpaper@iflow.space'
 gnome-extensions enable 'remove-dropdown-arrows@mpdeimos.com'
-gnome-extensions enable 'text_translator@awamper.gmail.com'
 gnome-extensions enable 'taskwhisperer-extension@infinicode.de'
+gnome-extensions enable 'text_translator@awamper.gmail.com'
 gnome-extensions enable 'timewarrior-indicator@natsakis.com'
-gnome-extensions enable 'mprisindicatorbutton@JasonLG1979.github.io'
-gnome-extensions enable 'gnome-stats-pro@thrallingpenguin.com'
+gnome-extensions enable 'tracker-search-provider@sinnix.de'
+gnome-extensions enable 'vim-key-mapping@richiware.github.com'
+gnome-extensions enable 'windowsNavigator@gnome-shell-extensions.gcampax.github.com'
 
 log_info "Configuring NeoVim..."
 nvim -c 'call dein#install()' -c 'CocInstall coc-python coc-emoji coc-highlight coc-lbdbq coc-tag'

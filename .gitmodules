@@ -58,9 +58,6 @@
 [submodule ".local/share/gnome-shell/extensions/remove-dropdown-arrows@mpdeimos.com"]
     path = .local/share/gnome-shell/extensions/remove-dropdown-arrows@mpdeimos.com
     url = https://github.com/mpdeimos/gnome-shell-remove-dropdown-arrows.git
-[submodule ".local/share/gnome-shell/extensions/gnome-stats-pro@thrallingpenguin.com"]
-    path = .local/share/gnome-shell/extensions/gnome-stats-pro@thrallingpenguin.com
-    url = https://github.com/tpenguin/gnome-stats-pro.git
 [submodule ".config/zsh/custom/plugins/yadm"]
     path = .config/zsh/custom/plugins/yadm
     url = https://github.com/ZDTaylor/yadm-zsh.git
