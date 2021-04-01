@@ -11,5 +11,7 @@ tmux neww -dk -n mail -t _richi_:1
 
 # Tasks & calendar
 tmux neww -dk -e "__tmux_my_env__=vit" -n tasks -t _richi_:2
-
 tmux splitw -h -e "__tmux_my_env__=khal interactive" -t _richi_:tasks
+
+# Notes
+tmux neww -dk -c ~/Documentos/notas -n notes -t _richi_:3
