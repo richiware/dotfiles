@@ -37,9 +37,6 @@
 [submodule ".oh-my-zsh"]
     path = .oh-my-zsh
     url = https://github.com/robbyrussell/oh-my-zsh.git
-[submodule ".local/share/gnome-shell/extensions/relative-repos/gnome-shell-extension-openweather"]
-    path = .local/share/gnome-shell/extensions/relative-repos/gnome-shell-extension-openweather
-    url = https://gitlab.com/jenslody/gnome-shell-extension-openweather.git
 [submodule ".local/share/gnome-shell/extensions/remove-dropdown-arrows@mpdeimos.com"]
     path = .local/share/gnome-shell/extensions/remove-dropdown-arrows@mpdeimos.com
     url = https://github.com/mpdeimos/gnome-shell-remove-dropdown-arrows.git

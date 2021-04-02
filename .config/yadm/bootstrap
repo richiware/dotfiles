@@ -79,6 +79,8 @@ if [ -e /etc/gentoo-release ]; then
         gnome-shell-extension-gnome-stats-pro \
         `: # A full featured MPRIS indicator button extension for GNOME Shell.` \
         gnome-shell-extension-mpris-indicator-button \
+        `: # Simple extension for displaying weather conditions and forecasts.` \
+        gnome-shell-extension-openweather \
         `: # Time management utility for GNOME based on the pomodoro technique.` \
         gnome-pomodoro \
         `: # Fetches a random wallpaper from an online source and sets it as desktop background.` \
@@ -223,10 +225,6 @@ log_info "Creating links..."
 mkdir -p ~/.config/nvim
 ln -sf ~/.vim/init.vim ~/.config/nvim/init.vim
 ln -sf ~/.vim/coc-settings.json ~/.config/nvim/coc-settings.json
-
-# Gnome shell extensions' links
-ln -sf ~/.local/share/gnome-shell/extensions/relative-repos/gnome-shell-extension-mpris-indicator-button/mprisindicatorbutton@JasonLG1979.github.io ~/.local/share/gnome-shell/extensions/
-cd ~/.local/share/gnome-shell/extensions/relative-repos/gnome-shell-extension-openweather && ./autogen.sh && make local-install; cd ~
 
 log_info "Configuring CCache..."
 sudo cp ~/.config/yadm/system/tmpfs-ccache /etc/
