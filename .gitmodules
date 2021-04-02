@@ -28,9 +28,6 @@
 [submodule ".local/share/gnome-shell/extensions/vim-key-mapping@richiware.github.com"]
     path = .local/share/gnome-shell/extensions/vim-key-mapping@richiware.github.com
     url = https://github.com/richiware/gnome-shell-extension-vim-key-mapping.git
-[submodule ".local/share/gnome-shell/extensions/relative-repos/gnome-shell-extension-mpris-indicator-button"]
-    path = .local/share/gnome-shell/extensions/relative-repos/gnome-shell-extension-mpris-indicator-button
-    url = https://github.com/JasonLG1979/gnome-shell-extension-mpris-indicator-button.git
 [submodule ".config/zsh/custom/plugins/notify"]
     path = .config/zsh/custom/plugins/notify
     url = https://github.com/richiware/zsh-notify.git

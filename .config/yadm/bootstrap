@@ -77,6 +77,8 @@ if [ -e /etc/gentoo-release ]; then
         gnome-shell-extension-github-notifications \
         `: # Brings easy visualization of system resources.` \
         gnome-shell-extension-gnome-stats-pro \
+        `: # A full featured MPRIS indicator button extension for GNOME Shell.` \
+        gnome-shell-extension-mpris-indicator-button \
         `: # Time management utility for GNOME based on the pomodoro technique.` \
         gnome-pomodoro \
         `: # Fetches a random wallpaper from an online source and sets it as desktop background.` \
