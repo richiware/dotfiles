@@ -25,18 +25,9 @@
 [submodule ".tmux/plugins/tpm"]
     path = .tmux/plugins/tpm
     url = https://github.com/tmux-plugins/tpm.git
-[submodule ".local/share/gnome-shell/extensions/gistnotes@mohan43u.gmail.com"]
-    path = .local/share/gnome-shell/extensions/gistnotes@mohan43u.gmail.com
-    url = https://github.com/mohan43u/gistnotes.git
-[submodule ".local/share/gnome-shell/extensions/jenkins-indicator@philipphoffmann.de"]
-    path = .local/share/gnome-shell/extensions/jenkins-indicator@philipphoffmann.de
-    url = https://github.com/philipphoffmann/gnome3-jenkins-indicator.git
 [submodule ".local/share/gnome-shell/extensions/vim-key-mapping@richiware.github.com"]
     path = .local/share/gnome-shell/extensions/vim-key-mapping@richiware.github.com
     url = https://github.com/richiware/gnome-shell-extension-vim-key-mapping.git
-[submodule ".local/share/gnome-shell/extensions/text_translator@awamper.gmail.com"]
-    path = .local/share/gnome-shell/extensions/text_translator@awamper.gmail.com
-    url = https://github.com/gufoe/text-translator.git
 [submodule ".local/share/gnome-shell/extensions/relative-repos/gnome-shell-extension-mpris-indicator-button"]
     path = .local/share/gnome-shell/extensions/relative-repos/gnome-shell-extension-mpris-indicator-button
     url = https://github.com/JasonLG1979/gnome-shell-extension-mpris-indicator-button.git

@@ -83,6 +83,8 @@ if [ -e /etc/gentoo-release ]; then
         gnome-shell-extension-randomwallpaper \
         `: # Simple extension for displaying pending tasks created by TaskWarrior in GNOME Shell.` \
         gnome-shell-extension-taskwhisperer \
+        `: # Translation of the text by different translators.` \
+        gnome-shell-extension-text-translator \
         `: # A very simple indicator for the gnome-shell that displays the current activity tracked from timewarrior.` \
         gnome-shell-extension-timewarrior-indicator \
         `: # A password manager for the command line written in Go.` \
@@ -250,7 +252,6 @@ dconf write "/org/gnome/desktop/interface/gtk-theme" "'Adwaita-dark'"
 dconf write "/org/gnome/desktop/interface/monospace-font-name" "'DejaVu Sans Mono 9'"
 dconf write "/org/gnome/shell/overrides/workspaces-only-on-primary" "true"
 dconf write "/org/gnome/shell/disable-extension-version-validation" "true"
-gnome-extensions enable 'gistnotes@mohan43u.gmail.com'
 gnome-extensions enable 'github.notifications@alexandre.dufournet.gmail.com'
 gnome-extensions enable 'gnome-stats-pro@thrallingpenguin.com'
 gnome-extensions enable 'mprisindicatorbutton@JasonLG1979.github.io'
