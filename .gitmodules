@@ -37,9 +37,6 @@
 [submodule ".oh-my-zsh"]
     path = .oh-my-zsh
     url = https://github.com/robbyrussell/oh-my-zsh.git
-[submodule ".local/share/gnome-shell/extensions/remove-dropdown-arrows@mpdeimos.com"]
-    path = .local/share/gnome-shell/extensions/remove-dropdown-arrows@mpdeimos.com
-    url = https://github.com/mpdeimos/gnome-shell-remove-dropdown-arrows.git
 [submodule ".config/zsh/custom/plugins/yadm"]
     path = .config/zsh/custom/plugins/yadm
     url = https://github.com/ZDTaylor/yadm-zsh.git

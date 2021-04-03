@@ -85,6 +85,8 @@ if [ -e /etc/gentoo-release ]; then
         gnome-pomodoro \
         `: # Fetches a random wallpaper from an online source and sets it as desktop background.` \
         gnome-shell-extension-randomwallpaper \
+        `: # Removes the dropdown arrows which were introduced in Gnome 3.10 from the App Menu.` \
+        gnome-shell-extension-remove-dropdown-arrows \
         `: # Simple extension for displaying pending tasks created by TaskWarrior in GNOME Shell.` \
         gnome-shell-extension-taskwhisperer \
         `: # Translation of the text by different translators.` \
