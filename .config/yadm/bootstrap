@@ -164,7 +164,7 @@ elif [ -e /etc/os-release ]; then
     source /etc/os-release
     case $NAME in
         "Ubuntu")
-            apt -y install \
+            sudo apt -y install \
                 bat \
                 ccls \
                 exuberant-ctags \
