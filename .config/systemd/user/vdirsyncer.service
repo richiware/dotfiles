@@ -4,4 +4,4 @@ Documentation=https://vdirsyncer.readthedocs.org/
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/vdirsyncer sync
+ExecStart=sh -c '/usr/bin/vdirsyncer sync || notify-send "vdirsyncer sync" "Failed to sync calendars"'
