@@ -156,6 +156,8 @@ if [ -e /etc/gentoo-release ]; then
         vdirsyncer \
         `: # Visual Interactive Taskwarrior full-screen terminal interface.` \
         vit \
+        `: # Wayland clipboard utilities. Needed to copy/paste with Neovim` \
+        wl-clipboard \
         `: # A highly customizable and functional document viewer` \
         zathura-meta zathura-pdf-mupdf \
         zsh \
@@ -195,6 +197,7 @@ elif [ -e /etc/os-release ]; then
                 tree \
                 uncrustify \
                 vdirsyncer \
+                wl-clipboard \
                 vit \
                 yarnpkg \
                 zathura \
