@@ -1,0 +1,4 @@
+{
+    transactional-accounts: "/home/ricardo/Documentos/finanzas/transactional-accounts.yaml",
+    cards: "/home/ricardo/Documentos/finanzas/cards.yaml"
+}
