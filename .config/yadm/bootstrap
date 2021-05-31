@@ -39,6 +39,14 @@ if [ -e /etc/gentoo-release ]; then
         sudo mkdir /etc/portage/package.accept_keywords
         sudo ln -s /home/ricardo/.config/yadm/system/portage/yadm.accept_keywords /etc/portage/package.accept_keywords/yadm.accept_keywords
     fi
+
+    if [ ! -d /etc/portage/package.use ]; then
+        log_info "Adding my package.use..."
+        sudo mkdir /etc/portage/package.use
+        sudo ln -s ~/.config/yadm/system/portage/ca-certificates.use /etc/portage/package.use/ca-certificates.use
+        sudo ln -s ~/.config/yadm/system/portage/gnucash.use /etc/portage/package.use/gnucash.use
+        sudo ln -s ~/.config/yadm/system/portage/qemu.use /etc/portage/package.use/qemu.use
+    fi
 fi
 
 log_info "Installing packages..."
