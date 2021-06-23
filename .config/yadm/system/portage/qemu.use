@@ -1,1 +1,1 @@
-app-emulation/qemu spice usbredir
+app-emulation/qemu smartcard spice usbredir virtfs
