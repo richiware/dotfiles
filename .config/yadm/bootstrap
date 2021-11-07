@@ -265,6 +265,7 @@ dconf write "/org/gnome/desktop/interface/gtk-theme" "'Adwaita-dark'"
 dconf write "/org/gnome/desktop/interface/monospace-font-name" "'DejaVu Sans Mono 9'"
 dconf write "/org/gnome/shell/overrides/workspaces-only-on-primary" "true"
 dconf write "/org/gnome/shell/disable-extension-version-validation" "true"
+gnome-extensions enable 'appindicatorsupport@rgcjonas.gmail.com'
 gnome-extensions enable 'github.notifications@alexandre.dufournet.gmail.com'
 gnome-extensions enable 'gnome-stats-pro@thrallingpenguin.com'
 gnome-extensions enable 'mprisindicatorbutton@JasonLG1979.github.io'
