@@ -101,6 +101,8 @@ if [ -e /etc/gentoo-release ]; then
         gnome-shell-extension-text-translator \
         `: # A very simple indicator for the gnome-shell that displays the current activity tracked from timewarrior.` \
         gnome-shell-extension-timewarrior-indicator \
+        `: # The GNOME Spreadsheet. Dependency of richicash.` \
+        gnumeric \
         `: # A password manager for the command line written in Go.` \
         gopass \
         `: # Clipboard management system.` \
@@ -184,6 +186,7 @@ elif [ -e /etc/os-release ]; then
                 fonts-liberation2 \
                 fonts-powerline \
                 fzf \
+                gnumeric \
                 gopass \
                 gpaste \
                 khal \
