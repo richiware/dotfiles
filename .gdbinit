@@ -1,3 +1,6 @@
+# Pretty print
+set print pretty on
+
 # Bug report command
 define bugreport
     set pagination off
