@@ -55,6 +55,7 @@ ZSH_CUSTOM=~/.config/zsh/custom
 plugins=(
     git
     gitignore
+    git-open
     taskwarrior
     thefuck
     vim-interaction
