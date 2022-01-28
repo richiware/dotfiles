@@ -295,10 +295,13 @@ systemctl --user enable --now vdirsyncer.timer
 systemctl --user enable --now taskwarrior.timer
 systemctl --user start --now taskwarrior.timer
 
-log_info "Enable screencast"
-systemctl --user enable --now pipewire.socket
-systemctl --user enable --now pipewire.service
-systemctl --user enable --now wireplumber.service
+log_info "Enable screencast with pipewire"
+log_info "    Manual settings"
+log_info "    1. Turn it off in /etc/pulse/client.conf set 'autospawn = no' and"
+log_info "    2. Disable daemon via configuration by editing /etc/pulse/daemon.conf and change 'daemonize' to 'daemonize = no'. Remove any ';' at the beginning of the line."
+systemctl --user disable --now pulseaudio.socket pulseaudio.service
+systemctl --user enable --now pipewire.socket pipewire-pulse.socket wireplumber.service
+systemctl --user mask pulseaudio.socket pulseaudio.service
 
 log_info "Last manual configuration..."
 log_info "    - Install firefox plugins."
