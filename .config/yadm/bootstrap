@@ -46,6 +46,7 @@ if [ -e /etc/gentoo-release ]; then
         sudo ln -s ~/.config/yadm/system/portage/ca-certificates.use /etc/portage/package.use/ca-certificates.use
         sudo ln -s ~/.config/yadm/system/portage/gnucash.use /etc/portage/package.use/gnucash.use
         sudo ln -s ~/.config/yadm/system/portage/qemu.use /etc/portage/package.use/qemu.use
+        sudo ln -s ~/.config/yadm/system/portage/screencast.use /etc/portage/package.use/screencast.use
     fi
 fi
 
@@ -290,10 +291,14 @@ log_info "Enable user systemd units"
 vdirsyncer discover
 vdirsyncer sync
 vdirsyncer metasync
-systemctl --user enable vdirsyncer.timer
-systemctl --user start vdirsyncer.timer
-systemctl --user enable taskwarrior.timer
-systemctl --user start taskwarrior.timer
+systemctl --user enable --now vdirsyncer.timer
+systemctl --user enable --now taskwarrior.timer
+systemctl --user start --now taskwarrior.timer
+
+log_info "Enable screencast"
+systemctl --user enable --now pipewire.socket
+systemctl --user enable --now pipewire.service
+systemctl --user enable --now wireplumber.service
 
 log_info "Last manual configuration..."
 log_info "    - Install firefox plugins."
