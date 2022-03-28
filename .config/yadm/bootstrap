@@ -172,6 +172,7 @@ if [ -e /etc/gentoo-release ]; then
         wl-clipboard \
         `: # A highly customizable and functional document viewer` \
         zathura-meta zathura-pdf-mupdf \
+        `: # Z shell` \
         zsh \
         && log_info "Packages intallated successful" || (log_error "Failed packages installation" ; exit -1)
 elif [ -e /etc/os-release ]; then
@@ -226,6 +227,12 @@ elif [ -e /etc/os-release ]; then
             ;;
     esac
 fi
+
+# Install common python packages
+pip3 install \
+    `: # Generates ctags-compatible output for the sections of a Markdown document. Needed by tagbar vim plugin.` \
+    markdown2ctags \
+    && log_info "Packages intallated successful" || (log_error "Failed packages installation" ; exit -1)
 
 log_info "Installing git-foresta..."
 curl -L https://github.com/takaaki-kasai/git-foresta/raw/master/git-foresta -o ~/.local/bin/git-foresta && chmod +x ~/.local/bin/git-foresta
