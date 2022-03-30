@@ -44,10 +44,11 @@ if [ -e /etc/gentoo-release ]; then
         log_info "Adding my package.use..."
         sudo mkdir /etc/portage/package.use
         sudo ln -s ~/.config/yadm/system/portage/ca-certificates.use /etc/portage/package.use/ca-certificates.use
+        sudo ln -s ~/.config/yadm/system/portage/cawbird.use /etc/portage/package.use/cawbird.use
         sudo ln -s ~/.config/yadm/system/portage/gnucash.use /etc/portage/package.use/gnucash.use
+        sudo ln -s ~/.config/yadm/system/portage/picard.use /etc/portage/package.use/picard.use
         sudo ln -s ~/.config/yadm/system/portage/qemu.use /etc/portage/package.use/qemu.use
         sudo ln -s ~/.config/yadm/system/portage/screencast.use /etc/portage/package.use/screencast.use
-        sudo ln -s ~/.config/yadm/system/portage/picard.use /etc/portage/package.use/picard.use
     fi
 fi
 
