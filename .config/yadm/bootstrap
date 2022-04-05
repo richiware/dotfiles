@@ -57,7 +57,7 @@ if [ -e /etc/gentoo-release ]; then
     sudo emerge -vau --oneshot \
         `: # Used by openweather gnome shell extension.` \
         zip \
-        && log_info "Packages intallated successful" || (log_error "Failed packages installation" ; exit -1)
+        && log_info "Packages installed successful" || (log_error "Failed packages installation" ; exit -1)
 
     sudo emerge -vau \
         `: # A cat clone with syntax highlighting, Git integration, so on.` \
@@ -124,7 +124,9 @@ if [ -e /etc/gentoo-release ]; then
         lbdb \
         `: # A Helvetica/Times/Courier replacement TrueType font set, courtesy of Red Hat. For documents` \
         liberation-fonts \
+        `: # New implementation of Vim.` \
         neovim \
+        neovim-ruby-client \
         `: # NetworkManager OpenVPN plugin` \
         networkmanager-openvpn \
         `: # Statusline/prompt utility` \
@@ -175,7 +177,7 @@ if [ -e /etc/gentoo-release ]; then
         zathura-meta zathura-pdf-mupdf \
         `: # Z shell` \
         zsh \
-        && log_info "Packages intallated successful" || (log_error "Failed packages installation" ; exit -1)
+        && log_info "Packages installed successful" || (log_error "Failed packages installation" ; exit -1)
 elif [ -e /etc/os-release ]; then
     source /etc/os-release
     case $NAME in
@@ -217,13 +219,13 @@ elif [ -e /etc/os-release ]; then
                 yarnpkg \
                 zathura \
                 zsh \
-                && log_info "Packages intallated successful" || (log_error "Failed packages installation" ; exit -1)
+                && log_info "Packages installed successful" || (log_error "Failed packages installation" ; exit -1)
             pip3 install \
                 draobpilc \
                 python-language-server \
                 thefuck \
                 ueberzug \
-                && log_info "Packages intallated successful" || (log_error "Failed packages installation" ; exit -1)
+                && log_info "Packages installed successful" || (log_error "Failed packages installation" ; exit -1)
             go get -u github.com/NightWolf007/izer
             ;;
     esac
@@ -233,7 +235,13 @@ fi
 pip3 install \
     `: # Generates ctags-compatible output for the sections of a Markdown document. Needed by tagbar vim plugin.` \
     markdown2ctags \
-    && log_info "Packages intallated successful" || (log_error "Failed packages installation" ; exit -1)
+    && log_info "Packages installed successful (pip)" || (log_error "Failed packages installation (pip)" ; exit -1)
+
+# Install common nodejs packages
+sudo npm install -g \
+    `: # Neovim plugin for nodejs.` \
+    neovim \
+    && log_info "Packages installed successful (npm)" || (log_error "Failed packages installation (npm)" ; exit -1)
 
 log_info "Installing git-foresta..."
 curl -L https://github.com/takaaki-kasai/git-foresta/raw/master/git-foresta -o ~/.local/bin/git-foresta && chmod +x ~/.local/bin/git-foresta
