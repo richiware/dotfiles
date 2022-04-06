@@ -129,6 +129,8 @@ if [ -e /etc/gentoo-release ]; then
         neovim-ruby-client \
         `: # NetworkManager OpenVPN plugin` \
         networkmanager-openvpn \
+        `: # Emoji fonts.` \
+        noto-emoji \
         `: # Statusline/prompt utility` \
         powerline-taskwarrior \
         `: # OpenType Unicode font with symbols for Powerline/Airline.` \
@@ -190,6 +192,7 @@ elif [ -e /etc/os-release ]; then
                 flake8 \
                 fonts-dejavu \
                 fonts-liberation2 \
+                fonts-noto-color-emoji \
                 fonts-powerline \
                 fzf \
                 gnumeric \
