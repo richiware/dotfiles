@@ -1,0 +1,35 @@
+{
+    "search-paths": ["/home/ricardo/workspace/eprosima"],
+    "docker":
+    {
+        "run":
+        {
+            "build-dir": "/home/ricardo/tmp/devloy/${CONTAINER_NAME}/build",
+            "build-tmp-dir": "/tmp/devloy/${CONTAINER_NAME}/build",
+            "install-dir": "/home/ricardo/tmp/devloy/${CONTAINER_NAME}/install",
+            "install-tmp-dir": "/tmp/devloy/${CONTAINER_NAME}/install",
+            # "privileged": True,
+            "cap-add": [
+                "SYS_PTRACE", # For 'gdb'
+                "NET_ADMIN", # For 'tc qdisc netem' and 'wireshark'
+                "NET_RAW" # For 'wireshark'
+            ],
+            "groups": [
+                "sudo",
+                "wireshark"
+            ],
+            # "net": "host",
+            "security-opt": "seccomp=unconfined",
+            "user-env": True,
+            "env" : [
+                "CCACHE_DIR=/ccache",
+                "CCACHE_CONFIGPATH=/home/${USER}/.ccache/ccache.conf"
+                ],
+            "volumes": [
+                "/home/ricardo/tmp/tmpfs-ccache:/ccache",
+                "/home/${USER}/.ccache:/home/${USER}/.ccache",
+                "/home/${USER}/.colcon:/home/${USER}/.colcon"
+                ]
+        }
+    }
+}

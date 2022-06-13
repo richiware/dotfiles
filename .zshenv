@@ -33,7 +33,8 @@ alias pass='pass() { \
 }; pass'
 
 # CCache
-emulate -R bash -c 'source ~/.local/bin/tmpfs-ccache-user.sh'
+export CCACHE_DIR=/home/ricardo/tmp/tmpfs-ccache
+export CCACHE_CONFIGPATH=~/.ccache/ccache.conf
 
 # FZF
 # Export directory where vim's plugin dein install fzf.

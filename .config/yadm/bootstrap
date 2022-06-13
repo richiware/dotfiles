@@ -265,13 +265,6 @@ mkdir -p ~/.config/nvim
 ln -sf ~/.vim/init.vim ~/.config/nvim/init.vim
 ln -sf ~/.vim/coc-settings.json ~/.config/nvim/coc-settings.json
 
-log_info "Configuring CCache..."
-sudo cp ~/.config/yadm/system/tmpfs-ccache /etc/
-sudo cp ~/.config/yadm/system/tmpfs-ccache.service /etc/systemd/system/
-sudo cp ~/.config/yadm/system/tmpfs-ccache-service.sh /usr/local/bin/
-sudo systemctl daemon-reload
-sudo systemctl enable tmpfs-ccache
-
 log_info "Installing fonts..."
 # Powerline symbols
 sudo eselect fontconfig enable 10-powerline-symbols.conf
