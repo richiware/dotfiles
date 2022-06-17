@@ -33,7 +33,7 @@ alias pass='pass() { \
 }; pass'
 
 # CCache
-export CCACHE_DIR=/home/ricardo/tmp/tmpfs-ccache
+export CCACHE_DIR=/run/media/ricardo/ExtremeSSD/develop/ccache
 export CCACHE_CONFIGPATH=~/.ccache/ccache.conf
 
 # FZF
