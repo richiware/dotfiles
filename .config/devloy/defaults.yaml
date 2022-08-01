@@ -8,7 +8,6 @@
             "build-tmp-dir": "/tmp/devloy/${CONTAINER_NAME}/build",
             "install-dir": "/home/ricardo/tmp/devloy/${CONTAINER_NAME}/install",
             "install-tmp-dir": "/tmp/devloy/${CONTAINER_NAME}/install",
-            # "privileged": True,
             "cap-add": [
                 "SYS_PTRACE", # For 'gdb'
                 "NET_ADMIN", # For 'tc qdisc netem' and 'wireshark'
@@ -18,7 +17,19 @@
                 "sudo",
                 "wireshark"
             ],
+            # "privileged": True,
             # "net": "host",
+            "shm-size": "512m",
+            "extra-args" : [
+              "--add-host=localhost.test:127.0.0.1",
+              "--add-host=localhost.test:::1",
+              "--add-host=www.eprosima.com.test:154.56.134.194",
+              "--add-host=www.acme.com.test:216.58.215.164",
+              "--add-host=www.acme.com.test:2a00:1450:400e:803::2004",
+              "--add-host=www.foo.com.test:140.82.121.4",
+              "--add-host=www.foo.com.test:140.82.121.3",
+              "--add-host=acme.org.test:ff1e::ffff:efff:1"
+            ],
             "security-opt": "seccomp=unconfined",
             "user-env": True,
             "env" : [
