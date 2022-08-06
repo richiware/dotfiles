@@ -1,1 +1,2 @@
 app-emulation/qemu smartcard spice usbredir virtfs
+net-misc/spice-gtk smartcard usbredir
