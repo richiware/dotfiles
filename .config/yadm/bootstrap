@@ -49,6 +49,7 @@ if [ -e /etc/gentoo-release ]; then
         sudo ln -s ~/.config/yadm/system/portage/gnucash.use /etc/portage/package.use/
         sudo ln -s ~/.config/yadm/system/portage/picard.use /etc/portage/package.use/
         sudo ln -s ~/.config/yadm/system/portage/qemu.use /etc/portage/package.use/
+        sudo ln -s ~/.config/yadm/system/portage/remmina.use /etc/portage/package.use/
         sudo ln -s ~/.config/yadm/system/portage/screencast.use /etc/portage/package.use/
         sudo ln -s ~/.config/yadm/system/portage/vim.use /etc/portage/package.use/
     fi
