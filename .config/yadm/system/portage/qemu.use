@@ -1,3 +1,4 @@
 app-emulation/qemu smartcard spice usbredir virtfs
 app-emulation/spice smartcard
+net-dns/dnsmasq script # necessary for app-emulaion/libvirt[virt-network]
 net-misc/spice-gtk smartcard usbredir
