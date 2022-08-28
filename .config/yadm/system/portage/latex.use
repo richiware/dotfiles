@@ -1,0 +1,4 @@
+app-text/texlive extra luatex tex4ht xetex
+app-text/texlive-core xetex
+app-text/zathura synctex
+
