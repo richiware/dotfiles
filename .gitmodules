@@ -52,3 +52,6 @@
 [submodule ".config/zsh/custom/plugins/git-open"]
 	path = .config/zsh/custom/plugins/git-open
 	url = https://github.com/paulirish/git-open.git
+[submodule ".config/ranger/plugins/ranger-archives"]
+	path = .config/ranger/plugins/ranger-archives
+	url = https://github.com/maximtrp/ranger-archives.git
