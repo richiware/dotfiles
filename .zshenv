@@ -1,7 +1,7 @@
 # Aliases
 # Temporal remove of Ninja usage (-G Ninja -DCMAKE_VERBOSE_MAKEFILE=ON), because doesn't support the variable CMAKE_BINARY_DIR.
-alias cmake='cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_CXX_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_FLAGS=-fdebug-prefix-map=\${CMAKE_BINARY_DIR}=.'
-alias ninja='ninja_exec() { ninja $*; if [ -f compile_commands.json ]; then cp compile_commands.json ../..; fi }; ninja_exec'
+#alias cmake='cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_CXX_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_FLAGS=-fdebug-prefix-map=\${CMAKE_BINARY_DIR}=.'
+#alias ninja='ninja_exec() { ninja $*; if [ -f compile_commands.json ]; then cp compile_commands.json ../..; fi }; ninja_exec'
 
 # Not necessary because colocon python app.
 #alias colcon='colcon_exec() { \
