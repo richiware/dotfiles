@@ -174,6 +174,8 @@ if [ -e /etc/gentoo-release ]; then
         ueberzug \
         `: # NodeJS dependency management. Used to install iamcco/markdown-preview.nvim Vim plugin.` \
         yarn \
+        `: # Terminal-based YouTube player and downloader.` \
+        yewtube \
         `: # Synchronize calendars and contacts.` \
         vdirsyncer \
         `: # Visual Interactive Taskwarrior full-screen terminal interface.` \
