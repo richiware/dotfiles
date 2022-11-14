@@ -48,6 +48,7 @@ if [ -e /etc/gentoo-release ]; then
         sudo ln -s ~/.config/yadm/system/portage/cawbird.use /etc/portage/package.use/
         sudo ln -s ~/.config/yadm/system/portage/gnucash.use /etc/portage/package.use/
         sudo ln -s ~/.config/yadm/system/portage/latex.use /etc/portage/package.use/
+        sudo ln -s ~/.config/yadm/system/portage/networkmanager.use /etc/portage/package.use/
         sudo ln -s ~/.config/yadm/system/portage/picard.use /etc/portage/package.use/
         sudo ln -s ~/.config/yadm/system/portage/qemu.use /etc/portage/package.use/
         sudo ln -s ~/.config/yadm/system/portage/remmina.use /etc/portage/package.use/
