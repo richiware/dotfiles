@@ -32,6 +32,17 @@ alias pass='pass() { \
     fi; \
 }; pass'
 
+# Aliases for changing to paths quickly.
+alias wse='wse() { \
+    if [ "$#" -eq 1 ]; then \
+        cd ~/workspace/eprosima/$1/master
+    elif [ "$#" -eq 2 ]; then \
+        cd ~/workspace/eprosima/$1/$2
+    else; \
+        cd ~/workspace/eprosima
+    fi; \
+}; wse'
+
 # CCache
 export CCACHE_DIR=/run/media/ricardo/ExtremeSSD/develop/ccache
 export CCACHE_CONFIGPATH=~/.ccache/ccache.conf
