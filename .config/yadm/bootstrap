@@ -306,9 +306,6 @@ gnome-extensions enable 'tracker-search-provider@sinnix.de'
 gnome-extensions enable 'vim-key-mapping@richiware.github.com'
 gnome-extensions enable 'windowsNavigator@gnome-shell-extensions.gcampax.github.com'
 
-log_info "Configuring NeoVim..."
-nvim -c 'call dein#install()' -c 'CocInstall coc-cmake coc-emoji coc-highlight coc-lbdbq coc-python coc-tag'
-
 log_info "Enable user systemd units"
 vdirsyncer discover
 vdirsyncer sync
