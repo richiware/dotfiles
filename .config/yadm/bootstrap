@@ -90,6 +90,8 @@ if [ -e /etc/gentoo-release ]; then
         fzf \
         `: # Wrapper around PyFlakes, pep8 and mccabe. Needed by coc-python Vim plugin.` \
         flake8 \
+        `: # Github CLI.` \
+        github-cli \
         `: # Adds KStatusNotifierItem support to the Shell.` \
         gnome-shell-extension-appindicator \
         `: # Integrate github's notifications within the gnome desktop environment.` \
@@ -128,6 +130,8 @@ if [ -e /etc/gentoo-release ]; then
         khard \
         `: # A modern, hackable, featureful, OpenGL-based terminal emulator.` \
         kitty \
+        `: # Git CLI for terminal.` \
+        lazygit \
         `: # Little Brother database. Used by coc-lbdbq Vim plugin.` \
         lbdb \
         `: # A Helvetica/Times/Courier replacement TrueType font set, courtesy of Red Hat. For documents` \
