@@ -18,6 +18,9 @@
 # Exit terminas like Vim.
 alias :q='exit'
 
+# Alias for lazygit
+alias lg='lazygit'
+
 # Alias to work with gopass:
 # * Without arguments, alias calls 'gopass list'
 # * With one argument, alias calls 'gopass show -c' and start a process to remove password from gpaste after 45s.
@@ -42,6 +45,14 @@ alias wse='wse() { \
         cd ~/workspace/eprosima
     fi; \
 }; wse'
+
+# Alias to automatize the checklist changes on fast-dds repository
+fastna() {
+    if [ "$#" -eq 1 ]; then
+        gh pr view $1 --json body | jq .body |  sed -e 's/\\r\\n/\n/g' | sed '0,\d## Reviewer Checklistd s+\[ \]+*N/A*+' | gh pr edit $1 -F -
+    fi;
+}
+alias fastna=fastna
 
 # CCache
 export CCACHE_DIR=/run/media/ricardo/ExtremeSSD/develop/ccache
