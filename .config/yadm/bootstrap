@@ -123,7 +123,7 @@ if [ -e /etc/gentoo-release ]; then
         `: # Command-line tool for adding icons to filenames.` \
         izer \
         `: # A lightweight and flexible command-line JSON processor.` \
-        jq \
+        app-misc/jq \
         `: # Standards based CLI and terminal calendar program.` \
         khal \
         `: # Address book for the Unix console.` \
