@@ -189,6 +189,7 @@ if [ -e /etc/gentoo-release ]; then
         yewtube \
         `: # Synchronize calendars and contacts.` \
         vdirsyncer \
+        aiohttp-oauthlib \
         `: # Visual Interactive Taskwarrior full-screen terminal interface.` \
         vit \
         `: # Wayland clipboard utilities. Needed to copy/paste with Neovim` \
