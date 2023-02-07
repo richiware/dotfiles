@@ -144,7 +144,7 @@ if [ -e /etc/gentoo-release ]; then
         `: # Emoji fonts.` \
         noto-emoji \
         `: # For installing python packages. Needed in the next stop of this script.` \
-        pip \
+        dev-python/pip \
         `: # Statusline/prompt utility` \
         powerline-taskwarrior \
         `: # OpenType Unicode font with symbols for Powerline/Airline.` \
