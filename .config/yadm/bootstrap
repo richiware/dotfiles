@@ -49,6 +49,7 @@ if [ -e /etc/gentoo-release ]; then
     sudo ln -sf ~/.config/yadm/system/portage/cawbird.use /etc/portage/package.use/
     sudo ln -sf ~/.config/yadm/system/portage/calibre.use /etc/portage/package.use/
     sudo ln -sf ~/.config/yadm/system/portage/draobpilc.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/firefox.use /etc/portage/package.use/
     sudo ln -sf ~/.config/yadm/system/portage/gnucash.use /etc/portage/package.use/
     sudo ln -sf ~/.config/yadm/system/portage/latex.use /etc/portage/package.use/
     sudo ln -sf ~/.config/yadm/system/portage/networkmanager.use /etc/portage/package.use/
@@ -283,6 +284,24 @@ wget https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Inconsolat
 fc-cache -f -v
 cd -
 
+log_info "Enable user systemd units"
+vdirsyncer discover
+vdirsyncer sync
+vdirsyncer metasync
+systemctl --user enable --now vdirsyncer.timer
+systemctl --user enable --now taskwarrior.timer
+
+log_info "Enable screencast with pipewire"
+log_info "    Manual settings"
+log_info "    1. Turn it off in /etc/pulse/client.conf set 'autospawn = no' and"
+log_info "    2. Disable daemon via configuration by editing /etc/pulse/daemon.conf and change 'daemonize' to 'daemonize = no'. Remove any ';' at the beginning of the line."
+systemctl --user disable --now pulseaudio.socket pulseaudio.service
+systemctl --user enable --now pipewire.socket pipewire-pulse.socket wireplumber.service
+systemctl --user mask pulseaudio.socket pulseaudio.service
+
+log_info "Last manual configuration..."
+log_info "    - Install firefox plugins."
+
 log_info "Installing Gnome settings..."
 dconf write "/org/gnome/desktop/wm/preferences/titlebar-font" "'DejaVu Sans Bold Semi-Condensed 9'"
 dconf write "/org/gnome/desktop/wm/preferences/button-layout" "'appmenu:minimize,close'"
@@ -306,23 +325,5 @@ gnome-extensions enable 'timewarrior-indicator@natsakis.com'
 gnome-extensions enable 'tracker-search-provider@sinnix.de'
 gnome-extensions enable 'vim-key-mapping@richiware.github.com'
 gnome-extensions enable 'windowsNavigator@gnome-shell-extensions.gcampax.github.com'
-
-log_info "Enable user systemd units"
-vdirsyncer discover
-vdirsyncer sync
-vdirsyncer metasync
-systemctl --user enable --now vdirsyncer.timer
-systemctl --user enable --now taskwarrior.timer
-
-log_info "Enable screencast with pipewire"
-log_info "    Manual settings"
-log_info "    1. Turn it off in /etc/pulse/client.conf set 'autospawn = no' and"
-log_info "    2. Disable daemon via configuration by editing /etc/pulse/daemon.conf and change 'daemonize' to 'daemonize = no'. Remove any ';' at the beginning of the line."
-systemctl --user disable --now pulseaudio.socket pulseaudio.service
-systemctl --user enable --now pipewire.socket pipewire-pulse.socket wireplumber.service
-systemctl --user mask pulseaudio.socket pulseaudio.service
-
-log_info "Last manual configuration..."
-log_info "    - Install firefox plugins."
 
 # TODO: add my user to groups
