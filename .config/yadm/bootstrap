@@ -251,7 +251,7 @@ elif [ -e /etc/os-release ]; then
 fi
 
 # Install common python packages
-pip3 install \
+pip3 install --user \
     `: # Generates ctags-compatible output for the sections of a Markdown document. Needed by tagbar vim plugin.` \
     markdown2ctags \
     && log_info "Packages installed successful (pip)" || (log_error "Failed packages installation (pip)" ; exit -1)
