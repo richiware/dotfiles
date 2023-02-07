@@ -136,6 +136,8 @@ if [ -e /etc/gentoo-release ]; then
         lbdb \
         `: # A Helvetica/Times/Courier replacement TrueType font set, courtesy of Red Hat. For documents` \
         liberation-fonts \
+        `: # Generates ctags-compatible output for the sections of a Markdown document.` \
+        markdown2ctags \
         `: # New implementation of Vim.` \
         neovim \
         neovim-ruby-client \
@@ -143,8 +145,6 @@ if [ -e /etc/gentoo-release ]; then
         networkmanager-openvpn \
         `: # Emoji fonts.` \
         noto-emoji \
-        `: # For installing python packages. Needed in the next stop of this script.` \
-        dev-python/pip \
         `: # Statusline/prompt utility` \
         powerline-taskwarrior \
         `: # OpenType Unicode font with symbols for Powerline/Airline.` \
@@ -249,12 +249,6 @@ elif [ -e /etc/os-release ]; then
             ;;
     esac
 fi
-
-# Install common python packages
-pip3 install --user \
-    `: # Generates ctags-compatible output for the sections of a Markdown document. Needed by tagbar vim plugin.` \
-    markdown2ctags \
-    && log_info "Packages installed successful (pip)" || (log_error "Failed packages installation (pip)" ; exit -1)
 
 # Install common nodejs packages
 sudo npm install -g \
