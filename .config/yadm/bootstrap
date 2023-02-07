@@ -38,26 +38,26 @@ if [ -e /etc/gentoo-release ]; then
         log_info "Adding my package.accept_keywords..."
         sudo mkdir /etc/portage/package.accept_keywords
     fi
-    sudo ln -s ~/.config/yadm/system/portage/yadm.accept_keywords /etc/portage/package.accept_keywords/yadm.accept_keywords
+    sudo ln -sf ~/.config/yadm/system/portage/yadm.accept_keywords /etc/portage/package.accept_keywords/yadm.accept_keywords
 
     if [ ! -d /etc/portage/package.use ]; then
         log_info "Adding my package.use..."
         sudo mkdir /etc/portage/package.use
     fi
-    sudo ln -s ~/.config/yadm/system/portage/android.use /etc/portage/package.use/
-    sudo ln -s ~/.config/yadm/system/portage/ca-certificates.use /etc/portage/package.use/
-    sudo ln -s ~/.config/yadm/system/portage/cawbird.use /etc/portage/package.use/
-    sudo ln -s ~/.config/yadm/system/portage/calibre.use /etc/portage/package.use/
-    sudo ln -s ~/.config/yadm/system/portage/draobpilc.use /etc/portage/package.use/
-    sudo ln -s ~/.config/yadm/system/portage/gnucash.use /etc/portage/package.use/
-    sudo ln -s ~/.config/yadm/system/portage/latex.use /etc/portage/package.use/
-    sudo ln -s ~/.config/yadm/system/portage/networkmanager.use /etc/portage/package.use/
-    sudo ln -s ~/.config/yadm/system/portage/picard.use /etc/portage/package.use/
-    sudo ln -s ~/.config/yadm/system/portage/qemu.use /etc/portage/package.use/
-    sudo ln -s ~/.config/yadm/system/portage/remmina.use /etc/portage/package.use/
-    sudo ln -s ~/.config/yadm/system/portage/screencast.use /etc/portage/package.use/
-    sudo ln -s ~/.config/yadm/system/portage/telegram-desktop.use /etc/portage/package.use/
-    sudo ln -s ~/.config/yadm/system/portage/vim.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/android.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/ca-certificates.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/cawbird.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/calibre.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/draobpilc.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/gnucash.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/latex.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/networkmanager.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/picard.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/qemu.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/remmina.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/screencast.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/telegram-desktop.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/vim.use /etc/portage/package.use/
 fi
 
 log_info "Installing packages..."
