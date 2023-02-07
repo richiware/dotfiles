@@ -38,7 +38,7 @@ if [ -e /etc/gentoo-release ]; then
         log_info "Adding my package.accept_keywords..."
         sudo mkdir /etc/portage/package.accept_keywords
     fi
-    sudo ln -s /home/ricardo/.config/yadm/system/portage/yadm.accept_keywords /etc/portage/package.accept_keywords/yadm.accept_keywords
+    sudo ln -s ~/.config/yadm/system/portage/yadm.accept_keywords /etc/portage/package.accept_keywords/yadm.accept_keywords
 
     if [ ! -d /etc/portage/package.use ]; then
         log_info "Adding my package.use..."
