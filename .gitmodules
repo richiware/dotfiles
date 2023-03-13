@@ -55,3 +55,6 @@
 [submodule ".config/ranger/plugins/ranger-archives"]
 	path = .config/ranger/plugins/ranger-archives
 	url = https://github.com/maximtrp/ranger-archives.git
+[submodule ".config/zsh/custom/themes/powerlevel10k"]
+	path = .config/zsh/custom/themes/powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k.git
