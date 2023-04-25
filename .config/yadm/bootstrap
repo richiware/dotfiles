@@ -83,6 +83,8 @@ if [ -e /etc/gentoo-release ]; then
         ctags \
         `: # DejaVu fonts, bitstream vera with ISO-8859-2 characters. For interface fonts.` \
         dejavu \
+        `: # simple drag-and-drop source/sink for X or Wayland.` \
+        app-misc/dragon \
         `: # GUI for GPaste clipboard manager for Gnome Shell.` \
         draobpilc \
         `: # eselect plugin for adding repositories into your portage.` \
@@ -330,3 +332,4 @@ gnome-extensions enable 'vim-key-mapping@richiware.github.com'
 gnome-extensions enable 'windowsNavigator@gnome-shell-extensions.gcampax.github.com'
 
 # TODO: add my user to groups
+sudo usermod -aG pipewire ricardo
