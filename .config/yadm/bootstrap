@@ -317,7 +317,7 @@ dconf write "/org/gnome/desktop/interface/monospace-font-name" "'DejaVu Sans Mon
 dconf write "/org/gnome/shell/overrides/workspaces-only-on-primary" "true"
 dconf write "/org/gnome/shell/disable-extension-version-validation" "true"
 gnome-extensions enable 'appindicatorsupport@rgcjonas.gmail.com'
-gnome-extensions enable 'github.notifications@alexandre.dufournet.gmail.com'
+gnome-extensions enable 'github.notifications.v2@nestor.coppi.gmail.com'
 gnome-extensions enable 'gnome-stats-pro@thrallingpenguin.com'
 gnome-extensions enable 'mprisindicatorbutton@JasonLG1979.github.io'
 gnome-extensions enable 'openweather-extension@jenslody.de'
