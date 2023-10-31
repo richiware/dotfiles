@@ -19,7 +19,7 @@
             ],
             # "privileged": True,
             # "net": "host",
-            "shm-size": "512m",
+            "shm-size": "1024m",
             "extra-args" : [
               "--add-host=localhost.test:127.0.0.1",
               "--add-host=localhost.test:::1",
@@ -28,16 +28,18 @@
               "--add-host=www.acme.com.test:2a00:1450:400e:803::2004",
               "--add-host=www.foo.com.test:140.82.121.4",
               "--add-host=www.foo.com.test:140.82.121.3",
-              "--add-host=acme.org.test:ff1e::ffff:efff:1"
+              "--add-host=acme.org.test:ff1e::ffff:efff:1",
+              "--add-host=host.docker.internal:host-gateway"
             ],
             "security-opt": "seccomp=unconfined",
             "user-env": True,
             "env" : [
                 "CCACHE_DIR=/ccache",
-                "CCACHE_CONFIGPATH=/home/${USER}/.ccache/ccache.conf"
+                "CCACHE_CONFIGPATH=/home/${USER}/.ccache/ccache.conf",
+                "ANDROID_ADB_SERVER_ADDRESS=host.docker.internal"
                 ],
             "volumes": [
-                "/run/media/ricardo/ExtremeSSD/develop/ccache:/ccache",
+                "/home/ricardo/tmp/ccache:/ccache",
                 "/home/${USER}/.ccache:/home/${USER}/.ccache",
                 "/home/${USER}/.colcon:/home/${USER}/.colcon"
                 ]
