@@ -1,48 +1,43 @@
-{
-    "search-paths": ["/home/ricardo/workspace/eprosima"],
-    "docker":
-    {
-        "run":
-        {
-            "build-dir": "/home/ricardo/tmp/devloy/${CONTAINER_NAME}/build",
-            "build-tmp-dir": "/tmp/devloy/${CONTAINER_NAME}/build",
-            "install-dir": "/home/ricardo/tmp/devloy/${CONTAINER_NAME}/install",
-            "install-tmp-dir": "/tmp/devloy/${CONTAINER_NAME}/install",
-            "cap-add": [
-                "SYS_PTRACE", # For 'gdb'
-                "NET_ADMIN", # For 'tc qdisc netem' and 'wireshark'
-                "NET_RAW" # For 'wireshark'
-            ],
-            "groups": [
-                "sudo",
-                "wireshark"
-            ],
-            # "privileged": True,
-            # "net": "host",
-            "shm-size": "1024m",
-            "extra-args" : [
-              "--add-host=localhost.test:127.0.0.1",
-              "--add-host=localhost.test:::1",
-              "--add-host=www.eprosima.com.test:154.56.134.194",
-              "--add-host=www.acme.com.test:216.58.215.164",
-              "--add-host=www.acme.com.test:2a00:1450:400e:803::2004",
-              "--add-host=www.foo.com.test:140.82.121.4",
-              "--add-host=www.foo.com.test:140.82.121.3",
-              "--add-host=acme.org.test:ff1e::ffff:efff:1",
-              "--add-host=host.docker.internal:host-gateway"
-            ],
-            "security-opt": "seccomp=unconfined",
-            "user-env": True,
-            "env" : [
-                "CCACHE_DIR=/ccache",
-                "CCACHE_CONFIGPATH=/home/${USER}/.ccache/ccache.conf",
-                "ANDROID_ADB_SERVER_ADDRESS=host.docker.internal"
-                ],
-            "volumes": [
-                "/home/ricardo/tmp/ccache:/ccache",
-                "/home/${USER}/.ccache:/home/${USER}/.ccache",
-                "/home/${USER}/.colcon:/home/${USER}/.colcon"
-                ]
-        }
-    }
-}
+search-paths:
+  - "/home/ricardo/workspace/eprosima"
+docker:
+  run:
+    build-dir: "/home/ricardo/tmp/devloy/${CONTAINER_NAME}/build"
+    build-tmp-dir: "/tmp/devloy/${CONTAINER_NAME}/build"
+    install-dir: "/home/ricardo/tmp/devloy/${CONTAINER_NAME}/install"
+    install-tmp-dir: "/tmp/devloy/${CONTAINER_NAME}/install"
+    cap-add:
+      - SYS_PTRACE # For 'gdb'
+      - NET_ADMIN # For 'tc qdisc netem' and 'wireshark'
+      - NET_RAW # For 'wireshark'
+    groups:
+      - sudo
+      - wireshark
+    # privileged: True
+    # net: host
+    shm-size: 1024m
+    extra-args :
+      - "--add-host=localhost.test:127.0.0.1"
+      - "--add-host=localhost.test:::1"
+      - "--add-host=www.eprosima.com.test:154.56.134.194"
+      - "--add-host=www.acme.com.test:216.58.215.164"
+      - "--add-host=www.acme.com.test:2a00:1450:400e:803::2004"
+      - "--add-host=www.foo.com.test:140.82.121.4"
+      - "--add-host=www.foo.com.test:140.82.121.3"
+      - "--add-host=acme.org.test:ff1e::ffff:efff:1"
+      - "--add-host=host.docker.internal:host-gateway"
+      - "--ulimit"
+      - "nofile=122880:122880"
+      - "-m"
+      - "3G"
+    security-opt: "seccomp=unconfined"
+    user-env: True
+    env :
+      - "CCACHE_DIR=/ccache"
+      - "CCACHE_CONFIGPATH=/home/${USER}/.ccache/ccache.conf"
+      - "ANDROID_ADB_SERVER_ADDRESS=192.168.1.5"
+      # - "ANDROID_ADB_SERVER_ADDRESS=host.docker.internal"
+    volumes:
+      - "/home/ricardo/tmp/ccache:/ccache"
+      - "/home/${USER}/.ccache:/home/${USER}/.ccache"
+      - "/home/${USER}/.colcon:/home/${USER}/.colcon"
