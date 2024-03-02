@@ -49,7 +49,7 @@ alias wse='wse() { \
 # Alias to automatize the checklist changes on fast-dds repository
 fastna() {
     if [ "$#" -eq 1 ]; then
-        gh pr view $1 --json body | jq .body |  sed -e 's/\\r\\n/\n/g' | sed '0,\d## Reviewer Checklistd s+\[ \]+*N/A*+' | gh pr edit $1 -F -
+        gh pr view $1 --json body | jq -r .body |  sed -e 's/\\r\\n/\n/g' | sed '0,\d## Reviewer Checklistd s+\[ \]+*N/A*+' | gh pr edit $1 -F -
     fi;
 }
 alias fastna=fastna
@@ -59,12 +59,7 @@ export CCACHE_DIR=/run/media/ricardo/ExtremeSSD/develop/ccache
 export CCACHE_CONFIGPATH=~/.ccache/ccache.conf
 
 # FZF
-# Export directory where vim's plugin dein install fzf.
-export FZF_BASE="${XDG_CACHE_HOME:=$HOME/.cache}/dein/repos/github.com/junegunn/fzf"
-export FZF_DEFAULT_COMMAND='fd --type f --color=always'
-export FZF_DEFAULT_OPTS='--ansi'
-export FZF_CTRL_T_OPTS='--preview "file=$(izer deiconize {}) && bat --color=always $file | head -100"'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_OPTS='--preview "file=$(izer deiconize {}) && fzf-preview $file | head -100"'
 
 # GCC_COLORS
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'

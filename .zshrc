@@ -68,7 +68,6 @@ plugins=(
     thefuck
     vim-interaction
     notify
-    fzf
     tmux
     yadm
     zsh-autosuggestions
@@ -103,6 +102,8 @@ export EDITOR='nvim'
 
 # Sustitute oh-my-zsh's sudo alias for mine.
 alias _='sudo -E'
+
+ZVM_VI_EDITOR=$EDITOR
 
 # 256 color term
 if [[ "$TERM" == xterm* ]]; then
@@ -150,7 +151,7 @@ function _reset-prompt-and-accept-line {
 }
 zle -N accept-line _reset-prompt-and-accept-line
 
-# Special function to search text and show results usin FZF
+# Special function to search text and show results using FZF
 function sg()
 {
     search_prg=("rg" "--vimgrep" "--color=always")
@@ -166,7 +167,7 @@ function sg()
     grep_rv=`$search_prg "$1" "$directory" | $(__fzfcmd) \
         --reverse \
         --ansi \
-        --preview 'file=$(echo {} | cut -f 1 -d :) line=$(echo {} | cut -f 2 -d :); bat --color=always "$file" -H $line | tail -n +$( (($line > 10)) && echo $((line-10)) || echo 0) | head -100'
+        --preview 'file=$(echo {} | cut -f 1 -d :) line=$(echo {} | cut -f 2 -d :); fzf-preview "$file" | tail -n +$( (($line > 10)) && echo $((line-10)) || echo 0) | head -100'
     `
     if [ "$grep_rv" ]; then
         echo $(awk '{split($0,a,":"); print "nvim",a[1],"-c","\"call cursor(\""a[2]","a[3]"\")\""}' <<< ${grep_rv}) | bash
@@ -183,7 +184,7 @@ function rsg()
     grep_rv=`rg --vimgrep --color=always "$1" "$directory" | $(__fzfcmd) \
         --reverse \
         --ansi \
-        --preview 'file=$(echo {} | cut -f 1 -d :) line=$(echo {} | cut -f 2 -d :); bat --color=always "$file" -H $line | tail -n +$( (($line > 10)) && echo $((line-10)) || echo 0) | head -100'
+        --preview 'file=$(echo {} | cut -f 1 -d :) line=$(echo {} | cut -f 2 -d :); fzf-preview "$file" | tail -n +$( (($line > 10)) && echo $((line-10)) || echo 0) | head -100'
     `
     if [ "$grep_rv" ]; then
         echo $(awk '{split($0,a,":"); print "nvim",a[1],"-c","\"call cursor(\""a[2]","a[3]"\")\""}' <<< ${grep_rv}) | bash
@@ -205,14 +206,14 @@ function gifa() { git-foresta --all --style=10 "$@" | less -RSX }
 compdef _git gifo=git-log
 compdef _git gifa=git-log
 
-# FZF
+#{{{ FZF
 [ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
 
 __fzf_preview()
 {
     LBUFFER="${LBUFFER}$(eval "${FZF_CTRL_T_COMMAND}" | \
         izer iconize -f=nerd -c | \
-        FZF_DEFAULT_OPTS="--reverse $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" fzf-preview --reverse --ansi | \
+        FZF_DEFAULT_OPTS="--reverse $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) | \
         izer deiconize
         )"
     local ret=$?
@@ -220,8 +221,9 @@ __fzf_preview()
     return $ret
 }
 zle -N __fzf_preview
+#}}}
 
-### Key Binding
+#{{{ Key Binding
 # Alternative to ESC to switch to normal vi mode.
 ZVM_VI_INSERT_ESCAPE_BINDKEY=jj # zsh-vi-mode
 function my_key_bindings()
@@ -255,6 +257,7 @@ function my_key_bindings()
     zvm_bindkey viins '\et' fzf-file-widget
 }
 precmd_functions+=(my_key_bindings)
+#}}}
 
 # ZSH notify
 zstyle ':notify:*' error-icon "/home/ricardo/.signs/virus.png"
