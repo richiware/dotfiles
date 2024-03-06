@@ -58,3 +58,6 @@
 [submodule ".config/zsh/custom/themes/powerlevel10k"]
 	path = .config/zsh/custom/themes/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k.git
+[submodule ".local/share/gnome-shell/extensions/repos/RandomWallpaperGnome3"]
+	path = .local/share/gnome-shell/extensions/repos/RandomWallpaperGnome3
+	url = https://github.com/ifl0w/RandomWallpaperGnome3.git

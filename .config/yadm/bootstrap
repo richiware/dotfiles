@@ -76,6 +76,8 @@ if [ -e /etc/gentoo-release ]; then
     sudo emerge -vau \
         `: # A cat clone with syntax highlighting, Git integration, so on.` \
         bat \
+        `: # Compiler for Blueprint, a markup language for GTK user interfaces. Used by gnome-shell extension randomwallpaper.` \
+        blueprint-compiler \
         `: # A host application for browserpass browser extension providing it access to your password store.` \
         browserpass \
         `: # fast compiler cache.` \
@@ -112,8 +114,6 @@ if [ -e /etc/gentoo-release ]; then
         gnome-shell-extension-openweather \
         `: # Time management utility for GNOME based on the pomodoro technique.` \
         gnome-pomodoro \
-        `: # Fetches a random wallpaper from an online source and sets it as desktop background.` \
-        gnome-shell-extension-randomwallpaper \
         `: # Removes the dropdown arrows which were introduced in Gnome 3.10 from the App Menu.` \
         gnome-shell-extension-remove-dropdown-arrows \
         `: # Simple extension for displaying pending tasks created by TaskWarrior in GNOME Shell.` \
@@ -319,6 +319,12 @@ dconf write "/org/gnome/desktop/interface/gtk-theme" "'Adwaita-dark'"
 dconf write "/org/gnome/desktop/interface/monospace-font-name" "'DejaVu Sans Mono 9'"
 dconf write "/org/gnome/shell/overrides/workspaces-only-on-primary" "true"
 dconf write "/org/gnome/shell/disable-extension-version-validation" "true"
+#<<< Build and install RandomWallpaperGnome3
+cd .local/share/gnome-shell/extensions/repos/RandomWallpaperGnome3
+./build.sh
+./install.sh
+cd -
+#>>>
 gnome-extensions enable 'appindicatorsupport@rgcjonas.gmail.com'
 gnome-extensions enable 'github.notifications.v2@nestor.coppi.gmail.com'
 gnome-extensions enable 'gnome-stats-pro@thrallingpenguin.com'
