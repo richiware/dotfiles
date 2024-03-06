@@ -48,6 +48,7 @@ if [ -e /etc/gentoo-release ]; then
     sudo ln -sf ~/.config/yadm/system/portage/ca-certificates.use /etc/portage/package.use/
     sudo ln -sf ~/.config/yadm/system/portage/cawbird.use /etc/portage/package.use/
     sudo ln -sf ~/.config/yadm/system/portage/calibre.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/chromium.use /etc/portage/package.use/
     sudo ln -sf ~/.config/yadm/system/portage/draobpilc.use /etc/portage/package.use/
     sudo ln -sf ~/.config/yadm/system/portage/firefox.use /etc/portage/package.use/
     sudo ln -sf ~/.config/yadm/system/portage/gnucash.use /etc/portage/package.use/
