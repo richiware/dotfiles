@@ -28,10 +28,7 @@ alias pass='pass() { \
     if [ "$#" -eq 0 ]; then \
         gopass list;
     elif [ "$#" -eq 1 ]; then \
-        gopass show -C $1 && \
-        gpaste-client set-password --use-index 0 $1 && \
-        sh -c "sleep 45; gpaste-client delete-password $1" & \
-        disown
+        gopass show -C $1;
     fi; \
 }; pass'
 
@@ -53,6 +50,11 @@ fastna() {
     fi;
 }
 alias fastna=fastna
+
+#{{{ GoPass
+export GOPASS_CLIPBOARD_COPY_CMD="$HOME/.local/scripts/gopass_clipboard_copy_cmd.sh"
+export GOPASS_CLIPBOARD_CLEAR_CMD="$HOME/.local/scripts/gopass_clipboard_clear_cmd.sh"
+#}}}
 
 # CCache
 export CCACHE_DIR=/run/media/ricardo/ExtremeSSD/develop/ccache
