@@ -104,8 +104,6 @@ if [ -e /etc/gentoo-release ]; then
         github-cli \
         `: # Adds KStatusNotifierItem support to the Shell.` \
         gnome-shell-extension-appindicator \
-        `: # Integrate github's notifications within the gnome desktop environment.` \
-        gnome-shell-extension-github-notifications \
         `: # Brings easy visualization of system resources.` \
         gnome-shell-extension-gnome-stats-pro \
         `: # A full featured MPRIS indicator button extension for GNOME Shell.` \
@@ -153,6 +151,8 @@ if [ -e /etc/gentoo-release ]; then
         networkmanager-openvpn \
         `: # Emoji fonts.` \
         noto-emoji \
+        `: # Makes power profiles handling avaiable over D-Bus.` \
+        power-profiles-daemon \
         `: # Statusline/prompt utility` \
         powerline-taskwarrior \
         `: # OpenType Unicode font with symbols for Powerline/Airline.` \
@@ -189,7 +189,7 @@ if [ -e /etc/gentoo-release ]; then
         uncrustify \
         `: # Draw images on terminals by using child windows. Usec by ranger.` \
         ueberzug \
-        `: # NodeJS dependency management. Used to install iamcco/markdown-preview.nvim Vim plugin.` \
+        `: # NodeJS dependency management. Used to install iamcco/markdown-preview.nvim Vim plugin and gnome-github-manager gnome-shell extension.` \
         yarn \
         `: # Terminal-based YouTube player and downloader.` \
         yewtube \
@@ -307,6 +307,9 @@ systemctl --user disable --now pulseaudio.socket pulseaudio.service
 systemctl --user enable --now pipewire.socket pipewire-pulse.socket wireplumber.service
 systemctl --user mask pulseaudio.socket pulseaudio.service
 
+log_info "Enable Power Profiles"
+sudo systemctl enable --now power-profiles-daemon
+
 log_info "Last manual configuration..."
 log_info "    - Install firefox plugins."
 
@@ -319,14 +322,21 @@ dconf write "/org/gnome/desktop/interface/gtk-theme" "'Adwaita-dark'"
 dconf write "/org/gnome/desktop/interface/monospace-font-name" "'DejaVu Sans Mono 9'"
 dconf write "/org/gnome/shell/overrides/workspaces-only-on-primary" "true"
 dconf write "/org/gnome/shell/disable-extension-version-validation" "true"
-#<<< Build and install RandomWallpaperGnome3
+#{{{ Build and install RandomWallpaperGnome3
 cd .local/share/gnome-shell/extensions/repos/RandomWallpaperGnome3
 ./build.sh
 ./install.sh
 cd -
-#>>>
+#}}}
+#{{{ Build and install gnome-github-manager
+cd .local/share/gnome-shell/extensions/repos/gnome-github-manager
+yarn install
+yarn build
+yarn sync
+cd -
+#}}}
 gnome-extensions enable 'appindicatorsupport@rgcjonas.gmail.com'
-gnome-extensions enable 'github.notifications.v2@nestor.coppi.gmail.com'
+gnome-extensions enable 'github-manager@mackdk-on-github'
 gnome-extensions enable 'gnome-stats-pro@thrallingpenguin.com'
 gnome-extensions enable 'mprisindicatorbutton@JasonLG1979.github.io'
 gnome-extensions enable 'openweather-extension@jenslody.de'

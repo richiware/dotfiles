@@ -61,3 +61,6 @@
 [submodule ".local/share/gnome-shell/extensions/repos/RandomWallpaperGnome3"]
 	path = .local/share/gnome-shell/extensions/repos/RandomWallpaperGnome3
 	url = https://github.com/ifl0w/RandomWallpaperGnome3.git
+[submodule ".local/share/gnome-shell/extensions/repos/gnome-github-manager"]
+	path = .local/share/gnome-shell/extensions/repos/gnome-github-manager
+	url = https://github.com/mackdk/gnome-github-manager.git
