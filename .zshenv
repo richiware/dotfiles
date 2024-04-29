@@ -61,7 +61,10 @@ export CCACHE_DIR=/run/media/ricardo/ExtremeSSD/develop/ccache
 export CCACHE_CONFIGPATH=~/.ccache/ccache.conf
 
 # FZF
+export FZF_DEFAULT_COMMAND='fd --type f --color=always'
+export FZF_DEFAULT_OPTS='--ansi'
 export FZF_CTRL_T_OPTS='--preview "file=$(izer deiconize {}) && fzf-preview $file | head -100"'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # GCC_COLORS
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
