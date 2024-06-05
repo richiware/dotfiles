@@ -1,2 +1,4 @@
 dev-lang/rust profiler
+dev-lang/rust-bin profiler
 net-libs/nodejs inspector
+virtual/rust profiler

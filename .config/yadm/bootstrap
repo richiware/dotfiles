@@ -56,6 +56,7 @@ if [ -e /etc/gentoo-release ]; then
     sudo ln -sf ~/.config/yadm/system/portage/latex.use /etc/portage/package.use/
     sudo ln -sf ~/.config/yadm/system/portage/libreswan.use /etc/portage/package.use/
     sudo ln -sf ~/.config/yadm/system/portage/networkmanager.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/obs-studio.use /etc/portage/package.use/
     sudo ln -sf ~/.config/yadm/system/portage/picard.use /etc/portage/package.use/
     sudo ln -sf ~/.config/yadm/system/portage/qemu.use /etc/portage/package.use/
     sudo ln -sf ~/.config/yadm/system/portage/remmina.use /etc/portage/package.use/
