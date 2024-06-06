@@ -168,6 +168,8 @@ if [ -e /etc/gentoo-release ]; then
         requests-oauthlib \
         `: # Recursively searches directories for a regex pattern.` \
         ripgrep \
+        `: # The minimal, blazing-fast, and infinitely customizable prompt for any shell.` \
+        starship \
         `: # Taskwarrior is a command-line todo list manager.` \
         task \
         `: # Taskwarrior <-> Google Calendar sync.` \
@@ -287,9 +289,12 @@ log_info "Installing fonts..."
 # Powerline symbols
 sudo eselect fontconfig enable 10-powerline-symbols.conf
 # DevIcons
-mkdir -p ~/.local/share/fonts/Inconsolata\ Nerd\ Font
-cd ~/.local/share/fonts/Inconsolata\ Nerd\ Font
-wget https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Inconsolata/complete/Inconsolata%20Regular%20Nerd%20Font%20Complete.ttf
+mkdir -p ~/.local/share/fonts/DejaVuSansMonoNerdFont
+cd ~/.local/share/fonts/DejaVuSansMonoNerdFont
+wget https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DejaVuSansMono/Regular/DejaVuSansMNerdFont-Regular.ttf
+wget https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DejaVuSansMono/Italic/DejaVuSansMNerdFont-Oblique.ttf
+wget https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DejaVuSansMono/Bold/DejaVuSansMNerdFont-Bold.ttf
+wget https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DejaVuSansMono/Bold-Italic/DejaVuSansMNerdFont-BoldOblique.ttf
 fc-cache -f -v
 cd -
 

@@ -55,9 +55,6 @@
 [submodule ".config/ranger/plugins/ranger-archives"]
 	path = .config/ranger/plugins/ranger-archives
 	url = https://github.com/maximtrp/ranger-archives.git
-[submodule ".config/zsh/custom/themes/powerlevel10k"]
-	path = .config/zsh/custom/themes/powerlevel10k
-	url = https://github.com/romkatv/powerlevel10k.git
 [submodule ".local/share/gnome-shell/extensions/repos/RandomWallpaperGnome3"]
 	path = .local/share/gnome-shell/extensions/repos/RandomWallpaperGnome3
 	url = https://github.com/ifl0w/RandomWallpaperGnome3.git
