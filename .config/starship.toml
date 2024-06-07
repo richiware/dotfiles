@@ -1,8 +1,16 @@
-format = """$os $all"""
-right_format = """$time"""
+format = """
+$os\
+$all\
+$fill\
+$time\
+$line_break\
+$character"""
 
 [container]
 format = '[$symbol ]($style)'
+
+[fill]
+symbol = ' '
 
 [os]
 disabled = false
