@@ -67,6 +67,8 @@ if [ -e /etc/gentoo-release ]; then
     sudo ln -sf ~/.config/yadm/system/portage/vim.use /etc/portage/package.use/
 fi
 
+test -f /.dockerenv || (not_inside_docker="no" && log_info "Detected inside container...")
+
 log_info "Installing packages..."
 if [ -e /etc/gentoo-release ]; then
     sudo emerge -vau --oneshot \
@@ -190,8 +192,6 @@ if [ -e /etc/gentoo-release ]; then
         app-text/tree \
         `: # C/C++/C#/D/Java/Pawn code indenter and beautifier.` \
         uncrustify \
-        `: # Draw images on terminals by using child windows. Usec by ranger.` \
-        ueberzug \
         `: # NodeJS dependency management. Used to install iamcco/markdown-preview.nvim Vim plugin and gnome-github-manager gnome-shell extension.` \
         yarn \
         `: # Terminal-based YouTube player and downloader.` \
@@ -218,46 +218,48 @@ elif [ -e /etc/os-release ]; then
                 exuberant-ctags \
                 fd-find \
                 flake8 \
-                fonts-dejavu \
-                fonts-liberation2 \
-                fonts-noto-color-emoji \
-                fonts-powerline \
+                ${not_inside_docker:+fonts-dejavu} \
+                ${not_inside_docker:+fonts-liberation2} \
+                ${not_inside_docker:+fonts-noto-color-emoji} \
+                ${not_inside_docker:+fonts-powerline} \
                 fzf \
-                gnumeric \
-                gopass \
-                gpaste \
-                khal \
-                khard \
-                kitty \
-                lbdb \
+                ${not_inside_docker:+gnumeric} \
+                golang \
+                ${not_inside_docker:+gopass} \
+                ${not_inside_docker:+gpaste} \
+                ${not_inside_docker:+khal} \
+                ${not_inside_docker:+khard} \
+                ${not_inside_docker:+kitty} \
+                ${not_inside_docker:+lbdb} \
                 neovim \
+                npm \
                 powerline \
                 python3-neovim \
-                python3-powerline-taskwarrior \
+                ${not_inside_docker:+python3-powerline-taskwarrior} \
                 python3-requests-oauthlib \
                 ranger \
                 ripgrep \
                 silversearcher-ag \
-                taskwarrior \
-                timewarrior \
-                tmux \
-                translate-shell \
+                ${not_inside_docker:+taskwarrior} \
+                ${not_inside_docker:+timewarrior} \
+                ${not_inside_docker:+tmux} \
+                ${not_inside_docker:+translate-shell} \
                 tree \
                 uncrustify \
-                vdirsyncer \
-                wl-clipboard \
-                vit \
+                ${not_inside_docker:+vdirsyncer} \
+                ${not_inside_docker:+wl-clipboard} \
+                ${not_inside_docker:+vit} \
                 yarnpkg \
-                zathura \
+                ${not_inside_docker:+zathura} \
                 zsh \
                 && log_info "Packages installed successful" || (log_error "Failed packages installation" ; exit -1)
             pip3 install \
-                draobpilc \
+                ${not_inside_docker:+draobpilc} \
                 python-language-server \
                 thefuck \
-                ueberzug \
                 && log_info "Packages installed successful" || (log_error "Failed packages installation" ; exit -1)
-            go get -u github.com/NightWolf007/izer
+            go install github.com/NightWolf007/izer@latest
+            curl -fsSL https://starship.rs/install.sh | sh -s -- -y -b /home/${USER}/.local/bin
             ;;
     esac
 fi
@@ -271,90 +273,91 @@ sudo npm install -g \
 log_info "Installing git-foresta..."
 curl -L https://github.com/takaaki-kasai/git-foresta/raw/master/git-foresta -o ~/.local/bin/git-foresta && chmod +x ~/.local/bin/git-foresta
 
-log_info "Setting zsh as default shell..."
-sudo usermod --shell /bin/zsh $USER
-
-log_info "Setting pinentry-gnome3..."
-sudo eselect pinentry set pinentry-gnome3
-
 log_info "Creating links..."
-
 # Neovim/Vim
 ## Coc settings
 mkdir -p ~/.config/nvim
 ln -sf ~/.vim/init.vim ~/.config/nvim/init.vim
 ln -sf ~/.vim/coc-settings.json ~/.config/nvim/coc-settings.json
 
-log_info "Installing fonts..."
-# Powerline symbols
-sudo eselect fontconfig enable 10-powerline-symbols.conf
-# DevIcons
-mkdir -p ~/.local/share/fonts/DejaVuSansMonoNerdFont
-cd ~/.local/share/fonts/DejaVuSansMonoNerdFont
-wget https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DejaVuSansMono/Regular/DejaVuSansMNerdFont-Regular.ttf
-wget https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DejaVuSansMono/Italic/DejaVuSansMNerdFont-Oblique.ttf
-wget https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DejaVuSansMono/Bold/DejaVuSansMNerdFont-Bold.ttf
-wget https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DejaVuSansMono/Bold-Italic/DejaVuSansMNerdFont-BoldOblique.ttf
-fc-cache -f -v
-cd -
+if [ ! -f /.dockerenv ]; then
+    log_info "Setting zsh as default shell..."
+    sudo usermod --shell /bin/zsh $USER
 
-log_info "Enable user systemd units"
-vdirsyncer discover
-vdirsyncer sync
-vdirsyncer metasync
-systemctl --user enable --now vdirsyncer.timer
-systemctl --user enable --now taskwarrior.timer
+    log_info "Setting pinentry-gnome3..."
+    sudo eselect pinentry set pinentry-gnome3
 
-log_info "Enable screencast with pipewire"
-log_info "    Manual settings"
-log_info "    1. Turn it off in /etc/pulse/client.conf set 'autospawn = no' and"
-log_info "    2. Disable daemon via configuration by editing /etc/pulse/daemon.conf and change 'daemonize' to 'daemonize = no'. Remove any ';' at the beginning of the line."
-systemctl --user disable --now pulseaudio.socket pulseaudio.service
-systemctl --user enable --now pipewire.socket pipewire-pulse.socket wireplumber.service
-systemctl --user mask pulseaudio.socket pulseaudio.service
+    log_info "Installing fonts..."
+    # Powerline symbols
+    sudo eselect fontconfig enable 10-powerline-symbols.conf
+    # DevIcons
+    mkdir -p ~/.local/share/fonts/DejaVuSansMonoNerdFont
+    cd ~/.local/share/fonts/DejaVuSansMonoNerdFont
+    wget https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DejaVuSansMono/Regular/DejaVuSansMNerdFont-Regular.ttf
+    wget https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DejaVuSansMono/Italic/DejaVuSansMNerdFont-Oblique.ttf
+    wget https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DejaVuSansMono/Bold/DejaVuSansMNerdFont-Bold.ttf
+    wget https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DejaVuSansMono/Bold-Italic/DejaVuSansMNerdFont-BoldOblique.ttf
+    fc-cache -f -v
+    cd -
 
-log_info "Enable Power Profiles"
-sudo systemctl enable --now power-profiles-daemon
+    log_info "Enable user systemd units"
+    vdirsyncer discover
+    vdirsyncer sync
+    vdirsyncer metasync
+    systemctl --user enable --now vdirsyncer.timer
+    systemctl --user enable --now taskwarrior.timer
 
-log_info "Last manual configuration..."
-log_info "    - Install firefox plugins."
+    log_info "Enable screencast with pipewire"
+    log_info "    Manual settings"
+    log_info "    1. Turn it off in /etc/pulse/client.conf set 'autospawn = no' and"
+    log_info "    2. Disable daemon via configuration by editing /etc/pulse/daemon.conf and change 'daemonize' to 'daemonize = no'. Remove any ';' at the beginning of the line."
+    systemctl --user disable --now pulseaudio.socket pulseaudio.service
+    systemctl --user enable --now pipewire.socket pipewire-pulse.socket wireplumber.service
+    systemctl --user mask pulseaudio.socket pulseaudio.service
 
-log_info "Installing Gnome settings..."
-dconf write "/org/gnome/desktop/wm/preferences/titlebar-font" "'DejaVu Sans Bold Semi-Condensed 9'"
-dconf write "/org/gnome/desktop/wm/preferences/button-layout" "'appmenu:minimize,close'"
-dconf write "/org/gnome/desktop/interface/document-font-name" "'Liberation Sans 9'"
-dconf write "/org/gnome/desktop/interface/font-name" "'DejaVu Sans Semi-Condensed 9'"
-dconf write "/org/gnome/desktop/interface/gtk-theme" "'Adwaita-dark'"
-dconf write "/org/gnome/desktop/interface/monospace-font-name" "'DejaVu Sans Mono 9'"
-dconf write "/org/gnome/shell/overrides/workspaces-only-on-primary" "true"
-dconf write "/org/gnome/shell/disable-extension-version-validation" "true"
-#{{{ Build and install RandomWallpaperGnome3
-cd .local/share/gnome-shell/extensions/repos/RandomWallpaperGnome3
-./build.sh
-./install.sh
-cd -
-#}}}
-#{{{ Build and install gnome-github-manager
-cd .local/share/gnome-shell/extensions/repos/gnome-github-manager
-yarn install
-yarn build
-yarn sync
-cd -
-#}}}
-gnome-extensions enable 'appindicatorsupport@rgcjonas.gmail.com'
-gnome-extensions enable 'github-manager@mackdk-on-github'
-gnome-extensions enable 'gnome-stats-pro@thrallingpenguin.com'
-gnome-extensions enable 'mprisindicatorbutton@JasonLG1979.github.io'
-gnome-extensions enable 'openweather-extension@jenslody.de'
-gnome-extensions enable 'pomodoro@arun.codito.in'
-gnome-extensions enable 'randomwallpaper@iflow.space'
-gnome-extensions enable 'remove-dropdown-arrows@mpdeimos.com'
-gnome-extensions enable 'taskwhisperer-extension@infinicode.de'
-gnome-extensions enable 'text_translator@awamper.gmail.com'
-gnome-extensions enable 'timewarrior-indicator@natsakis.com'
-gnome-extensions enable 'tracker-search-provider@sinnix.de'
-gnome-extensions enable 'vim-key-mapping@richiware.github.com'
-gnome-extensions enable 'windowsNavigator@gnome-shell-extensions.gcampax.github.com'
+    log_info "Enable Power Profiles"
+    sudo systemctl enable --now power-profiles-daemon
 
-# TODO: add my user to groups
-sudo usermod -aG pipewire ricardo
+    log_info "Last manual configuration..."
+    log_info "    - Install firefox plugins."
+
+    log_info "Installing Gnome settings..."
+    dconf write "/org/gnome/desktop/wm/preferences/titlebar-font" "'DejaVu Sans Bold Semi-Condensed 9'"
+    dconf write "/org/gnome/desktop/wm/preferences/button-layout" "'appmenu:minimize,close'"
+    dconf write "/org/gnome/desktop/interface/document-font-name" "'Liberation Sans 9'"
+    dconf write "/org/gnome/desktop/interface/font-name" "'DejaVu Sans Semi-Condensed 9'"
+    dconf write "/org/gnome/desktop/interface/gtk-theme" "'Adwaita-dark'"
+    dconf write "/org/gnome/desktop/interface/monospace-font-name" "'DejaVu Sans Mono 9'"
+    dconf write "/org/gnome/shell/overrides/workspaces-only-on-primary" "true"
+    dconf write "/org/gnome/shell/disable-extension-version-validation" "true"
+    #{{{ Build and install RandomWallpaperGnome3
+    cd .local/share/gnome-shell/extensions/repos/RandomWallpaperGnome3
+    ./build.sh
+    ./install.sh
+    cd -
+    #}}}
+    #{{{ Build and install gnome-github-manager
+    cd .local/share/gnome-shell/extensions/repos/gnome-github-manager
+    yarn install
+    yarn build
+    yarn sync
+    cd -
+    #}}}
+    gnome-extensions enable 'appindicatorsupport@rgcjonas.gmail.com'
+    gnome-extensions enable 'github-manager@mackdk-on-github'
+    gnome-extensions enable 'gnome-stats-pro@thrallingpenguin.com'
+    gnome-extensions enable 'mprisindicatorbutton@JasonLG1979.github.io'
+    gnome-extensions enable 'openweather-extension@jenslody.de'
+    gnome-extensions enable 'pomodoro@arun.codito.in'
+    gnome-extensions enable 'randomwallpaper@iflow.space'
+    gnome-extensions enable 'remove-dropdown-arrows@mpdeimos.com'
+    gnome-extensions enable 'taskwhisperer-extension@infinicode.de'
+    gnome-extensions enable 'text_translator@awamper.gmail.com'
+    gnome-extensions enable 'timewarrior-indicator@natsakis.com'
+    gnome-extensions enable 'tracker-search-provider@sinnix.de'
+    gnome-extensions enable 'vim-key-mapping@richiware.github.com'
+    gnome-extensions enable 'windowsNavigator@gnome-shell-extensions.gcampax.github.com'
+
+    # TODO: add my user to groups
+    sudo usermod -aG pipewire ricardo
+fi

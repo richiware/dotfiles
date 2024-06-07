@@ -1,6 +1,9 @@
 format = """$os $all"""
 right_format = """$time"""
 
+[container]
+format = '[$symbol ]($style) '
+
 [os]
 disabled = false
 
