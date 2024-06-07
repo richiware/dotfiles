@@ -57,7 +57,12 @@ export GOPASS_CLIPBOARD_CLEAR_CMD="$HOME/.local/scripts/gopass_clipboard_clear_c
 #}}}
 
 # CCache
-export CCACHE_DIR=/run/media/ricardo/ExtremeSSD/develop/ccache
+#export CCACHE_DIR=/run/media/ricardo/ExtremeSSD/develop/ccache
+if [ -f /.dockerenv ]; then
+    export CCACHE_DIR=/ccache
+else
+    export CCACHE_DIR=/home/ricardo/tmp/ccache
+fi
 export CCACHE_CONFIGPATH=~/.ccache/ccache.conf
 
 # FZF

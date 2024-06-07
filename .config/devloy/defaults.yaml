@@ -28,16 +28,11 @@ docker:
       - "--add-host=host.docker.internal:host-gateway"
       - "--ulimit"
       - "nofile=122880:122880"
-      - "-m"
-      - "3G"
+      # - "--ipc=host"
     security-opt: "seccomp=unconfined"
     user-env: True
     env :
-      - "CCACHE_DIR=/ccache"
-      - "CCACHE_CONFIGPATH=/home/${USER}/.ccache/ccache.conf"
       - "ANDROID_ADB_SERVER_ADDRESS=192.168.1.5"
       # - "ANDROID_ADB_SERVER_ADDRESS=host.docker.internal"
     volumes:
       - "/home/ricardo/tmp/ccache:/ccache"
-      - "/home/${USER}/.ccache:/home/${USER}/.ccache"
-      - "/home/${USER}/.colcon:/home/${USER}/.colcon"
