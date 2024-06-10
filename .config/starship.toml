@@ -4,6 +4,7 @@ $all\
 $fill\
 $time\
 $line_break\
+$container\
 $character"""
 
 [container]
