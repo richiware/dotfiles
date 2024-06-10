@@ -260,6 +260,7 @@ elif [ -e /etc/os-release ]; then
                 && log_info "Packages installed successful" || (log_error "Failed packages installation" ; exit -1)
             GOPATH=/home/${USER}/.go GOBIN=/home/ricardo/.local/bin go install github.com/NightWolf007/izer@latest
             curl -fsSL https://starship.rs/install.sh | sh -s -- -y -b /home/${USER}/.local/bin
+            sudo mkdir /usr/share/fzf; sudo wget https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh -O /usr/share/fzf/key-bindings.zsh
             ;;
     esac
 fi

@@ -66,7 +66,12 @@ fi
 export CCACHE_CONFIGPATH=~/.ccache/ccache.conf
 
 # FZF
-export FZF_DEFAULT_COMMAND='fd --type f --color=always'
+if [ -e /etc/gentoo-release ]; then
+    export FDFIND="fd"
+else
+    export FDFIND="fdfind"
+fi
+export FZF_DEFAULT_COMMAND='$FDFIND --type f --color=always'
 export FZF_DEFAULT_OPTS='--ansi'
 export FZF_CTRL_T_OPTS='--preview "file=$(izer deiconize {}) && fzf-preview $file | head -100"'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
