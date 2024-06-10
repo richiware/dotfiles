@@ -258,7 +258,7 @@ elif [ -e /etc/os-release ]; then
                 python-language-server \
                 thefuck \
                 && log_info "Packages installed successful" || (log_error "Failed packages installation" ; exit -1)
-            go install github.com/NightWolf007/izer@latest
+            GOPATH=/home/${USER}/.go GOBIN=/home/ricardo/.local/bin go install github.com/NightWolf007/izer@latest
             curl -fsSL https://starship.rs/install.sh | sh -s -- -y -b /home/${USER}/.local/bin
             ;;
     esac
