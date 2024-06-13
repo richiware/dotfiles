@@ -8,13 +8,17 @@
 # - https://github.com/hpjansson/chafa
 # - https://iterm2.com/utilities/imgcat
 
-if [[ $# -ne 1 ]]; then
-  >&2 echo "usage: $0 FILENAME"
+if [[ $# -gt 2 ]]; then
+  >&2 echo "usage: $0 FILENAME [LINE]"
   exit 1
 fi
 
 file=${1/#\~\//$HOME/}
 type=$(file --dereference --mime -- "$file")
+declare -i line="0"
+if [[ $# -eq 2 ]]; then
+  line=$2
+fi
 
 if [[ ! $type =~ image/ ]]; then
   if [[ $type =~ =binary ]]; then
@@ -32,7 +36,16 @@ if [[ ! $type =~ image/ ]]; then
     exit
   fi
 
-  ${batname} --style="${BAT_STYLE:-numbers}" --color=always --pager=never -- "$file"
+  # Calculate center and range
+  declare -i -r lines=$LINES
+  declare -i center=$(( (lines - 3) / 2 ))
+  if [ $line -lt $center ]; then
+    center=$line
+  fi
+  declare -i -r start=$(( line - center ))
+  declare -i -r end=$(( lines + start ))
+
+  ${batname} --style="${BAT_STYLE:-numbers}" --color=always --pager=never -H $line --line-range $start:$end -- "$file"
   exit
 fi
 
