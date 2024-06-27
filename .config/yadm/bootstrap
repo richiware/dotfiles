@@ -145,6 +145,8 @@ if [ -e /etc/gentoo-release ]; then
         lbdb \
         `: # A Helvetica/Times/Courier replacement TrueType font set, courtesy of Red Hat. For documents` \
         liberation-fonts \
+        `: # A package manager for the Lua programming language. Used by lazyvim neovim plugin.` \
+        luarocks \
         `: # Generates ctags-compatible output for the sections of a Markdown document.` \
         markdown2ctags \
         `: # New implementation of Vim.` \
@@ -231,6 +233,7 @@ elif [ -e /etc/os-release ]; then
                 ${not_inside_docker:+khard} \
                 ${not_inside_docker:+kitty} \
                 ${not_inside_docker:+lbdb} \
+                luarocks \
                 neovim \
                 npm \
                 powerline \
@@ -275,11 +278,7 @@ log_info "Installing git-foresta..."
 curl -L https://github.com/takaaki-kasai/git-foresta/raw/master/git-foresta -o ~/.local/bin/git-foresta && chmod +x ~/.local/bin/git-foresta
 
 log_info "Creating links..."
-# Neovim/Vim
-## Coc settings
-mkdir -p ~/.config/nvim
-ln -sf ~/.vim/init.vim ~/.config/nvim/init.vim
-ln -sf ~/.vim/coc-settings.json ~/.config/nvim/coc-settings.json
+## empty
 
 if [ ! -f /.dockerenv ]; then
     log_info "Setting zsh as default shell..."

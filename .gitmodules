@@ -61,3 +61,6 @@
 [submodule ".local/share/gnome-shell/extensions/repos/gnome-github-manager"]
 	path = .local/share/gnome-shell/extensions/repos/gnome-github-manager
 	url = https://github.com/mackdk/gnome-github-manager.git
+[submodule ".config/nvim"]
+	path = .config/nvim
+	url = https://github.com/richiware/nvim.git
