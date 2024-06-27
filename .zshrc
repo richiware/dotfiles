@@ -270,5 +270,6 @@ function run_my_apps()
 }
 precmd_functions+=(run_my_apps)
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+if [[ -f /.dockerenv && -d $HOME/.venv ]]; then
+    source $HOME/.venv/bin/activate
+fi
