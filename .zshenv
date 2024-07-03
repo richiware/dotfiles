@@ -94,3 +94,8 @@ export CMAKE_MAKEFLAGS=$MAKEFLAGS
 export ZSH_AUTOSUGGEST_USE_ASYNC=true
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=60"
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+
+# if we are  in a devloy docker container, run python environment
+if [[ -f /.dockerenv && -d $HOME/vdev ]]; then
+    source $HOME/vdev/bin/activate
+fi

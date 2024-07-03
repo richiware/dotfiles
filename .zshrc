@@ -269,7 +269,3 @@ function run_my_apps()
     fi
 }
 precmd_functions+=(run_my_apps)
-
-if [[ -f /.dockerenv && -d $HOME/vdev ]]; then
-    source $HOME/vdev/bin/activate
-fi
