@@ -75,6 +75,7 @@ source $ZSH/oh-my-zsh.sh
 
 path+=($HOME'/.local/bin')
 path+=('/usr/local/bin')
+path+=('/var/lib/snapd/bin')
 export PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
