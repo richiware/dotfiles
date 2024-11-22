@@ -57,6 +57,7 @@ if [ -e /etc/gentoo-release ]; then
 	sudo ln -sf ~/.config/yadm/system/portage/libreswan.use /etc/portage/package.use/
 	sudo ln -sf ~/.config/yadm/system/portage/networkmanager.use /etc/portage/package.use/
 	sudo ln -sf ~/.config/yadm/system/portage/obs-studio.use /etc/portage/package.use/
+	sudo ln -sf ~/.config/yadm/system/portage/opensc.use /etc/portage/package.use/
 	sudo ln -sf ~/.config/yadm/system/portage/picard.use /etc/portage/package.use/
 	sudo ln -sf ~/.config/yadm/system/portage/qemu.use /etc/portage/package.use/
 	sudo ln -sf ~/.config/yadm/system/portage/remmina.use /etc/portage/package.use/
@@ -73,7 +74,8 @@ test -f /.dockerenv || (not_inside_docker="no" && log_info "Detected inside cont
 log_info "Installing packages..."
 if [ -e /etc/gentoo-release ]; then
 	sudo emerge -vau --oneshot \
-		$(: # Used by openweather gnome shell extension.
+		$(
+			: # Used by openweather gnome shell extension.
 		) \
 		zip &&
 		log_info "Packages installed successful" || (
@@ -82,201 +84,266 @@ if [ -e /etc/gentoo-release ]; then
 	)
 
 	sudo emerge -vau \
-		$(: # A cat clone with syntax highlighting, Git integration, so on.
+		$(
+			: # A cat clone with syntax highlighting, Git integration, so on.
 		) \
 		bat \
-		$(: # Compiler for Blueprint, a markup language for GTK user interfaces. Used by gnome-shell extension randomwallpaper.
+		$(
+			: # Compiler for Blueprint, a markup language for GTK user interfaces. Used by gnome-shell extension randomwallpaper.
 		) \
 		blueprint-compiler \
-		$(: # A host application for browserpass browser extension providing it access to your password store.
+		$(
+			: # A host application for browserpass browser extension providing it access to your password store.
 		) \
 		browserpass \
-		$(: # fast compiler cache.
+		$(
+			: # fast compiler cache.
 		) \
 		ccache \
-		$(: # C/C++/ObjC language server supporting cross references, hierarchies, ... Used by CoC Vim plugin.
+		$(
+			: # C/C++/ObjC language server supporting cross references, hierarchies, ... Used by CoC Vim plugin.
 		) \
 		ccls \
-		$(: # Exuberant Ctags creates tags files for code browsing in editors.
+		$(
+			: # Exuberant Ctags creates tags files for code browsing in editors.
 		) \
 		ctags \
-		$(: # DejaVu fonts, bitstream vera with ISO-8859-2 characters. For interface fonts.
+		$(
+			: # DejaVu fonts, bitstream vera with ISO-8859-2 characters. For interface fonts.
 		) \
 		dejavu \
-		$(: # simple drag-and-drop source/sink for X or Wayland.
+		$(
+			: # simple drag-and-drop source/sink for X or Wayland.
 		) \
 		app-misc/dragon \
-		$(: # GUI for GPaste clipboard manager for Gnome Shell.
+		$(
+			: # GUI for GPaste clipboard manager for Gnome Shell.
 		) \
 		draobpilc \
-		$(: # eselect plugin for adding repositories into your portage.
+		$(
+			: # eselect plugin for adding repositories into your portage.
 		) \
 		eselect-repository \
-		$(: # A simple, fast and user-friendly alternative to find.
+		$(
+			: # A simple, fast and user-friendly alternative to find.
 		) \
 		fd \
-		$(: # Fuzzy-finder.
+		$(
+			: # Fuzzy-finder.
 		) \
 		fzf \
-		$(: # Wrapper around PyFlakes, pep8 and mccabe. Needed by coc-python Vim plugin.
+		$(
+			: # Wrapper around PyFlakes, pep8 and mccabe. Needed by coc-python Vim plugin.
 		) \
 		flake8 \
-		$(: # Github CLI.
+		$(
+			: # Github CLI.
 		) \
 		github-cli \
-		$(: # Adds KStatusNotifierItem support to the Shell.
+		$(
+			: # Adds KStatusNotifierItem support to the Shell.
 		) \
 		gnome-shell-extension-appindicator \
-		$(: # Brings easy visualization of system resources.
+		$(
+			: # Brings easy visualization of system resources.
 		) \
 		gnome-shell-extension-gnome-stats-pro \
-		$(: # A full featured MPRIS indicator button extension for GNOME Shell.
+		$(
+			: # A full featured MPRIS indicator button extension for GNOME Shell.
 		) \
 		gnome-shell-extension-mpris-indicator-button \
-		$(: # Simple extension for displaying weather conditions and forecasts.
+		$(
+			: # Simple extension for displaying weather conditions and forecasts.
 		) \
 		gnome-shell-extension-openweather \
-		$(: # Time management utility for GNOME based on the pomodoro technique.
+		$(
+			: # Time management utility for GNOME based on the pomodoro technique.
 		) \
 		gnome-pomodoro \
-		$(: # Removes the dropdown arrows which were introduced in Gnome 3.10 from the App Menu.
+		$(
+			: # Removes the dropdown arrows which were introduced in Gnome 3.10 from the App Menu.
 		) \
 		gnome-shell-extension-remove-dropdown-arrows \
-		$(: # Simple extension for displaying pending tasks created by TaskWarrior in GNOME Shell.
+		$(
+			: # Simple extension for displaying pending tasks created by TaskWarrior in GNOME Shell.
 		) \
 		gnome-shell-extension-taskwhisperer \
-		$(: # Translation of the text by different translators.
+		$(
+			: # Translation of the text by different translators.
 		) \
 		gnome-shell-extension-text-translator \
-		$(: # A very simple indicator for the gnome-shell that displays the current activity tracked from timewarrior.
+		$(
+			: # A very simple indicator for the gnome-shell that displays the current activity tracked from timewarrior.
 		) \
 		gnome-shell-extension-timewarrior-indicator \
-		$(: # The GNOME Spreadsheet. Dependency of richicash.
+		$(
+			: # The GNOME Spreadsheet. Dependency of richicash.
 		) \
 		gnumeric \
-		$(: # A password manager for the command line written in Go.
+		$(
+			: # A password manager for the command line written in Go.
 		) \
 		gopass \
-		$(: # Clipboard management system.
+		$(
+			: # Clipboard management system.
 		) \
 		gpaste \
-		$(: # Command-line tool for adding icons to filenames.
+		$(
+			: # Command-line tool for adding icons to filenames.
 		) \
 		izer \
-		$(: # A lightweight and flexible command-line JSON processor.
+		$(
+			: # A lightweight and flexible command-line JSON processor.
 		) \
 		app-misc/jq \
-		$(: # Standards based CLI and terminal calendar program.
+		$(
+			: # Standards based CLI and terminal calendar program.
 		) \
 		khal \
-		$(: # Address book for the Unix console.
+		$(
+			: # Address book for the Unix console.
 		) \
 		khard \
-		$(: # A modern, hackable, featureful, OpenGL-based terminal emulator.
+		$(
+			: # A modern, hackable, featureful, OpenGL-based terminal emulator.
 		) \
 		kitty \
-		$(: # Git CLI for terminal.
+		$(
+			: # Git CLI for terminal.
 		) \
 		lazygit \
-		$(: # Little Brother database. Used by coc-lbdbq Vim plugin.
+		$(
+			: # Little Brother database. Used by coc-lbdbq Vim plugin.
 		) \
 		lbdb \
-		$(: # A Helvetica/Times/Courier replacement TrueType font set, courtesy of Red Hat. For documents
+		$(
+			: # A Helvetica/Times/Courier replacement TrueType font set, courtesy of Red Hat. For documents
 		) \
 		liberation-fonts \
-		$(: # A package manager for the Lua programming language. Used by lazyvim neovim plugin.
+		$(
+			: # A package manager for the Lua programming language. Used by lazyvim neovim plugin.
 		) \
 		luarocks \
-		$(: # Generates ctags-compatible output for the sections of a Markdown document.
+		$(
+			: # Generates ctags-compatible output for the sections of a Markdown document.
 		) \
 		markdown2ctags \
-		$(: # New implementation of Vim.
+		$(
+			: # New implementation of Vim.
 		) \
 		neovim \
 		neovim-ruby-client \
-		$(: # NetworkManager OpenVPN plugin
+		$(
+			: # NetworkManager OpenVPN plugin
 		) \
 		networkmanager-openvpn \
-		$(: # Emoji fonts.
+		$(
+			: # Emoji fonts.
 		) \
 		noto-emoji \
-		$(: # Makes power profiles handling avaiable over D-Bus.
+		$(
+			: # Makes power profiles handling avaiable over D-Bus.
 		) \
 		power-profiles-daemon \
-		$(: # Statusline/prompt utility
+		$(
+			: # Statusline/prompt utility
 		) \
 		powerline-taskwarrior \
-		$(: # OpenType Unicode font with symbols for Powerline/Airline.
+		$(
+			: # OpenType Unicode font with symbols for Powerline/Airline.
 		) \
 		powerline-symbols \
-		$(: # Python client for Neovim
+		$(
+			: # Python client for Neovim
 		) \
 		pynvim \
-		$(: # Impl of the Language Server Protocol for Python. Needed by coc-python Vim plugin.
+		$(
+			: # Impl of the Language Server Protocol for Python. Needed by coc-python Vim plugin.
 		) \
 		python-language-server \
-		$(: # A vim-inspired file manager for the console.
+		$(
+			: # A vim-inspired file manager for the console.
 		) \
 		ranger \
-		$(: # Provides first-class OAuth library support for Requests. Used by vdirsyncer.
+		$(
+			: # Provides first-class OAuth library support for Requests. Used by vdirsyncer.
 		) \
 		requests-oauthlib \
-		$(: # Recursively searches directories for a regex pattern.
+		$(
+			: # Recursively searches directories for a regex pattern.
 		) \
 		ripgrep \
-		$(: # The minimal, blazing-fast, and infinitely customizable prompt for any shell.
+		$(
+			: # The minimal, blazing-fast, and infinitely customizable prompt for any shell.
 		) \
 		starship \
-		$(: # Taskwarrior is a command-line todo list manager.
+		$(
+			: # Taskwarrior is a command-line todo list manager.
 		) \
 		task \
-		$(: # Taskwarrior <-> Google Calendar sync.
+		$(
+			: # Taskwarrior <-> Google Calendar sync.
 		) \
 		taskw_gcal_sync \
-		$(: # A code-searching tool similar to ack, but faster.
+		$(
+			: # A code-searching tool similar to ack, but faster.
 		) \
 		the_silver_searcher \
-		$(: # Magnificent app which corrects your previous console command.
+		$(
+			: # Magnificent app which corrects your previous console command.
 		) \
 		thefuck \
-		$(: # Tracks your time from the command line, and generates reports.
+		$(
+			: # Tracks your time from the command line, and generates reports.
 		) \
 		timew \
-		$(: # Terminal multiplexer.
+		$(
+			: # Terminal multiplexer.
 		) \
 		tmux \
-		$(: # A scrypt to configure transparent encryption of sensitive files stored in a Git repository.
+		$(
+			: # A scrypt to configure transparent encryption of sensitive files stored in a Git repository.
 		) \
 		transcrypt \
-		$(: # Online command-line translator. Used by VicentCordobes/vim-translate Vim plugin.
+		$(
+			: # Online command-line translator. Used by VicentCordobes/vim-translate Vim plugin.
 		) \
 		translate-shell \
-		$(: # Lists directories recusively, and produces an indented listing of files.
+		$(
+			: # Lists directories recusively, and produces an indented listing of files.
 		) \
 		app-text/tree \
-		$(: # C/C++/C#/D/Java/Pawn code indenter and beautifier.
+		$(
+			: # C/C++/C#/D/Java/Pawn code indenter and beautifier.
 		) \
 		uncrustify \
-		$(: # NodeJS dependency management. Used to install iamcco/markdown-preview.nvim Vim plugin and gnome-github-manager gnome-shell extension.
+		$(
+			: # NodeJS dependency management. Used to install iamcco/markdown-preview.nvim Vim plugin and gnome-github-manager gnome-shell extension.
 		) \
 		yarn \
-		$(: # Terminal-based YouTube player and downloader.
+		$(
+			: # Terminal-based YouTube player and downloader.
 		) \
 		yewtube \
-		$(: # Synchronize calendars and contacts.
+		$(
+			: # Synchronize calendars and contacts.
 		) \
 		vdirsyncer \
 		aiohttp-oauthlib \
-		$(: # Visual Interactive Taskwarrior full-screen terminal interface.
+		$(
+			: # Visual Interactive Taskwarrior full-screen terminal interface.
 		) \
 		vit \
-		$(: # Wayland clipboard utilities. Needed to copy/paste with Neovim
+		$(
+			: # Wayland clipboard utilities. Needed to copy/paste with Neovim
 		) \
 		wl-clipboard \
-		$(: # A highly customizable and functional document viewer
+		$(
+			: # A highly customizable and functional document viewer
 		) \
 		zathura-meta zathura-pdf-mupdf \
-		$(: # Z shell
+		$(
+			: # Z shell
 		) \
 		zsh &&
 		log_info "Packages installed successful" || (
@@ -350,7 +417,8 @@ fi
 
 # Install common nodejs packages
 sudo npm install -g \
-	$(: # Neovim plugin for nodejs.
+	$(
+		: # Neovim plugin for nodejs.
 	) \
 	neovim &&
 	log_info "Packages installed successful (npm)" || (
