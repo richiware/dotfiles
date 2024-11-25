@@ -38,7 +38,7 @@
     path = .oh-my-zsh
     url = https://github.com/robbyrussell/oh-my-zsh.git
 [submodule ".config/zsh/custom/plugins/yadm"]
-    path = .config/zsh/custom/plugins/yadm
+	path = .config/zsh/custom/plugins/yadm-zsh
     url = https://github.com/jthompson-salesforce/yadm-zsh
 [submodule ".config/ranger/plugins/ranger_devicons"]
     path = .config/ranger/plugins/ranger_devicons

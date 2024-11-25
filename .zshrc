@@ -63,7 +63,7 @@ plugins=(
     vim-interaction
     notify
     tmux
-    yadm
+    yadm-zsh
     zsh-autosuggestions
     zsh-syntax-highlighting
     zsh-vi-mode
