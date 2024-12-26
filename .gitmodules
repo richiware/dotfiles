@@ -64,3 +64,6 @@
 [submodule ".config/nvim"]
 	path = .config/nvim
 	url = https://github.com/richiware/nvim.git
+[submodule ".local/share/gnome-shell/extensions/repos/astra-monitor"]
+	path = .local/share/gnome-shell/extensions/repos/astra-monitor
+	url = https://github.com/AstraExt/astra-monitor.git

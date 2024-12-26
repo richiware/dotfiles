@@ -496,6 +496,15 @@ if [ ! -f /.dockerenv ]; then
     yarn sync
     cd -
     #}}}
+    #{{{ Build and install astra-monitor
+    cd .local/share/gnome-shell/extensions/repos/astra-monitor
+    yarn install
+    npm i typescript@5.3.2
+    sed -i 's+tsc+./node_modules/typescript/bin/tsc+' -i *.sh
+    bash pack.sh
+    unzip monitor@astraext.github.io.shell-extension.zip -d ../../monitor@astraext.github.io
+    cd -
+    #}}}
     gnome-extensions enable 'appindicatorsupport@rgcjonas.gmail.com'
     gnome-extensions enable 'github-manager@mackdk-on-github'
     gnome-extensions enable 'gnome-stats-pro@thrallingpenguin.com'
