@@ -20,411 +20,411 @@ log_info "Init submodules..."
 yadm submodule update --recursive --init
 
 if [ -e /etc/gentoo-release ]; then
-	log_info "Cloning my portage repository..."
-	cd /usr/local
-	if [ ! -d portage ]; then
-		sudo mkdir portage
-		sudo chown $USER:$USER portage
-		git clone https://github.com/richiware/richioverlay.git portage
-		cd portage
-		git pull --ff-only
-		cd ~
-		sudo cp ~/.config/yadm/system/richioverlay.conf /etc/portage/repos.conf/
-	else
-		log_warning "Portage repository is already installed"
-	fi
+    log_info "Cloning my portage repository..."
+    cd /usr/local
+    if [ ! -d portage ]; then
+        sudo mkdir portage
+        sudo chown $USER:$USER portage
+        git clone https://github.com/richiware/richioverlay.git portage
+        cd portage
+        git pull --ff-only
+        cd ~
+        sudo cp ~/.config/yadm/system/richioverlay.conf /etc/portage/repos.conf/
+    else
+        log_warning "Portage repository is already installed"
+    fi
 
-	if [ ! -d /etc/portage/package.accept_keywords ]; then
-		log_info "Adding my package.accept_keywords..."
-		sudo mkdir /etc/portage/package.accept_keywords
-	fi
-	sudo ln -sf ~/.config/yadm/system/portage/yadm.accept_keywords /etc/portage/package.accept_keywords/yadm.accept_keywords
+    if [ ! -d /etc/portage/package.accept_keywords ]; then
+        log_info "Adding my package.accept_keywords..."
+        sudo mkdir /etc/portage/package.accept_keywords
+    fi
+    sudo ln -sf ~/.config/yadm/system/portage/yadm.accept_keywords /etc/portage/package.accept_keywords/yadm.accept_keywords
 
-	if [ ! -d /etc/portage/package.use ]; then
-		log_info "Adding my package.use..."
-		sudo mkdir /etc/portage/package.use
-	fi
-	sudo ln -sf ~/.config/yadm/system/portage/android.use /etc/portage/package.use/
-	sudo ln -sf ~/.config/yadm/system/portage/ca-certificates.use /etc/portage/package.use/
-	sudo ln -sf ~/.config/yadm/system/portage/cawbird.use /etc/portage/package.use/
-	sudo ln -sf ~/.config/yadm/system/portage/calibre.use /etc/portage/package.use/
-	sudo ln -sf ~/.config/yadm/system/portage/chromium.use /etc/portage/package.use/
-	sudo ln -sf ~/.config/yadm/system/portage/draobpilc.use /etc/portage/package.use/
-	sudo ln -sf ~/.config/yadm/system/portage/firefox.use /etc/portage/package.use/
-	sudo ln -sf ~/.config/yadm/system/portage/gmic.use /etc/portage/package.use/
-	sudo ln -sf ~/.config/yadm/system/portage/gnucash.use /etc/portage/package.use/
-	sudo ln -sf ~/.config/yadm/system/portage/hplip.use /etc/portage/package.use/
-	sudo ln -sf ~/.config/yadm/system/portage/latex.use /etc/portage/package.use/
-	sudo ln -sf ~/.config/yadm/system/portage/libreswan.use /etc/portage/package.use/
-	sudo ln -sf ~/.config/yadm/system/portage/networkmanager.use /etc/portage/package.use/
-	sudo ln -sf ~/.config/yadm/system/portage/obs-studio.use /etc/portage/package.use/
-	sudo ln -sf ~/.config/yadm/system/portage/opensc.use /etc/portage/package.use/
-	sudo ln -sf ~/.config/yadm/system/portage/picard.use /etc/portage/package.use/
-	sudo ln -sf ~/.config/yadm/system/portage/qemu.use /etc/portage/package.use/
-	sudo ln -sf ~/.config/yadm/system/portage/remmina.use /etc/portage/package.use/
-	sudo ln -sf ~/.config/yadm/system/portage/simple-scan.use /etc/portage/package.use/
-	sudo ln -sf ~/.config/yadm/system/portage/screencast.use /etc/portage/package.use/
-	sudo ln -sf ~/.config/yadm/system/portage/snapd.use /etc/portage/package.use/
-	sudo ln -sf ~/.config/yadm/system/portage/telegram-desktop.use /etc/portage/package.use/
-	sudo ln -sf ~/.config/yadm/system/portage/vdirsyncer.use /etc/portage/package.use/
-	sudo ln -sf ~/.config/yadm/system/portage/vim.use /etc/portage/package.use/
+    if [ ! -d /etc/portage/package.use ]; then
+        log_info "Adding my package.use..."
+        sudo mkdir /etc/portage/package.use
+    fi
+    sudo ln -sf ~/.config/yadm/system/portage/android.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/ca-certificates.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/cawbird.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/calibre.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/chromium.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/draobpilc.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/firefox.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/gmic.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/gnucash.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/hplip.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/latex.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/libreswan.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/networkmanager.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/obs-studio.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/opensc.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/picard.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/qemu.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/remmina.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/simple-scan.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/screencast.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/snapd.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/telegram-desktop.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/vdirsyncer.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/vim.use /etc/portage/package.use/
 fi
 
 test -f /.dockerenv || (not_inside_docker="no" && log_info "Detected inside container...")
 
 log_info "Installing packages..."
 if [ -e /etc/gentoo-release ]; then
-	sudo emerge -vau --oneshot \
-		$(
-			: # Used by openweather gnome shell extension.
-		) \
-		zip &&
-		log_info "Packages installed successful" || (
-		log_error "Failed packages installation"
-		exit -1
-	)
+    sudo emerge -vau --oneshot \
+        $(
+            : # Used by openweather gnome shell extension.
+        ) \
+        zip &&
+        log_info "Packages installed successful" || (
+        log_error "Failed packages installation"
+        exit -1
+    )
 
-	sudo emerge -vau \
-		$(
-			: # A cat clone with syntax highlighting, Git integration, so on.
-		) \
-		bat \
-		$(
-			: # Compiler for Blueprint, a markup language for GTK user interfaces. Used by gnome-shell extension randomwallpaper.
-		) \
-		blueprint-compiler \
-		$(
-			: # A host application for browserpass browser extension providing it access to your password store.
-		) \
-		browserpass \
-		$(
-			: # fast compiler cache.
-		) \
-		ccache \
-		$(
-			: # C/C++/ObjC language server supporting cross references, hierarchies, ... Used by CoC Vim plugin.
-		) \
-		ccls \
-		$(
-			: # Exuberant Ctags creates tags files for code browsing in editors.
-		) \
-		ctags \
-		$(
-			: # DejaVu fonts, bitstream vera with ISO-8859-2 characters. For interface fonts.
-		) \
-		dejavu \
-		$(
-			: # simple drag-and-drop source/sink for X or Wayland.
-		) \
-		app-misc/dragon \
-		$(
-			: # GUI for GPaste clipboard manager for Gnome Shell.
-		) \
-		draobpilc \
-		$(
-			: # eselect plugin for adding repositories into your portage.
-		) \
-		eselect-repository \
-		$(
-			: # A simple, fast and user-friendly alternative to find.
-		) \
-		fd \
-		$(
-			: # Fuzzy-finder.
-		) \
-		fzf \
-		$(
-			: # Wrapper around PyFlakes, pep8 and mccabe. Needed by coc-python Vim plugin.
-		) \
-		flake8 \
-		$(
-			: # Github CLI.
-		) \
-		github-cli \
-		$(
-			: # Adds KStatusNotifierItem support to the Shell.
-		) \
-		gnome-shell-extension-appindicator \
-		$(
-			: # Brings easy visualization of system resources.
-		) \
-		gnome-shell-extension-gnome-stats-pro \
-		$(
-			: # A full featured MPRIS indicator button extension for GNOME Shell.
-		) \
-		gnome-shell-extension-mpris-indicator-button \
-		$(
-			: # Simple extension for displaying weather conditions and forecasts.
-		) \
-		gnome-shell-extension-openweather \
-		$(
-			: # Time management utility for GNOME based on the pomodoro technique.
-		) \
-		gnome-pomodoro \
-		$(
-			: # Removes the dropdown arrows which were introduced in Gnome 3.10 from the App Menu.
-		) \
-		gnome-shell-extension-remove-dropdown-arrows \
-		$(
-			: # Simple extension for displaying pending tasks created by TaskWarrior in GNOME Shell.
-		) \
-		gnome-shell-extension-taskwhisperer \
-		$(
-			: # Translation of the text by different translators.
-		) \
-		gnome-shell-extension-text-translator \
-		$(
-			: # A very simple indicator for the gnome-shell that displays the current activity tracked from timewarrior.
-		) \
-		gnome-shell-extension-timewarrior-indicator \
-		$(
-			: # The GNOME Spreadsheet. Dependency of richicash.
-		) \
-		gnumeric \
-		$(
-			: # A password manager for the command line written in Go.
-		) \
-		gopass \
-		$(
-			: # Clipboard management system.
-		) \
-		gpaste \
-		$(
-			: # Command-line tool for adding icons to filenames.
-		) \
-		izer \
-		$(
-			: # A lightweight and flexible command-line JSON processor.
-		) \
-		app-misc/jq \
-		$(
-			: # Standards based CLI and terminal calendar program.
-		) \
-		khal \
-		$(
-			: # Address book for the Unix console.
-		) \
-		khard \
-		$(
-			: # A modern, hackable, featureful, OpenGL-based terminal emulator.
-		) \
-		kitty \
-		$(
-			: # Git CLI for terminal.
-		) \
-		lazygit \
-		$(
-			: # Little Brother database. Used by coc-lbdbq Vim plugin.
-		) \
-		lbdb \
-		$(
-			: # A Helvetica/Times/Courier replacement TrueType font set, courtesy of Red Hat. For documents
-		) \
-		liberation-fonts \
-		$(
-			: # A package manager for the Lua programming language. Used by lazyvim neovim plugin.
-		) \
-		luarocks \
-		$(
-			: # Generates ctags-compatible output for the sections of a Markdown document.
-		) \
-		markdown2ctags \
-		$(
-			: # New implementation of Vim.
-		) \
-		neovim \
-		neovim-ruby-client \
-		$(
-			: # NetworkManager OpenVPN plugin
-		) \
-		networkmanager-openvpn \
-		$(
-			: # Emoji fonts.
-		) \
-		noto-emoji \
-		$(
-			: # Makes power profiles handling avaiable over D-Bus.
-		) \
-		power-profiles-daemon \
-		$(
-			: # Statusline/prompt utility
-		) \
-		powerline-taskwarrior \
-		$(
-			: # OpenType Unicode font with symbols for Powerline/Airline.
-		) \
-		powerline-symbols \
-		$(
-			: # Python client for Neovim
-		) \
-		pynvim \
-		$(
-			: # Impl of the Language Server Protocol for Python. Needed by coc-python Vim plugin.
-		) \
-		python-language-server \
-		$(
-			: # A vim-inspired file manager for the console.
-		) \
-		ranger \
-		$(
-			: # Provides first-class OAuth library support for Requests. Used by vdirsyncer.
-		) \
-		requests-oauthlib \
-		$(
-			: # Recursively searches directories for a regex pattern.
-		) \
-		ripgrep \
-		$(
-			: # The minimal, blazing-fast, and infinitely customizable prompt for any shell.
-		) \
-		starship \
-		$(
-			: # Taskwarrior is a command-line todo list manager.
-		) \
-		task \
-		$(
-			: # Taskwarrior <-> Google Calendar sync.
-		) \
-		taskw_gcal_sync \
-		$(
-			: # A code-searching tool similar to ack, but faster.
-		) \
-		the_silver_searcher \
-		$(
-			: # Magnificent app which corrects your previous console command.
-		) \
-		thefuck \
-		$(
-			: # Tracks your time from the command line, and generates reports.
-		) \
-		timew \
-		$(
-			: # Terminal multiplexer.
-		) \
-		tmux \
-		$(
-			: # A scrypt to configure transparent encryption of sensitive files stored in a Git repository.
-		) \
-		transcrypt \
-		$(
-			: # Online command-line translator. Used by VicentCordobes/vim-translate Vim plugin.
-		) \
-		translate-shell \
-		$(
-			: # Lists directories recusively, and produces an indented listing of files.
-		) \
-		app-text/tree \
-		$(
-			: # C/C++/C#/D/Java/Pawn code indenter and beautifier.
-		) \
-		uncrustify \
-		$(
-			: # NodeJS dependency management. Used to install iamcco/markdown-preview.nvim Vim plugin and gnome-github-manager gnome-shell extension.
-		) \
-		yarn \
-		$(
-			: # Terminal-based YouTube player and downloader.
-		) \
-		yewtube \
-		$(
-			: # Synchronize calendars and contacts.
-		) \
-		vdirsyncer \
-		aiohttp-oauthlib \
-		$(
-			: # Visual Interactive Taskwarrior full-screen terminal interface.
-		) \
-		vit \
-		$(
-			: # Wayland clipboard utilities. Needed to copy/paste with Neovim
-		) \
-		wl-clipboard \
-		$(
-			: # A highly customizable and functional document viewer
-		) \
-		zathura-meta zathura-pdf-mupdf \
-		$(
-			: # Z shell
-		) \
-		zsh &&
-		log_info "Packages installed successful" || (
-		log_error "Failed packages installation"
-		exit -1
-	)
+    sudo emerge -vau \
+        $(
+            : # A cat clone with syntax highlighting, Git integration, so on.
+        ) \
+        bat \
+        $(
+            : # Compiler for Blueprint, a markup language for GTK user interfaces. Used by gnome-shell extension randomwallpaper.
+        ) \
+        blueprint-compiler \
+        $(
+            : # A host application for browserpass browser extension providing it access to your password store.
+        ) \
+        browserpass \
+        $(
+            : # fast compiler cache.
+        ) \
+        ccache \
+        $(
+            : # C/C++/ObjC language server supporting cross references, hierarchies, ... Used by CoC Vim plugin.
+        ) \
+        ccls \
+        $(
+            : # Exuberant Ctags creates tags files for code browsing in editors.
+        ) \
+        ctags \
+        $(
+            : # DejaVu fonts, bitstream vera with ISO-8859-2 characters. For interface fonts.
+        ) \
+        dejavu \
+        $(
+            : # simple drag-and-drop source/sink for X or Wayland.
+        ) \
+        app-misc/dragon \
+        $(
+            : # GUI for GPaste clipboard manager for Gnome Shell.
+        ) \
+        draobpilc \
+        $(
+            : # eselect plugin for adding repositories into your portage.
+        ) \
+        eselect-repository \
+        $(
+            : # A simple, fast and user-friendly alternative to find.
+        ) \
+        fd \
+        $(
+            : # Fuzzy-finder.
+        ) \
+        fzf \
+        $(
+            : # Wrapper around PyFlakes, pep8 and mccabe. Needed by coc-python Vim plugin.
+        ) \
+        flake8 \
+        $(
+            : # Github CLI.
+        ) \
+        github-cli \
+        $(
+            : # Adds KStatusNotifierItem support to the Shell.
+        ) \
+        gnome-shell-extension-appindicator \
+        $(
+            : # Brings easy visualization of system resources.
+        ) \
+        gnome-shell-extension-gnome-stats-pro \
+        $(
+            : # A full featured MPRIS indicator button extension for GNOME Shell.
+        ) \
+        gnome-shell-extension-mpris-indicator-button \
+        $(
+            : # Simple extension for displaying weather conditions and forecasts.
+        ) \
+        gnome-shell-extension-openweather \
+        $(
+            : # Time management utility for GNOME based on the pomodoro technique.
+        ) \
+        gnome-pomodoro \
+        $(
+            : # Removes the dropdown arrows which were introduced in Gnome 3.10 from the App Menu.
+        ) \
+        gnome-shell-extension-remove-dropdown-arrows \
+        $(
+            : # Simple extension for displaying pending tasks created by TaskWarrior in GNOME Shell.
+        ) \
+        gnome-shell-extension-taskwhisperer \
+        $(
+            : # Translation of the text by different translators.
+        ) \
+        gnome-shell-extension-text-translator \
+        $(
+            : # A very simple indicator for the gnome-shell that displays the current activity tracked from timewarrior.
+        ) \
+        gnome-shell-extension-timewarrior-indicator \
+        $(
+            : # The GNOME Spreadsheet. Dependency of richicash.
+        ) \
+        gnumeric \
+        $(
+            : # A password manager for the command line written in Go.
+        ) \
+        gopass \
+        $(
+            : # Clipboard management system.
+        ) \
+        gpaste \
+        $(
+            : # Command-line tool for adding icons to filenames.
+        ) \
+        izer \
+        $(
+            : # A lightweight and flexible command-line JSON processor.
+        ) \
+        app-misc/jq \
+        $(
+            : # Standards based CLI and terminal calendar program.
+        ) \
+        khal \
+        $(
+            : # Address book for the Unix console.
+        ) \
+        khard \
+        $(
+            : # A modern, hackable, featureful, OpenGL-based terminal emulator.
+        ) \
+        kitty \
+        $(
+            : # Git CLI for terminal.
+        ) \
+        lazygit \
+        $(
+            : # Little Brother database. Used by coc-lbdbq Vim plugin.
+        ) \
+        lbdb \
+        $(
+            : # A Helvetica/Times/Courier replacement TrueType font set, courtesy of Red Hat. For documents
+        ) \
+        liberation-fonts \
+        $(
+            : # A package manager for the Lua programming language. Used by lazyvim neovim plugin.
+        ) \
+        luarocks \
+        $(
+            : # Generates ctags-compatible output for the sections of a Markdown document.
+        ) \
+        markdown2ctags \
+        $(
+            : # New implementation of Vim.
+        ) \
+        neovim \
+        neovim-ruby-client \
+        $(
+            : # NetworkManager OpenVPN plugin
+        ) \
+        networkmanager-openvpn \
+        $(
+            : # Emoji fonts.
+        ) \
+        noto-emoji \
+        $(
+            : # Makes power profiles handling avaiable over D-Bus.
+        ) \
+        power-profiles-daemon \
+        $(
+            : # Statusline/prompt utility
+        ) \
+        powerline-taskwarrior \
+        $(
+            : # OpenType Unicode font with symbols for Powerline/Airline.
+        ) \
+        powerline-symbols \
+        $(
+            : # Python client for Neovim
+        ) \
+        pynvim \
+        $(
+            : # Impl of the Language Server Protocol for Python. Needed by coc-python Vim plugin.
+        ) \
+        python-language-server \
+        $(
+            : # A vim-inspired file manager for the console.
+        ) \
+        ranger \
+        $(
+            : # Provides first-class OAuth library support for Requests. Used by vdirsyncer.
+        ) \
+        requests-oauthlib \
+        $(
+            : # Recursively searches directories for a regex pattern.
+        ) \
+        ripgrep \
+        $(
+            : # The minimal, blazing-fast, and infinitely customizable prompt for any shell.
+        ) \
+        starship \
+        $(
+            : # Taskwarrior is a command-line todo list manager.
+        ) \
+        task \
+        $(
+            : # Taskwarrior <-> Google Calendar sync.
+        ) \
+        taskw_gcal_sync \
+        $(
+            : # A code-searching tool similar to ack, but faster.
+        ) \
+        the_silver_searcher \
+        $(
+            : # Magnificent app which corrects your previous console command.
+        ) \
+        thefuck \
+        $(
+            : # Tracks your time from the command line, and generates reports.
+        ) \
+        timew \
+        $(
+            : # Terminal multiplexer.
+        ) \
+        tmux \
+        $(
+            : # A scrypt to configure transparent encryption of sensitive files stored in a Git repository.
+        ) \
+        transcrypt \
+        $(
+            : # Online command-line translator. Used by VicentCordobes/vim-translate Vim plugin.
+        ) \
+        translate-shell \
+        $(
+            : # Lists directories recusively, and produces an indented listing of files.
+        ) \
+        app-text/tree \
+        $(
+            : # C/C++/C#/D/Java/Pawn code indenter and beautifier.
+        ) \
+        uncrustify \
+        $(
+            : # NodeJS dependency management. Used to install iamcco/markdown-preview.nvim Vim plugin and gnome-github-manager gnome-shell extension.
+        ) \
+        yarn \
+        $(
+            : # Terminal-based YouTube player and downloader.
+        ) \
+        yewtube \
+        $(
+            : # Synchronize calendars and contacts.
+        ) \
+        vdirsyncer \
+        aiohttp-oauthlib \
+        $(
+            : # Visual Interactive Taskwarrior full-screen terminal interface.
+        ) \
+        vit \
+        $(
+            : # Wayland clipboard utilities. Needed to copy/paste with Neovim
+        ) \
+        wl-clipboard \
+        $(
+            : # A highly customizable and functional document viewer
+        ) \
+        zathura-meta zathura-pdf-mupdf \
+        $(
+            : # Z shell
+        ) \
+        zsh &&
+        log_info "Packages installed successful" || (
+        log_error "Failed packages installation"
+        exit -1
+    )
 elif [ -e /etc/os-release ]; then
-	source /etc/os-release
-	case $NAME in
-	"Ubuntu")
-		sudo apt -y install \
-			bat \
-			ccls \
-			exuberant-ctags \
-			fd-find \
-			flake8 \
-			${not_inside_docker:+fonts-dejavu} \
-			${not_inside_docker:+fonts-liberation2} \
-			${not_inside_docker:+fonts-noto-color-emoji} \
-			${not_inside_docker:+fonts-powerline} \
-			fzf \
-			${not_inside_docker:+gnumeric} \
-			golang \
-			${not_inside_docker:+gopass} \
-			${not_inside_docker:+gpaste} \
-			${not_inside_docker:+khal} \
-			${not_inside_docker:+khard} \
-			${not_inside_docker:+kitty} \
-			${not_inside_docker:+lbdb} \
-			luarocks \
-			neovim \
-			npm \
-			powerline \
-			python3-neovim \
-			${not_inside_docker:+python3-powerline-taskwarrior} \
-			python3-requests-oauthlib \
-			ranger \
-			ripgrep \
-			silversearcher-ag \
-			${not_inside_docker:+taskwarrior} \
-			${not_inside_docker:+timewarrior} \
-			${not_inside_docker:+tmux} \
-			${not_inside_docker:+translate-shell} \
-			tree \
-			uncrustify \
-			${not_inside_docker:+vdirsyncer} \
-			${not_inside_docker:+wl-clipboard} \
-			${not_inside_docker:+vit} \
-			yarnpkg \
-			${not_inside_docker:+zathura} \
-			zsh &&
-			log_info "Packages installed successful" || (
-			log_error "Failed packages installation"
-			exit -1
-		)
-		pip3 install \
-			${not_inside_docker:+draobpilc} \
-			python-language-server \
-			thefuck &&
-			log_info "Packages installed successful" || (
-			log_error "Failed packages installation"
-			exit -1
-		)
-		GOPATH=/home/${USER}/.go GOBIN=/home/ricardo/.local/bin go install github.com/NightWolf007/izer@latest
-		curl -fsSL https://starship.rs/install.sh | sh -s -- -y -b /home/${USER}/.local/bin
-		sudo mkdir /usr/share/fzf
-		sudo wget https://raw.githubusercontent.com/junegunn/fzf/$(fzf --version | cut -d " " -f 1)/shell/key-bindings.zsh -O /usr/share/fzf/key-bindings.zsh
-		;;
-	esac
+    source /etc/os-release
+    case $NAME in
+        "Ubuntu")
+            sudo apt -y install \
+                bat \
+                ccls \
+                exuberant-ctags \
+                fd-find \
+                flake8 \
+                ${not_inside_docker:+fonts-dejavu} \
+                ${not_inside_docker:+fonts-liberation2} \
+                ${not_inside_docker:+fonts-noto-color-emoji} \
+                ${not_inside_docker:+fonts-powerline} \
+                fzf \
+                ${not_inside_docker:+gnumeric} \
+                golang \
+                ${not_inside_docker:+gopass} \
+                ${not_inside_docker:+gpaste} \
+                ${not_inside_docker:+khal} \
+                ${not_inside_docker:+khard} \
+                ${not_inside_docker:+kitty} \
+                ${not_inside_docker:+lbdb} \
+                luarocks \
+                neovim \
+                npm \
+                powerline \
+                python3-neovim \
+                ${not_inside_docker:+python3-powerline-taskwarrior} \
+                python3-requests-oauthlib \
+                ranger \
+                ripgrep \
+                silversearcher-ag \
+                ${not_inside_docker:+taskwarrior} \
+                ${not_inside_docker:+timewarrior} \
+                ${not_inside_docker:+tmux} \
+                ${not_inside_docker:+translate-shell} \
+                tree \
+                uncrustify \
+                ${not_inside_docker:+vdirsyncer} \
+                ${not_inside_docker:+wl-clipboard} \
+                ${not_inside_docker:+vit} \
+                yarnpkg \
+                ${not_inside_docker:+zathura} \
+                zsh &&
+                log_info "Packages installed successful" || (
+                log_error "Failed packages installation"
+                exit -1
+            )
+            pip3 install \
+                ${not_inside_docker:+draobpilc} \
+                python-language-server \
+                thefuck &&
+                log_info "Packages installed successful" || (
+                log_error "Failed packages installation"
+                exit -1
+            )
+            GOPATH=/home/${USER}/.go GOBIN=/home/ricardo/.local/bin go install github.com/NightWolf007/izer@latest
+            curl -fsSL https://starship.rs/install.sh | sh -s -- -y -b /home/${USER}/.local/bin
+            sudo mkdir /usr/share/fzf
+            sudo wget https://raw.githubusercontent.com/junegunn/fzf/$(fzf --version | cut -d " " -f 1)/shell/key-bindings.zsh -O /usr/share/fzf/key-bindings.zsh
+            ;;
+    esac
 fi
 
 # Install common nodejs packages
 sudo npm install -g \
-	$(
-		: # Neovim plugin for nodejs.
-	) \
-	neovim &&
-	log_info "Packages installed successful (npm)" || (
-	log_error "Failed packages installation (npm)"
-	exit -1
+    $(
+        : # Neovim plugin for nodejs.
+    ) \
+    neovim &&
+    log_info "Packages installed successful (npm)" || (
+    log_error "Failed packages installation (npm)"
+    exit -1
 )
 
 log_info "Installing git-foresta..."
@@ -434,83 +434,83 @@ log_info "Creating links..."
 ## empty
 
 if [ ! -f /.dockerenv ]; then
-	log_info "Setting zsh as default shell..."
-	sudo usermod --shell /bin/zsh $USER
+    log_info "Setting zsh as default shell..."
+    sudo usermod --shell /bin/zsh $USER
 
-	log_info "Setting pinentry-gnome3..."
-	sudo eselect pinentry set pinentry-gnome3
+    log_info "Setting pinentry-gnome3..."
+    sudo eselect pinentry set pinentry-gnome3
 
-	log_info "Installing fonts..."
-	# Powerline symbols
-	sudo eselect fontconfig enable 10-powerline-symbols.conf
-	# DevIcons
-	mkdir -p ~/.local/share/fonts/DejaVuSansMonoNerdFont
-	cd ~/.local/share/fonts/DejaVuSansMonoNerdFont
-	wget https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DejaVuSansMono/Regular/DejaVuSansMNerdFont-Regular.ttf
-	wget https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DejaVuSansMono/Italic/DejaVuSansMNerdFont-Oblique.ttf
-	wget https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DejaVuSansMono/Bold/DejaVuSansMNerdFont-Bold.ttf
-	wget https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DejaVuSansMono/Bold-Italic/DejaVuSansMNerdFont-BoldOblique.ttf
-	fc-cache -f -v
-	cd -
+    log_info "Installing fonts..."
+    # Powerline symbols
+    sudo eselect fontconfig enable 10-powerline-symbols.conf
+    # DevIcons
+    mkdir -p ~/.local/share/fonts/DejaVuSansMonoNerdFont
+    cd ~/.local/share/fonts/DejaVuSansMonoNerdFont
+    wget https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DejaVuSansMono/Regular/DejaVuSansMNerdFont-Regular.ttf
+    wget https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DejaVuSansMono/Italic/DejaVuSansMNerdFont-Oblique.ttf
+    wget https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DejaVuSansMono/Bold/DejaVuSansMNerdFont-Bold.ttf
+    wget https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DejaVuSansMono/Bold-Italic/DejaVuSansMNerdFont-BoldOblique.ttf
+    fc-cache -f -v
+    cd -
 
-	log_info "Enable user systemd units"
-	vdirsyncer discover
-	vdirsyncer sync
-	vdirsyncer metasync
-	systemctl --user enable --now vdirsyncer.timer
-	systemctl --user enable --now taskwarrior.timer
+    log_info "Enable user systemd units"
+    vdirsyncer discover
+    vdirsyncer sync
+    vdirsyncer metasync
+    systemctl --user enable --now vdirsyncer.timer
+    systemctl --user enable --now taskwarrior.timer
 
-	log_info "Enable screencast with pipewire"
-	log_info "    Manual settings"
-	log_info "    1. Turn it off in /etc/pulse/client.conf set 'autospawn = no' and"
-	log_info "    2. Disable daemon via configuration by editing /etc/pulse/daemon.conf and change 'daemonize' to 'daemonize = no'. Remove any ';' at the beginning of the line."
-	systemctl --user disable --now pulseaudio.socket pulseaudio.service
-	systemctl --user enable --now pipewire.socket pipewire-pulse.socket wireplumber.service
-	systemctl --user mask pulseaudio.socket pulseaudio.service
+    log_info "Enable screencast with pipewire"
+    log_info "    Manual settings"
+    log_info "    1. Turn it off in /etc/pulse/client.conf set 'autospawn = no' and"
+    log_info "    2. Disable daemon via configuration by editing /etc/pulse/daemon.conf and change 'daemonize' to 'daemonize = no'. Remove any ';' at the beginning of the line."
+    systemctl --user disable --now pulseaudio.socket pulseaudio.service
+    systemctl --user enable --now pipewire.socket pipewire-pulse.socket wireplumber.service
+    systemctl --user mask pulseaudio.socket pulseaudio.service
 
-	log_info "Enable Power Profiles"
-	sudo systemctl enable --now power-profiles-daemon
+    log_info "Enable Power Profiles"
+    sudo systemctl enable --now power-profiles-daemon
 
-	log_info "Last manual configuration..."
-	log_info "    - Install firefox plugins."
+    log_info "Last manual configuration..."
+    log_info "    - Install firefox plugins."
 
-	log_info "Installing Gnome settings..."
-	dconf write "/org/gnome/desktop/wm/preferences/titlebar-font" "'DejaVu Sans Bold Semi-Condensed 9'"
-	dconf write "/org/gnome/desktop/wm/preferences/button-layout" "'appmenu:minimize,close'"
-	dconf write "/org/gnome/desktop/interface/document-font-name" "'Liberation Sans 9'"
-	dconf write "/org/gnome/desktop/interface/font-name" "'DejaVu Sans Semi-Condensed 9'"
-	dconf write "/org/gnome/desktop/interface/gtk-theme" "'Adwaita-dark'"
-	dconf write "/org/gnome/desktop/interface/monospace-font-name" "'DejaVu Sans Mono 9'"
-	dconf write "/org/gnome/shell/overrides/workspaces-only-on-primary" "true"
-	dconf write "/org/gnome/shell/disable-extension-version-validation" "true"
-	#{{{ Build and install RandomWallpaperGnome3
-	cd .local/share/gnome-shell/extensions/repos/RandomWallpaperGnome3
-	./build.sh
-	./install.sh
-	cd -
-	#}}}
-	#{{{ Build and install gnome-github-manager
-	cd .local/share/gnome-shell/extensions/repos/gnome-github-manager
-	yarn install
-	yarn build
-	yarn sync
-	cd -
-	#}}}
-	gnome-extensions enable 'appindicatorsupport@rgcjonas.gmail.com'
-	gnome-extensions enable 'github-manager@mackdk-on-github'
-	gnome-extensions enable 'gnome-stats-pro@thrallingpenguin.com'
-	gnome-extensions enable 'mprisindicatorbutton@JasonLG1979.github.io'
-	gnome-extensions enable 'openweather-extension@jenslody.de'
-	gnome-extensions enable 'pomodoro@arun.codito.in'
-	gnome-extensions enable 'randomwallpaper@iflow.space'
-	gnome-extensions enable 'remove-dropdown-arrows@mpdeimos.com'
-	gnome-extensions enable 'taskwhisperer-extension@infinicode.de'
-	gnome-extensions enable 'text_translator@awamper.gmail.com'
-	gnome-extensions enable 'timewarrior-indicator@natsakis.com'
-	gnome-extensions enable 'tracker-search-provider@sinnix.de'
-	gnome-extensions enable 'vim-key-mapping@richiware.github.com'
-	gnome-extensions enable 'windowsNavigator@gnome-shell-extensions.gcampax.github.com'
+    log_info "Installing Gnome settings..."
+    dconf write "/org/gnome/desktop/wm/preferences/titlebar-font" "'DejaVu Sans Bold Semi-Condensed 9'"
+    dconf write "/org/gnome/desktop/wm/preferences/button-layout" "'appmenu:minimize,close'"
+    dconf write "/org/gnome/desktop/interface/document-font-name" "'Liberation Sans 9'"
+    dconf write "/org/gnome/desktop/interface/font-name" "'DejaVu Sans Semi-Condensed 9'"
+    dconf write "/org/gnome/desktop/interface/gtk-theme" "'Adwaita-dark'"
+    dconf write "/org/gnome/desktop/interface/monospace-font-name" "'DejaVu Sans Mono 9'"
+    dconf write "/org/gnome/shell/overrides/workspaces-only-on-primary" "true"
+    dconf write "/org/gnome/shell/disable-extension-version-validation" "true"
+    #{{{ Build and install RandomWallpaperGnome3
+    cd .local/share/gnome-shell/extensions/repos/RandomWallpaperGnome3
+    ./build.sh
+    ./install.sh
+    cd -
+    #}}}
+    #{{{ Build and install gnome-github-manager
+    cd .local/share/gnome-shell/extensions/repos/gnome-github-manager
+    yarn install
+    yarn build
+    yarn sync
+    cd -
+    #}}}
+    gnome-extensions enable 'appindicatorsupport@rgcjonas.gmail.com'
+    gnome-extensions enable 'github-manager@mackdk-on-github'
+    gnome-extensions enable 'gnome-stats-pro@thrallingpenguin.com'
+    gnome-extensions enable 'mprisindicatorbutton@JasonLG1979.github.io'
+    gnome-extensions enable 'openweather-extension@jenslody.de'
+    gnome-extensions enable 'pomodoro@arun.codito.in'
+    gnome-extensions enable 'randomwallpaper@iflow.space'
+    gnome-extensions enable 'remove-dropdown-arrows@mpdeimos.com'
+    gnome-extensions enable 'taskwhisperer-extension@infinicode.de'
+    gnome-extensions enable 'text_translator@awamper.gmail.com'
+    gnome-extensions enable 'timewarrior-indicator@natsakis.com'
+    gnome-extensions enable 'tracker-search-provider@sinnix.de'
+    gnome-extensions enable 'vim-key-mapping@richiware.github.com'
+    gnome-extensions enable 'windowsNavigator@gnome-shell-extensions.gcampax.github.com'
 
-	# TODO: add my user to groups
-	sudo usermod -aG pipewire ricardo
+    # TODO: add my user to groups
+    sudo usermod -aG pipewire ricardo
 fi
