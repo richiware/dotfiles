@@ -67,3 +67,6 @@
 [submodule ".local/share/gnome-shell/extensions/repos/astra-monitor"]
 	path = .local/share/gnome-shell/extensions/repos/astra-monitor
 	url = https://github.com/AstraExt/astra-monitor.git
+[submodule ".local/share/gnome-shell/extensions/repos/gnome-shell-extension-mpris-indicator-button"]
+	path = .local/share/gnome-shell/extensions/repos/gnome-shell-extension-mpris-indicator-button
+	url = https://github.com/Mershl/gnome-shell-extension-mpris-indicator-button.git

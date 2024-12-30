@@ -505,10 +505,13 @@ if [ ! -f /.dockerenv ]; then
     unzip monitor@astraext.github.io.shell-extension.zip -d ../../monitor@astraext.github.io
     cd -
     #}}}
+    #{{{ Install mpris-indicator-button
+    ln -s ~/.local/share/gnome-shell/extensions/repos/gnome-shell-extension-mpris-indicator-button/mprisindicatorbutton@Mershl.github.io .local/share/gnome-shell/extensions/
+    #}}}
     gnome-extensions enable 'appindicatorsupport@rgcjonas.gmail.com'
     gnome-extensions enable 'github-manager@mackdk-on-github'
-    gnome-extensions enable 'gnome-stats-pro@thrallingpenguin.com'
-    gnome-extensions enable 'mprisindicatorbutton@JasonLG1979.github.io'
+    gnome-extensions enable 'monitor@astraext.github.io'
+    gnome-extensions enable 'mprisindicatorbutton@Mershl.github.io'
     gnome-extensions enable 'openweather-extension@jenslody.de'
     gnome-extensions enable 'pomodoro@arun.codito.in'
     gnome-extensions enable 'randomwallpaper@iflow.space'
