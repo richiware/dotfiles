@@ -110,6 +110,10 @@ if [ -e /etc/gentoo-release ]; then
         ) \
         ctags \
         $(
+            : # A terminal user interface for the DeepL language translation API.
+        ) \
+        deepl-tui \
+        $(
             : # DejaVu fonts, bitstream vera with ISO-8859-2 characters. For interface fonts.
         ) \
         dejavu \
@@ -146,33 +150,13 @@ if [ -e /etc/gentoo-release ]; then
         ) \
         gnome-shell-extension-appindicator \
         $(
-            : # Brings easy visualization of system resources.
-        ) \
-        gnome-shell-extension-gnome-stats-pro \
-        $(
-            : # A full featured MPRIS indicator button extension for GNOME Shell.
-        ) \
-        gnome-shell-extension-mpris-indicator-button \
-        $(
-            : # Simple extension for displaying weather conditions and forecasts.
-        ) \
-        gnome-shell-extension-openweather \
-        $(
             : # Time management utility for GNOME based on the pomodoro technique.
         ) \
         gnome-pomodoro \
         $(
-            : # Removes the dropdown arrows which were introduced in Gnome 3.10 from the App Menu.
-        ) \
-        gnome-shell-extension-remove-dropdown-arrows \
-        $(
             : # Simple extension for displaying pending tasks created by TaskWarrior in GNOME Shell.
         ) \
         gnome-shell-extension-taskwhisperer \
-        $(
-            : # Translation of the text by different translators.
-        ) \
-        gnome-shell-extension-text-translator \
         $(
             : # A very simple indicator for the gnome-shell that displays the current activity tracked from timewarrior.
         ) \
@@ -189,6 +173,10 @@ if [ -e /etc/gentoo-release ]; then
             : # Clipboard management system.
         ) \
         gpaste \
+        $(
+            : # Google Translate TUI.
+        ) \
+        gtt \
         $(
             : # Command-line tool for adding icons to filenames.
         ) \
@@ -521,13 +509,13 @@ if [ ! -f /.dockerenv ]; then
     gnome-extensions enable 'openweather-extension@penguin-teal.github.io'
     gnome-extensions enable 'pomodoro@arun.codito.in'
     gnome-extensions enable 'randomwallpaper@iflow.space'
-    gnome-extensions enable 'remove-dropdown-arrows@mpdeimos.com'
     gnome-extensions enable 'taskwhisperer-extension@infinicode.de'
-    gnome-extensions enable 'text_translator@awamper.gmail.com'
     gnome-extensions enable 'timewarrior-indicator@natsakis.com'
     gnome-extensions enable 'tracker-search-provider@sinnix.de'
     gnome-extensions enable 'vim-key-mapping@richiware.github.com'
-    gnome-extensions enable 'windowsNavigator@gnome-shell-extensions.gcampax.github.com'
+
+    log_info "Github CLI extensions..."
+    gh extension install dlvhdr/gh-dash
 
     # TODO: add my user to groups
     sudo usermod -aG pipewire ricardo
