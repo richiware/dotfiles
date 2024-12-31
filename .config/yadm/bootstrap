@@ -508,11 +508,17 @@ if [ ! -f /.dockerenv ]; then
     #{{{ Install mpris-indicator-button
     ln -s ~/.local/share/gnome-shell/extensions/repos/gnome-shell-extension-mpris-indicator-button/mprisindicatorbutton@Mershl.github.io .local/share/gnome-shell/extensions/
     #}}}
+    #{{{ Build and install openweather-extension
+    cd .local/share/gnome-shell/extensions/repos/gnome-openweather
+    make
+    make install
+    cd -
+    #}}}
     gnome-extensions enable 'appindicatorsupport@rgcjonas.gmail.com'
     gnome-extensions enable 'github-manager@mackdk-on-github'
     gnome-extensions enable 'monitor@astraext.github.io'
     gnome-extensions enable 'mprisindicatorbutton@Mershl.github.io'
-    gnome-extensions enable 'openweather-extension@jenslody.de'
+    gnome-extensions enable 'openweather-extension@penguin-teal.github.io'
     gnome-extensions enable 'pomodoro@arun.codito.in'
     gnome-extensions enable 'randomwallpaper@iflow.space'
     gnome-extensions enable 'remove-dropdown-arrows@mpdeimos.com'
