@@ -1,7 +1,7 @@
 [user]
     name = Ricardo González Moreno
     email = ricardo@richiware.dev
-    signingkey = 60AA99CB3A8589E8
+    signingkey = 1769181C9F0A36EE
 [core]
     editor = nvim
     autocrlf = input
