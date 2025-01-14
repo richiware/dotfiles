@@ -24,13 +24,13 @@ alias lg='lazygit'
 # Alias to work with gopass:
 # * Without arguments, alias calls 'gopass list'
 # * With one argument, alias calls 'gopass show -c' and start a process to remove password from gpaste after 45s.
-alias pass='pass() { \
+alias gpass='gpass() { \
     if [ "$#" -eq 0 ]; then \
         gopass list;
     elif [ "$#" -eq 1 ]; then \
         gopass show -C $1;
     fi; \
-}; pass'
+}; gpass'
 
 # Aliases for changing to paths quickly.
 alias wse='wse() { \
