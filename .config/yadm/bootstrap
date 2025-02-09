@@ -45,6 +45,7 @@ if [ -e /etc/gentoo-release ]; then
         sudo mkdir /etc/portage/package.use
     fi
     sudo ln -sf ~/.config/yadm/system/portage/android.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/brasero.use /etc/portage/package.use/
     sudo ln -sf ~/.config/yadm/system/portage/ca-certificates.use /etc/portage/package.use/
     sudo ln -sf ~/.config/yadm/system/portage/cawbird.use /etc/portage/package.use/
     sudo ln -sf ~/.config/yadm/system/portage/calibre.use /etc/portage/package.use/
@@ -399,7 +400,7 @@ elif [ -e /etc/os-release ]; then
             GOPATH=/home/${USER}/.go GOBIN=/home/ricardo/.local/bin go install github.com/NightWolf007/izer@latest
             curl -fsSL https://starship.rs/install.sh | sh -s -- -y -b /home/${USER}/.local/bin
             sudo mkdir /usr/share/fzf
-            sudo wget https://raw.githubusercontent.com/junegunn/fzf/$(fzf --version | cut -d " " -f 1)/shell/key-bindings.zsh -O /usr/share/fzf/key-bindings.zsh
+            sudo wget https://raw.githubusercontent.com/junegunn/fzf/v$(fzf --version | cut -d " " -f 1)/shell/key-bindings.zsh -O /usr/share/fzf/key-bindings.zsh
             ;;
     esac
 fi
