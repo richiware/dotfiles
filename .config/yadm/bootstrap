@@ -57,6 +57,7 @@ if [ -e /etc/gentoo-release ]; then
     sudo ln -sf ~/.config/yadm/system/portage/hplip.use /etc/portage/package.use/
     sudo ln -sf ~/.config/yadm/system/portage/latex.use /etc/portage/package.use/
     sudo ln -sf ~/.config/yadm/system/portage/libreswan.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/neomutt.use /etc/portage/package.use/
     sudo ln -sf ~/.config/yadm/system/portage/networkmanager.use /etc/portage/package.use/
     sudo ln -sf ~/.config/yadm/system/portage/obs-studio.use /etc/portage/package.use/
     sudo ln -sf ~/.config/yadm/system/portage/opensc.use /etc/portage/package.use/
@@ -127,6 +128,10 @@ if [ -e /etc/gentoo-release ]; then
         ) \
         draobpilc \
         $(
+            : # A terminal application to manage Docker and Docker Swarm.
+        ) \
+        dry \
+        $(
             : # eselect plugin for adding repositories into your portage.
         ) \
         eselect-repository \
@@ -142,6 +147,10 @@ if [ -e /etc/gentoo-release ]; then
             : # Wrapper around PyFlakes, pep8 and mccabe. Needed by coc-python Vim plugin.
         ) \
         flake8 \
+        $(
+            : # Integrate AppImages into your app menu with just one click.
+        ) \
+        app-misc/gearlever \
         $(
             : # Github CLI.
         ) \
@@ -215,6 +224,14 @@ if [ -e /etc/gentoo-release ]; then
         ) \
         luarocks \
         $(
+            : # An excellent console-based web browser with ssl support (needed by my neomutt configuration).
+        ) \
+        www.client/lynx \
+        $(
+            : # Script for pretty printing of your mails (needed by my neoMutt configuration).
+        ) \
+        app-misc/muttprint \
+        $(
             : # Generates ctags-compatible output for the sections of a Markdown document.
         ) \
         markdown2ctags \
@@ -267,6 +284,10 @@ if [ -e /etc/gentoo-release ]; then
             : # The minimal, blazing-fast, and infinitely customizable prompt for any shell.
         ) \
         starship \
+        $(
+            : # TOFU protection - display filter for RFC822 messages. (Needed by my neomutt configuration)
+        ) \
+        net-mail/t-prot \
         $(
             : # Taskwarrior is a command-line todo list manager.
         ) \
@@ -399,8 +420,14 @@ elif [ -e /etc/os-release ]; then
             )
             GOPATH=/home/${USER}/.go GOBIN=/home/ricardo/.local/bin go install github.com/NightWolf007/izer@latest
             curl -fsSL https://starship.rs/install.sh | sh -s -- -y -b /home/${USER}/.local/bin
+            # Download fzf file depends the fzf version becuase the Git tags (URL) changed in version 0.54.0
             sudo mkdir /usr/share/fzf
-            sudo wget https://raw.githubusercontent.com/junegunn/fzf/v$(fzf --version | cut -d " " -f 1)/shell/key-bindings.zsh -O /usr/share/fzf/key-bindings.zsh
+            fzf_version=$(fzf --version | cut -d " " -f 1)
+            fzf_version_major=$(echo $fzf_version | cut -d "." -f 1)
+            fzf_version_minor=$(echo $fzf_version | cut -d "." -f 2)
+            fzf_git_tag_extra="v"
+            if [ $fzf_version_major -eq 0 ] && [ $fzf_version_minor -lt 54 ]; then fzf_git_tag_extra="" fi
+            sudo wget https://raw.githubusercontent.com/junegunn/fzf/${fzf_git_tag_extra}$(fzf --version | cut -d " " -f 1)/shell/key-bindings.zsh -O /usr/share/fzf/key-bindings.zsh
             ;;
     esac
 fi
@@ -446,8 +473,9 @@ if [ ! -f /.dockerenv ]; then
     vdirsyncer discover
     vdirsyncer sync
     vdirsyncer metasync
-    systemctl --user enable --now vdirsyncer.timer
-    systemctl --user enable --now taskwarrior.timer
+    systemctl --user enable --now vdirsyncer.service vdirsyncer.timer
+    systemctl --user enable --now taskwarrior.service taskwarrior.timer
+    systemctl --user enable --now mailsync.service mailsync.timer
 
     log_info "Enable screencast with pipewire"
     log_info "    Manual settings"
@@ -495,7 +523,7 @@ if [ ! -f /.dockerenv ]; then
     cd -
     #}}}
     #{{{ Install mpris-indicator-button
-    ln -s ~/.local/share/gnome-shell/extensions/repos/gnome-shell-extension-mpris-indicator-button/mprisindicatorbutton@Mershl.github.io .local/share/gnome-shell/extensions/
+    ln -s ~/.local/share/gnome-shell/extensions/repos/gnome-shell-extension-mpris-indicator-button/mprisindicatorbutton@Mershl.github.io ~/.local/share/gnome-shell/extensions/
     #}}}
     #{{{ Build and install openweather-extension
     cd .local/share/gnome-shell/extensions/repos/gnome-openweather
@@ -508,8 +536,8 @@ if [ ! -f /.dockerenv ]; then
     gnome-extensions enable 'monitor@astraext.github.io'
     gnome-extensions enable 'mprisindicatorbutton@Mershl.github.io'
     gnome-extensions enable 'openweather-extension@penguin-teal.github.io'
-    gnome-extensions enable 'pomodoro@arun.codito.in'
     gnome-extensions enable 'randomwallpaper@iflow.space'
+    gnome-extensions enable 'pomodoro@arun.codito.in'
     gnome-extensions enable 'taskwhisperer-extension@infinicode.de'
     gnome-extensions enable 'timewarrior-indicator@natsakis.com'
     gnome-extensions enable 'tracker-search-provider@sinnix.de'
@@ -520,4 +548,7 @@ if [ ! -f /.dockerenv ]; then
 
     # TODO: add my user to groups
     sudo usermod -aG pipewire ricardo
+
+    log_info "Create email accounts in neomutt"
+    mw -a correoricky@gmail.com
 fi
