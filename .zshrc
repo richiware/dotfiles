@@ -112,15 +112,6 @@ export ZLSCOLORS="${LS_COLORS}"
 # enable autocompletion for special directories
 zstyle -e ':completion:*' special-dirs '[[ $PREFIX = (../)#(|.|..) ]] && reply=(..)'
 
-# Change the share history policy
-function change_share_history_policy()
-{
-    if [[ -o sharehistory ]]; then unsetopt sharehistory
-    else; setopt sharehistory
-    fi
-}
-zle -N change_share_history_policy
-
 # Get next line in local history
 function up-line-or-local-history()
 {
@@ -235,8 +226,6 @@ function my_key_bindings()
     bindkey '^N' down-history
     bindkey "^?" backward-delete-char
     bindkey "^q" push-line-or-edit
-    # Ctrl+S to change share history policy
-    bindkey "^Xs" change_share_history_policy
     # Up arrow
     bindkey "^[OA" up-line-or-local-history
     # Down arrow
