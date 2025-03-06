@@ -426,7 +426,7 @@ elif [ -e /etc/os-release ]; then
             fzf_version_major=$(echo $fzf_version | cut -d "." -f 1)
             fzf_version_minor=$(echo $fzf_version | cut -d "." -f 2)
             fzf_git_tag_extra="v"
-            if [ $fzf_version_major -eq 0 ] && [ $fzf_version_minor -lt 54 ]; then fzf_git_tag_extra="" fi
+            if [ $fzf_version_major -eq 0 ] && [ $fzf_version_minor -lt 54 ]; then fzf_git_tag_extra=""; fi
             sudo wget https://raw.githubusercontent.com/junegunn/fzf/${fzf_git_tag_extra}$(fzf --version | cut -d " " -f 1)/shell/key-bindings.zsh -O /usr/share/fzf/key-bindings.zsh
             ;;
     esac
