@@ -1,5 +1,11 @@
-app-emulation/qemu -smartcard spice usbredir virtfs
+app-emulation/qemu -smartcard spice static-user usbredir virtfs QEMU_SOFTMMU_TARGETS: x86_64 arm aarch64 QEMU_USER_TARGETS: x86_64 arm aarch64
 app-emulation/spice -smartcard
 net-dns/dnsmasq script # necessary for app-emulaion/libvirt[virt-network]
 net-libs/gnutls pkcs11 tools # dependency of libvirt[qemu]
 net-misc/spice-gtk -smartcard usbredir
+
+# Needed for USE flag "static-user"
+dev-libs/glib static-libs
+dev-libs/libpcre2 static-libs
+sys-apps/attr static-libs
+sys-libs/zlib static-libs
