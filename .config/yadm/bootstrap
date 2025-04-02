@@ -228,6 +228,10 @@ if [ -e /etc/gentoo-release ]; then
         ) \
         www.client/lynx \
         $(
+            : # A system for automatically configuring neomutt and isync.
+        ) \
+        mail-client/mutt-wizard \
+        $(
             : # Script for pretty printing of your mails (needed by my neoMutt configuration).
         ) \
         app-misc/muttprint \
