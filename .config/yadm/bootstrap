@@ -53,6 +53,7 @@ if [ -e /etc/gentoo-release ]; then
     sudo ln -sf ~/.config/yadm/system/portage/draobpilc.use /etc/portage/package.use/
     sudo ln -sf ~/.config/yadm/system/portage/firefox.use /etc/portage/package.use/
     sudo ln -sf ~/.config/yadm/system/portage/gmic.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/gnome-remote-desktop.use /etc/portage/package.use/
     sudo ln -sf ~/.config/yadm/system/portage/gnucash.use /etc/portage/package.use/
     sudo ln -sf ~/.config/yadm/system/portage/hplip.use /etc/portage/package.use/
     sudo ln -sf ~/.config/yadm/system/portage/latex.use /etc/portage/package.use/
