@@ -1,0 +1,1 @@
+net-vpn/strongswan -caps -non-root # For connecting eProsima VPN

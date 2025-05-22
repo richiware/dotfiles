@@ -57,7 +57,7 @@ if [ -e /etc/gentoo-release ]; then
     sudo ln -sf ~/.config/yadm/system/portage/gnucash.use /etc/portage/package.use/
     sudo ln -sf ~/.config/yadm/system/portage/hplip.use /etc/portage/package.use/
     sudo ln -sf ~/.config/yadm/system/portage/latex.use /etc/portage/package.use/
-    sudo ln -sf ~/.config/yadm/system/portage/libreswan.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/strongswan.use /etc/portage/package.use/
     sudo ln -sf ~/.config/yadm/system/portage/neomutt.use /etc/portage/package.use/
     sudo ln -sf ~/.config/yadm/system/portage/networkmanager.use /etc/portage/package.use/
     sudo ln -sf ~/.config/yadm/system/portage/nodejs.use /etc/portage/package.use/
