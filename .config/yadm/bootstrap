@@ -70,6 +70,7 @@ if [ -e /etc/gentoo-release ]; then
     sudo ln -sf ~/.config/yadm/system/portage/screencast.use /etc/portage/package.use/
     sudo ln -sf ~/.config/yadm/system/portage/snapd.use /etc/portage/package.use/
     sudo ln -sf ~/.config/yadm/system/portage/telegram-desktop.use /etc/portage/package.use/
+    sudo ln -sf ~/.config/yadm/system/portage/tmux.use /etc/portage/package.use/
     sudo ln -sf ~/.config/yadm/system/portage/vdirsyncer.use /etc/portage/package.use/
     sudo ln -sf ~/.config/yadm/system/portage/vim.use /etc/portage/package.use/
 fi
