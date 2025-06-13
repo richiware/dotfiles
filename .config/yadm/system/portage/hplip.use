@@ -1,2 +1,2 @@
 net-dns/avahi python
-net-print/hplip -qt5 scanner snmp -X
+net-print/hplip qt5 scanner snmp
