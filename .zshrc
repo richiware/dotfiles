@@ -238,7 +238,7 @@ function my_key_bindings()
     zvm_bindkey vicmd ',c' show-calendar # zsh-vi-mode
 
     zvm_bindkey viins "^t" __fzf_preview
-    zvm_bindkey viins '\et' fzf-file-widget
+    # zvm_bindkey viins "\et" fzf-file-widget # Responsible of not allow me to write \
 }
 precmd_functions+=(my_key_bindings)
 #}}}
