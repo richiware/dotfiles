@@ -3,6 +3,4 @@ app-misc/draobpilc **
 app-misc/ranger **
 dev-python/colocon **
 dev-python/taskw **
-gnome-extra/gnome-shell-extension-multi-monitor-swap **
-gnome-extra/gnome-shell-extension-tracker-file-search **
-gnome-extra/gnome-shell-extension-timewarrior-indicator **
+dev-python/youtube-search-python **
