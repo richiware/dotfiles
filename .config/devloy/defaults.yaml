@@ -13,6 +13,7 @@ docker:
     groups:
       - sudo
       - wireshark
+      - 85 # usb group on host
     # privileged: True
     # net: host
     shm-size: 1024m
