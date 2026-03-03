@@ -1,3 +1,5 @@
 display_image 1
 auto_image 1
+ext_image_viewer 0
 inline_img_protocol 4
+imgdisplay kitty
