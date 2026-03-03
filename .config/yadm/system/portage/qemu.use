@@ -8,4 +8,4 @@ net-misc/spice-gtk -smartcard usbredir
 dev-libs/glib static-libs
 dev-libs/libpcre2 static-libs
 sys-apps/attr static-libs
-sys-libs/zlib static-libs
+virtual/zlib minizip static-libs
