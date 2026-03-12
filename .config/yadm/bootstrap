@@ -114,6 +114,18 @@ if [ -e /etc/gentoo-release ]; then
         ) \
         ccls \
         $(
+            : # Claude Code - an agentic coding tool by Anthropic
+        ) \
+        claude-code \
+        $(
+            : # Codex CLI - OpenAI's AI-powered coding agent
+        ) \
+        codex \
+        $(
+            : # The power of GitHub Copilot, now in your terminal
+        ) \
+        copilot \
+        $(
             : # Exuberant Ctags creates tags files for code browsing in editors.
         ) \
         ctags \
@@ -343,6 +355,10 @@ if [ -e /etc/gentoo-release ]; then
         ) \
         uncrustify \
         $(
+            : # Command-line tool for creating and testing tree-sitter grammars
+        ) \
+        tree-sitter-cli \
+        $(
             : # NodeJS dependency management. Used to install iamcco/markdown-preview.nvim Vim plugin and gnome-github-manager gnome-shell extension.
         ) \
         yarn \
@@ -413,6 +429,7 @@ elif [ -e /etc/os-release ]; then
                 ${not_inside_docker:+tmux} \
                 ${not_inside_docker:+translate-shell} \
                 tree \
+                tree-sitter-cli \
                 uncrustify \
                 ${not_inside_docker:+vdirsyncer} \
                 ${not_inside_docker:+wl-clipboard} \
