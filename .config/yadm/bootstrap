@@ -271,10 +271,6 @@ if [ -e /etc/gentoo-release ]; then
         ) \
         noto-emoji \
         $(
-            : # Makes power profiles handling avaiable over D-Bus.
-        ) \
-        power-profiles-daemon \
-        $(
             : # Statusline/prompt utility
         ) \
         powerline-taskwarrior \
@@ -519,7 +515,7 @@ if [ ! -f /.dockerenv ]; then
     systemctl --user mask pulseaudio.socket pulseaudio.service
 
     log_info "Enable Power Profiles"
-    sudo systemctl enable --now power-profiles-daemon
+    sudo systemctl enable --now tlp
 
     log_info "Last manual configuration..."
     log_info "    - Install firefox plugins."
