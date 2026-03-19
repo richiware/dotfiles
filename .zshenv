@@ -86,8 +86,8 @@ export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep/config
 
 # Make
 NUMCPUS=`grep -c '^processor' /proc/cpuinfo`
-NUMCPUS_JOBS=$(( $NUMCPUS - 1))
-NUMCPUS_LOAD=$(( $NUMCPUS - 2)).8
+NUMCPUS_JOBS=$(( $NUMCPUS - 4))
+NUMCPUS_LOAD=$(( $NUMCPUS - 5)).8
 export MAKEFLAGS="-j${NUMCPUS_JOBS} -l${NUMCPUS_LOAD}"
   # Variable used in CMake to pass through other project the MAKEFLAGS
 export CMAKE_MAKEFLAGS=$MAKEFLAGS
