@@ -1,1 +1,2 @@
+dev-libs/libpeas vala # For gnome-pomodoro
 net-libs/ngtcp2 gnutls
