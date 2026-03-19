@@ -98,6 +98,9 @@ export EDITOR='nvim'
 # Sustitute oh-my-zsh's sudo alias for mine.
 alias _='sudo -E'
 
+# Alias to retrieve newest regular file in the current directory
+alias -g NF='*(.om[1])'
+
 ZVM_VI_EDITOR=$EDITOR
 
 # 256 color term
