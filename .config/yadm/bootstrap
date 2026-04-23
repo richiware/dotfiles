@@ -395,7 +395,6 @@ elif [ -e /etc/os-release ]; then
             sudo apt -y install \
                 bat \
                 ccls \
-                exuberant-ctags \
                 fd-find \
                 flake8 \
                 ${not_inside_docker:+fonts-dejavu} \
@@ -428,6 +427,7 @@ elif [ -e /etc/os-release ]; then
                 tree \
                 tree-sitter-cli \
                 uncrustify \
+                universal-ctags \
                 ${not_inside_docker:+vdirsyncer} \
                 ${not_inside_docker:+wl-clipboard} \
                 ${not_inside_docker:+vit} \
@@ -449,7 +449,7 @@ elif [ -e /etc/os-release ]; then
             GOPATH=/home/${USER}/.go GOBIN=/home/ricardo/.local/bin go install github.com/NightWolf007/izer@latest
             curl -fsSL https://starship.rs/install.sh | sh -s -- -y -b /home/${USER}/.local/bin
             # Download fzf file depends the fzf version becuase the Git tags (URL) changed in version 0.54.0
-            sudo mkdir /usr/share/fzf
+            sudo mkdir -p /usr/share/fzf
             fzf_version=$(fzf --version | cut -d " " -f 1)
             fzf_version_major=$(echo $fzf_version | cut -d "." -f 1)
             fzf_version_minor=$(echo $fzf_version | cut -d "." -f 2)
@@ -458,6 +458,77 @@ elif [ -e /etc/os-release ]; then
             if [ $fzf_version_major -eq 0 ] && [ $fzf_version_minor -lt 54 ]; then fzf_git_tag_extra=""; fi
             if [ $fzf_version_major -eq 0 ] && [ $fzf_version_minor -le 29 ]; then fzf_version_extra=".0"; fi
             sudo wget https://raw.githubusercontent.com/junegunn/fzf/${fzf_git_tag_extra}$(fzf --version | cut -d " " -f 1)${fzf_version_extra}/shell/key-bindings.zsh -O /usr/share/fzf/key-bindings.zsh
+            ;;
+        "CentOS Stream")
+            sudo dnf -y install \
+                bat \
+                ctags \
+                fd-find \
+                ${not_inside_docker:+fonts-dejavu} \
+                ${not_inside_docker:+fonts-liberation2} \
+                ${not_inside_docker:+fonts-noto-color-emoji} \
+                ${not_inside_docker:+fonts-powerline} \
+                fzf \
+                ${not_inside_docker:+gnumeric} \
+                golang \
+                ${not_inside_docker:+gopass} \
+                ${not_inside_docker:+gpaste} \
+                ${not_inside_docker:+khal} \
+                ${not_inside_docker:+khard} \
+                ${not_inside_docker:+kitty} \
+                ${not_inside_docker:+lbdb} \
+                lua \
+                luarocks \
+                npm \
+                powerline \
+                python3-flake8 \
+                ${not_inside_docker:+python3-powerline-taskwarrior} \
+                python3-requests-oauthlib \
+                ranger \
+                ripgrep \
+                the_silver_searcher \
+                ${not_inside_docker:+taskwarrior} \
+                ${not_inside_docker:+timewarrior} \
+                ${not_inside_docker:+tmux} \
+                ${not_inside_docker:+translate-shell} \
+                tree \
+                tree-sitter-cli \
+                uncrustify \
+                ${not_inside_docker:+vdirsyncer} \
+                ${not_inside_docker:+wl-clipboard} \
+                ${not_inside_docker:+vit} \
+                yarnpkg \
+                ${not_inside_docker:+zathura} \
+                zsh &&
+                log_info "Packages installed successful" || (
+                log_error "Failed packages installation"
+                exit -1
+            )
+            pip3 install \
+                ${not_inside_docker:+draobpilc} \
+                python-language-server \
+                thefuck &&
+                log_info "Packages installed successful" || (
+                log_error "Failed packages installation"
+                exit -1
+            )
+            GOPATH=/home/${USER}/.go GOBIN=/home/ricardo/.local/bin go install github.com/NightWolf007/izer@latest
+            curl -fsSL https://starship.rs/install.sh | sh -s -- -y -b /home/${USER}/.local/bin
+            # Download fzf file depends the fzf version becuase the Git tags (URL) changed in version 0.54.0
+            sudo mkdir -p /usr/share/fzf
+            fzf_version=$(fzf --version | cut -d " " -f 1)
+            fzf_version_major=$(echo $fzf_version | cut -d "." -f 1)
+            fzf_version_minor=$(echo $fzf_version | cut -d "." -f 2)
+            fzf_git_tag_extra="v"
+            fzf_version_extra=""
+            if [ $fzf_version_major -eq 0 ] && [ $fzf_version_minor -lt 54 ]; then fzf_git_tag_extra=""; fi
+            if [ $fzf_version_major -eq 0 ] && [ $fzf_version_minor -le 29 ]; then fzf_version_extra=".0"; fi
+            sudo wget https://raw.githubusercontent.com/junegunn/fzf/${fzf_git_tag_extra}$(fzf --version | cut -d " " -f 1)${fzf_version_extra}/shell/key-bindings.zsh -O /usr/share/fzf/key-bindings.zsh
+            # Install latest neovim
+            cd /tmp
+            curl -fLO "https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz"
+            tar -xzf nvim-linux-x86_64.tar.gz
+            cp -r nvim-linux-x86_64/* "$HOME/.local/"
             ;;
     esac
 fi
