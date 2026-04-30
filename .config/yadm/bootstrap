@@ -390,8 +390,9 @@ if [ -e /etc/gentoo-release ]; then
     )
 elif [ -e /etc/os-release ]; then
     source /etc/os-release
+    echo "Detected OS: $NAME"
     case $NAME in
-        "Ubuntu")
+        "Ubuntu" | "Debian GNU/Linux")
             sudo apt -y install \
                 bat \
                 ccls \
@@ -411,10 +412,8 @@ elif [ -e /etc/os-release ]; then
                 ${not_inside_docker:+kitty} \
                 ${not_inside_docker:+lbdb} \
                 luarocks \
-                neovim \
                 npm \
                 powerline \
-                python3-neovim \
                 ${not_inside_docker:+python3-powerline-taskwarrior} \
                 python3-requests-oauthlib \
                 ranger \
@@ -454,10 +453,19 @@ elif [ -e /etc/os-release ]; then
             fzf_version_major=$(echo $fzf_version | cut -d "." -f 1)
             fzf_version_minor=$(echo $fzf_version | cut -d "." -f 2)
             fzf_git_tag_extra="v"
-            fzf_version_extra=""
+            fzf_version_extra=".0"
             if [ $fzf_version_major -eq 0 ] && [ $fzf_version_minor -lt 54 ]; then fzf_git_tag_extra=""; fi
-            if [ $fzf_version_major -eq 0 ] && [ $fzf_version_minor -le 29 ]; then fzf_version_extra=".0"; fi
-            sudo wget https://raw.githubusercontent.com/junegunn/fzf/${fzf_git_tag_extra}$(fzf --version | cut -d " " -f 1)${fzf_version_extra}/shell/key-bindings.zsh -O /usr/share/fzf/key-bindings.zsh
+            echo "Downloading from https://raw.githubusercontent.com/junegunn/fzf/${fzf_git_tag_extra}${fzf_version_major}.${fzf_version_minor}${fzf_version_extra}/shell/key-bindings.zsh"
+            sudo wget https://raw.githubusercontent.com/junegunn/fzf/${fzf_git_tag_extra}${fzf_version_major}.${fzf_version_minor}${fzf_version_extra}/shell/key-bindings.zsh -O /usr/share/fzf/key-bindings.zsh
+            # Install latest neovim
+            if [ "$NAME" = "Ubuntu" ]; then
+                sudo apt install -y neovim python-neovim
+            else
+                cd /tmp
+                curl -fLO "https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz"
+                tar -xzf nvim-linux-x86_64.tar.gz
+                cp -r nvim-linux-x86_64/* "$HOME/.local/"
+            fi
             ;;
         "CentOS Stream")
             sudo dnf -y install \
@@ -520,10 +528,10 @@ elif [ -e /etc/os-release ]; then
             fzf_version_major=$(echo $fzf_version | cut -d "." -f 1)
             fzf_version_minor=$(echo $fzf_version | cut -d "." -f 2)
             fzf_git_tag_extra="v"
-            fzf_version_extra=""
+            fzf_version_extra=".0"
             if [ $fzf_version_major -eq 0 ] && [ $fzf_version_minor -lt 54 ]; then fzf_git_tag_extra=""; fi
-            if [ $fzf_version_major -eq 0 ] && [ $fzf_version_minor -le 29 ]; then fzf_version_extra=".0"; fi
-            sudo wget https://raw.githubusercontent.com/junegunn/fzf/${fzf_git_tag_extra}$(fzf --version | cut -d " " -f 1)${fzf_version_extra}/shell/key-bindings.zsh -O /usr/share/fzf/key-bindings.zsh
+            echo "Downloading from https://raw.githubusercontent.com/junegunn/fzf/${fzf_git_tag_extra}${fzf_version_major}.${fzf_version_minor}${fzf_version_extra}/shell/key-bindings.zsh"
+            sudo wget https://raw.githubusercontent.com/junegunn/fzf/${fzf_git_tag_extra}${fzf_version_major}.${fzf_version_minor}${fzf_version_extra}/shell/key-bindings.zsh -O /usr/share/fzf/key-bindings.zsh
             # Install latest neovim
             cd /tmp
             curl -fLO "https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz"
