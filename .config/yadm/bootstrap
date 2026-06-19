@@ -460,7 +460,7 @@ elif [ -e /etc/os-release ]; then
             sudo wget https://raw.githubusercontent.com/junegunn/fzf/${fzf_git_tag_extra}${fzf_version_major}.${fzf_version_minor}${fzf_version_extra}/shell/key-bindings.zsh -O /usr/share/fzf/key-bindings.zsh
             # Install latest neovim
             if [ "$NAME" = "Ubuntu" ]; then
-                sudo apt install -y neovim python-neovim
+                sudo apt install -y neovim python3-pynvim
             else
                 cd /tmp
                 curl -fLO "https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz"
