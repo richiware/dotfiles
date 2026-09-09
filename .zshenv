@@ -1,17 +1,30 @@
 # Aliases
 
 if [[ -f /.dockerenv  ]]; then
+    #alias colcon='colcon() { \
+    #    if [ "$#" -eq 0 ]; then \
+    #        test -e /tmp/colcon_command.sh && sh /tmp/colcon_command.sh; \
+    #    else; \
+    #        echo "$*" | grep -qP "(^|\s)\Kcolcon(\s)*build(?=\s|$)"; \
+    #        if [ "$?" -eq 0 ]; then \
+    #            echo "colcon $*" > /tmp/colcon_command.sh; \
+    #            =colcon $@; \
+    #            ccdb; \
+    #        else;
+    #            =colcon $@; \
+    #        fi; \
+    #    fi; \
+    #    }; colcon'
     alias colcon='colcon() { \
         if [ "$#" -eq 0 ]; then \
             test -e /tmp/colcon_command.sh && sh /tmp/colcon_command.sh; \
         else; \
             echo "$*" | grep -qP "(^|\s)\Kcolcon(\s)*build(?=\s|$)"; \
             if [ "$?" -eq 0 ]; then \
-                echo "colcon $*" > colcon_command.sh; \
-                =colcon $@; \
-                ccdb; \
+                echo "colocon $*" > /tmp/colcon_command.sh; \
+                =colocon $@; \
             else;
-                =colcon $@; \
+                =colocon $@; \
             fi; \
         fi; \
         }; colcon'
