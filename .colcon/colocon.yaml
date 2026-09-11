@@ -1,3 +1,9 @@
 search-paths:
   - /home/ricardo/workspace/eprosima
 compile_commands: true
+dependency-locations:
+  cmake_utils: dev-utils
+  cpp_utils: dev-utils
+  ddspipe_core: ddspipe
+  ddspipe_participants: ddspipe
+  ddspipe_yaml: ddspipe
