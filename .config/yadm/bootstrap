@@ -82,6 +82,15 @@ fi
 
 test -f /.dockerenv || (not_inside_docker="no" && log_info "Detected inside container...")
 
+# Inside a container the recommended packages are pure weight: 'tree-sitter-cli'
+# recommends 'emscripten', which pulls the whole llvm-15/clang-15 toolchain, and
+# 'libvulkan1' recommends 'mesa-vulkan-drivers'. Together ~2GB that a headless
+# development image never uses.
+apt_no_recommends=
+if [ -f /.dockerenv ]; then
+    apt_no_recommends="--no-install-recommends"
+fi
+
 log_info "Installing packages..."
 if [ -e /etc/gentoo-release ]; then
     sudo emerge -vau --oneshot \
@@ -111,10 +120,6 @@ if [ -e /etc/gentoo-release ]; then
             : # fast compiler cache.
         ) \
         ccache \
-        $(
-            : # C/C++/ObjC language server supporting cross references, hierarchies, ... Used by CoC Vim plugin.
-        ) \
-        ccls \
         $(
             : # Claude Code - an agentic coding tool by Anthropic
         ) \
@@ -394,10 +399,13 @@ elif [ -e /etc/os-release ]; then
     echo "Detected OS: $NAME"
     case $NAME in
         "Ubuntu" | "Debian GNU/Linux")
-            sudo apt -y install \
+            sudo apt -y install ${apt_no_recommends} \
                 bat \
-                ccls \
                 fd-find \
+                $(
+                    : # Recommended by ranger, which uses it to detect file types.
+                ) \
+                file \
                 flake8 \
                 ${not_inside_docker:+fonts-dejavu} \
                 ${not_inside_docker:+fonts-liberation2} \
@@ -413,6 +421,10 @@ elif [ -e /etc/os-release ]; then
                 ${not_inside_docker:+kitty} \
                 ${not_inside_docker:+lbdb} \
                 luarocks \
+                $(
+                    : # Recommended by luarocks, gives it HTTPS support.
+                ) \
+                lua-sec \
                 npm \
                 powerline \
                 ${not_inside_docker:+python3-powerline-taskwarrior} \
